@@ -9,6 +9,9 @@ var components = [
     'bower_components/angular/angular.js'
 ];
 
+var lessComponents = [
+];
+
 gulp.task('default', ['page', 'src', 'less', 'views'], function () {
 
 });
@@ -25,7 +28,7 @@ gulp.task('src', function () {
 });
 
 gulp.task('less', function () {
-    gulp.src('./less/**/*.less')
+    gulp.src(lessComponents.concat(['./less/**/*.less']))
         .pipe(less())
         .pipe(concat('app.css'))
         .pipe(gulp.dest('build/'));
