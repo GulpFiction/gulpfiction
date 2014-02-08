@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var less = require('gulp-less');
 var livereload = require('gulp-livereload');
 var ngHtml2Js = require('gulp-ng-html2js');
+var jshint = require('gulp-jshint');
 
 var components = [
     'bower_components/angular/angular.js'
@@ -12,7 +13,7 @@ var components = [
 var lessComponents = [
 ];
 
-gulp.task('default', ['page', 'src', 'less', 'views'], function () {
+gulp.task('default', ['components', 'page', 'src', 'less', 'views'], function () {
 
 });
 
@@ -21,8 +22,16 @@ gulp.task('page', function () {
       .pipe(gulp.dest('build/'));
 });
 
+gulp.task('components', function () {
+    gulp.src(components)
+        .pipe(concat('components.js'))
+        .pipe(gulp.dest('build/'));
+});
+
 gulp.task('src', function () {
-    gulp.src(components.concat(['./src/**/*.js']))
+    gulp.src('./src/**/*.js')
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('default'))
         .pipe(concat('app.js'))
         .pipe(gulp.dest('build/'));
 });
@@ -48,7 +57,7 @@ gulp.task('reload', function () {
         .pipe(livereload());
 })
 
-gulp.task('watch', ['reload'], function () {
+gulp.task('watch', ['default', 'reload'], function () {
     gulp.watch('index.html', ['page', 'reload']);
     gulp.watch('./src/**/*.js', ['src', 'reload']);
     gulp.watch('./less/**/*.less', ['less', 'reload']);
