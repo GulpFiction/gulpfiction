@@ -1,6 +1,13 @@
 (function (exports) {
     'use strict';
-    exports.angular.module('app', ['app.appController', 'views', 'test.builder', 'test.dropbox', 'dropbox'])
+
+    exports.angular.module('app', ['app.appController',
+        'views',
+        'test.builder',
+        'test.dropbox',
+        'dropbox',
+        'npm.search.npmSearch'
+    ])
     .config(function (DropboxProvider) {
         DropboxProvider.config('bjagvq348k304rt', 'http://localhost:8000/callback.html');
     })

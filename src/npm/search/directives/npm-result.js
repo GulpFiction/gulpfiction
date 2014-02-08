@@ -7,7 +7,6 @@
         return {
             restrict: 'E',
             templateUrl: 'npm/search/views/npm-result.tpl.html',
-            // replace: true,
             scope: {
                 result: '='
             },
