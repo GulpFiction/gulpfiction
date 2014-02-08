@@ -12,11 +12,8 @@
     <body ng-app="app" ng-controller="appController">
         <header>
             <h1>Gulp Fiction</h1>
-            <nav ng-click="navOpen = !navOpen" ng-class="{'is-open': navOpen}">
-                <menu>
-                    <li ng-repeat="project in projects">{{ project.name }}</li>
-                </menu>
-            </nav>
+            <project-picker projects="projects"></project-picker>
+
             <div class="options">
                 <button><i class="fa fa-cloud-download"></i></button>
                 <button><i class="fa fa-dropbox"></i></button>

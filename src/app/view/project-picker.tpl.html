@@ -1,0 +1,9 @@
+<nav ng-click="navOpen = !navOpen" ng-class="{'is-open': navOpen}">
+    <menu>
+        <li ng-bind="currentProject.name"></li>
+        <li ng-repeat="project in projects">
+            <a ng-click="switchToProject(project)">{{ project.name }}</a>
+        </li>
+    </menu>
+</nav>
+

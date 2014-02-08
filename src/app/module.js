@@ -1,13 +1,15 @@
 (function (exports) {
     'use strict';
 
-    exports.angular.module('app', ['app.appController',
+    exports.angular.module('app', [
+        'app.appController',
         'views',
         'test.builder',
         'test.dropbox',
         'dropbox',
         'npm.search.npmSearch',
         'ngRoute',
+        'app.projectPicker',
         'app.projectController',
         'app.indexController',
         'gulp.gulp'
