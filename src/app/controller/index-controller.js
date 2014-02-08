@@ -5,7 +5,6 @@
         .controller('indexController', IndexController);
 
     function IndexController($location) {
-        console.log('a');
         $location.path('/one');
     }
 

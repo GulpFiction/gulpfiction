@@ -18,6 +18,7 @@
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
+                template: '',
                 controller: 'indexController'
             })
             .when('/:projectName', {
