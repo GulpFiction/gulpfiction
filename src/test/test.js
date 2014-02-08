@@ -31,7 +31,7 @@
 
             var myTask2 = new Task();
             myTask2.name = 'more';
-            myTask2.inputGlob = 'src/**/*.js';
+            myTask2.inputGlob = ['src/**/*.js', 'a/*.js'];
             myTask2.preTasks = ['a', 'b'];
             myTask2.outputDir = 'build/';
             myTask2.steps = [myStep, myStep2];

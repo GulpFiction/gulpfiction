@@ -72,7 +72,7 @@
     function buildTaskContent(task) {
         var content = [];
 
-        content.push('gulp.src("' + task.inputGlob + '")');
+        content.push('gulp.src(' + JSON.stringify(task.inputGlob) + ')');
 
         task.steps.forEach(function (step) {
             content.push(INDENT + buildStep(step));
@@ -86,7 +86,11 @@
     }
 
     function buildStep(step) {
-        return '.pipe(' + step.name + '())';
+        return '.pipe(' + step.name + '(' + buildStepOptions(step) + '))';
+    }
+
+    function buildStepOptions(step) {
+        return JSON.stringify(step.options);
     }
 
 }(this));
