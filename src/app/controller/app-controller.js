@@ -19,6 +19,10 @@
             $scope.showsHelp = false;
         };
 
+        $scope.showTeaser = function () {
+            $scope.showsTeaser = true;
+        };
+
         $scope.switchToProject = function (project) {
             $rootScope.project = project;
             $location.path('/' + encodeURI(project.name));

@@ -12,7 +12,8 @@
         'app.projectController',
         'app.indexController',
         'gulp.gulp',
-        'app.lightbox'
+        'app.lightbox',
+        'app.keyupEvents'
     ])
     .config(function (DropboxProvider) {
         DropboxProvider.config('dz3ndmuzjdf7ca4', 'http://localhost:8000/callback.html');
