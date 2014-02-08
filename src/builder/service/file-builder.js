@@ -2,7 +2,7 @@
     'use strict';
 
     exports.angular.module('builder.fileBuilder', [])
-        .value('fileBuilder', FileBuilder);
+        .service('fileBuilder', FileBuilder);
 
     function FileBuilder() {
     }
