@@ -46,3 +46,17 @@ menu {
 	padding: 2rem;
 	width: 600px;
 }
+
+input[type="checkbox"] {
+	opacity: 0;
+	position: absolute;
+
+	& + label:before {
+		width: 1.1em;
+		.fontAwesome("\f096");
+	}
+
+	&:checked + label:before {
+		.fontAwesome("\f046");
+	}
+}
