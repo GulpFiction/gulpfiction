@@ -19,6 +19,7 @@
     };
 
     function buildDependencies(gulp) {
+        // @TODO: UNIQUIFY DEPENDENCIES
         var stepNames = getStepNames(gulp), content = [];
 
         // prepend default modules
@@ -29,7 +30,7 @@
         });
 
         // prepend gulp module
-        content.unshift('var gulp = require("gulp");')
+        content.unshift('var gulp = require("gulp");');
 
         return content.join(LINEBREAK);
     }
@@ -72,11 +73,20 @@
         var content = [];
 
         content.push('gulp.src("' + task.inputGlob + '")');
-        content.push(INDENT + '.pipe(gulp.dest("' + task.outputDir + '"));')
+
+        task.steps.forEach(function (step) {
+            content.push(INDENT + buildStep(step));
+        });
+
+        content.push(INDENT + '.pipe(gulp.dest("' + task.outputDir + '"));');
 
         return content.map(function (line) {
             return INDENT + line;
         }).join(LINEBREAK);
+    }
+
+    function buildStep(step) {
+        return '.pipe(' + step.name + '())';
     }
 
 }(this));
