@@ -29,25 +29,31 @@
         		<li ng-repeat="input in task.inputGlob track by $index">
         			<input type="text" ng-model="input.path"/>
         			<button ng-if="task.inputGlob.length > 1" ng-click="removeInputGlob(task, $index);">remove</button>
-        		</li> 
+        		</li>
         	</ul>
         	<button ng-click="addInputGlob(task)">add src</button>
         </div>
 
         <button ng-repeat-end ng-click="addStep(task, 0)" class="add-task">
             <i class="fa fa-arrow-right"></i>
-            <i class="fa fa-plus-circle"></i> 
+            <i class="fa fa-plus-circle"></i>
         </button>
 
         <div class="step" ng-repeat-start="step in task.steps">
             <i class="fa fa-times-circle delete" ng-click="removeStep(task, $index)"></i>
-            <h4 ng-if="!step.justAdded">{{step.name}}</h4>
-            <input ng-if="step.justAdded" type="text">
+
+            <npm-search ng-if="step.justAdded" on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
+
+            <div ng-if="!step.justAdded">
+                <h4>{{step.name}}</h4>
+                <p>{{step.description}}</p>
+            </div>
+
         </div>
 
         <button ng-repeat-end ng-click="addStep(task, $index+1)" class="add-task">
             <i class="fa fa-arrow-right"></i>
-            <i class="fa fa-plus-circle"></i> 
+            <i class="fa fa-plus-circle"></i>
         </button>
 
         <div class="dest">

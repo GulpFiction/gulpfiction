@@ -7,7 +7,7 @@
             restrict: 'E',
             templateUrl: 'npm/search/view/npm-search.tpl.html',
             scope: {
-
+                doSelectPackage: '&onSelectPackage'
             },
             link: function (scope, element, attrs) {
                 var debounce;
@@ -33,6 +33,10 @@
                         });
                     }
                 });
+
+                scope.selectResult = function (result) {
+                    scope.doSelectPackage({npmPackage: result._source});
+                };
 
                 scope.$on('$destroy', function () {
                     unwatchQuery();

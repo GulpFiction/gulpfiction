@@ -1,10 +1,9 @@
 <div>
-    Search for gulp packages: <input type="text" ng-model="query"/>
-    <span ng-bind="totalHits"></span>
-
-    <div>{{results.length}}
+    <input type="text" ng-model="query" placeholder="search npm..."/>
+    <div>
         <ul>
-            <li ng-repeat="result in results">
+            <li ng-repeat="result in results | filter:'gulp-'"
+                ng-click="selectResult(result)">
                 <result-row result="result"></result-row>
             </li>
         </ul>

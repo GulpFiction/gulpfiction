@@ -1,10 +1,11 @@
 (function (exports) {
     'use strict';
 
-    exports.angular.module('app.projectController', [])
-        .controller('projectController', ProjectController);
+    exports.angular.module('app.projectController', [
+        'gulp.Step'
+    ]).controller('projectController', ProjectController);
 
-    function ProjectController($scope, project, store) {
+    function ProjectController($scope, project, store, Step) {
         $scope.project = project;
 
         $scope.removeInputGlob = function (task, index) {
@@ -17,7 +18,12 @@
         };
 
         $scope.addStep = function (task, position) {
-            task.steps.splice(position, 0, { name: 'new step', justAdded: true });
+            task.steps.splice(position, 0, new Step({ justAdded: true }));
+        };
+
+        $scope.assignPackageToStep = function (step, npmPackage) {
+            step.justAdded = false;
+            step.setPackage(npmPackage);
         };
 
         $scope.removeStep = function (task, position) {

@@ -10,4 +10,11 @@
         exports.angular.extend(this, data);
     }
 
+    Step.prototype.setPackage = function (npmPackage) {
+        this.name = npmPackage.name;
+        this.description = npmPackage.description;
+        this.readme = npmPackage.readme;
+        this.author = npmPackage.author;
+    };
+
 }(this));
