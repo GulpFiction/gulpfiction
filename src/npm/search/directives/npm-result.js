@@ -14,8 +14,7 @@
         };
 
         function linkFn(scope, element, attrs) {
-            console.log('blub');
-            console.log(scope.result._source.name);
+
         }
     }
 

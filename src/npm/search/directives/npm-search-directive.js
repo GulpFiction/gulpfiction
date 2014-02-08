@@ -21,7 +21,7 @@
                         scope.$apply(function () {
                             performSearch(newValue);
                         });
-                    }, 500);
+                    }, 100);
 
                     function performSearch(query) {
                         var payload = NpmPackage.getGulpMatchQueryPayloadFor(query);
