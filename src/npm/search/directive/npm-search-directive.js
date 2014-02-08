@@ -12,7 +12,7 @@
             link: function (scope, element, attrs) {
                 var debounce;
 
-                scope.$watch('query', function (newValue, oldValue) {
+                var unwatchQuery = scope.$watch('query', function (newValue, oldValue) {
 
                     if (newValue === oldValue) { return; }
 
@@ -34,7 +34,9 @@
                     }
                 });
 
-
+                scope.$on('$destroy', function () {
+                    unwatchQuery();
+                });
             }
         };
     }

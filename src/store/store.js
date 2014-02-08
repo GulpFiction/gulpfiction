@@ -2,14 +2,18 @@
     'use strict';
 
     var PROJECT_LIST_KEY = 'projects', PROJECT_PREFIX = 'PR_';
-
+    // @TODO: localStorage other tab?
+    // @TODO: localStorage size exceeded?
     exports.angular.module('store', ['localStorage'])
         .factory('store', function (localStorage) {
             return {
                 loadProjects: function () {
                     var projectNames = localStorage.get(PROJECT_LIST_KEY);
 
-                    if (!projectNames || !projectNames.length) { return []; }
+                    if (!projectNames || !projectNames.length) {
+                        localStorage.reset();
+                        return [];
+                    }
 
                     return projectNames.map(function (projectName) {
                         return localStorage.get(PROJECT_PREFIX + projectName);
@@ -22,10 +26,11 @@
 
                     localStorage.set(PROJECT_LIST_KEY, projectNames);
 
-                    projects.forEach(function (project) {
-                        var saveCopy = exports.angular.copy(project);
-                        localStorage.set(PROJECT_PREFIX + project.name, saveCopy);
-                    });
+                    projects.forEach(this.saveProject);
+                },
+                saveProject: function (project) {
+                    var saveCopy = exports.angular.copy(project);
+                    localStorage.set(PROJECT_PREFIX + project.name, saveCopy);
                 }
             };
         });

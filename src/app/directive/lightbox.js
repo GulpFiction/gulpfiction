@@ -12,12 +12,16 @@
                 },
                 link: function (scope, el, attrs) {
                     var bodyEl = exports.angular.element(exports.document.body);
-                    scope.$watch('isActive', function () {
+                    var unregisterIsActiveWatch = scope.$watch('isActive', function () {
                         if (scope.isActive) {
                             bodyEl.addClass('has-lightbox');
                         } else {
                             bodyEl.removeClass('has-lightbox');
                         }
+                    });
+
+                    scope.$on('$destroy', function () {
+                        unregisterIsActiveWatch();
                     });
                 }
             };
