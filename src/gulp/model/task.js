@@ -1,7 +1,7 @@
-(function (export) {
+(function (exports) {
     'use strict';
 
-    export.angular.module('gulp.task', [])
+    exports.angular.module('gulp.task', [])
         .value('Task', Task);
 
     function Task() {

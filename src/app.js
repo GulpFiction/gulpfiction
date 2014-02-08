@@ -1,4 +1,4 @@
-(function (sandbox) {
+(function (exports) {
     'use strict';
-    sandbox.angular.module('app', ['views']);
+    exports.angular.module('app', ['views']);
 }(this));
