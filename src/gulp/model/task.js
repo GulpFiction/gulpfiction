@@ -6,7 +6,7 @@
 
     function Task() {
         this.steps = [];
-        this.pretasks = [];
+        this.preTasks = [];
         this.name = '';
         this.inputGlob = '';
         this.outputDir = '';

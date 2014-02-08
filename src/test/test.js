@@ -25,7 +25,7 @@
             var myTask = new Task();
             myTask.name = 'default';
             myTask.inputGlob = 'src/**/*.js';
-            myTask.pretasks = [];
+            myTask.preTasks = ['more', 'other'];
             myTask.outputDir = 'build/';
             myTask.steps = [myStep, myStep2];
 
