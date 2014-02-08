@@ -42,6 +42,10 @@
             $location.path('/');
         };
 
+        $scope.confirmDeleteProject = function () {
+            $scope.confirmDeleteProjectActive = true;
+        };
+
         $scope.connectDb = function () {
             window.Dropbox = Dropbox;
 

@@ -13,6 +13,7 @@
         'app.indexController',
         'gulp.gulp',
         'app.lightbox',
+        'app.confirmLightbox',
         'app.keyupEvents'
     ])
     .config(function (DropboxProvider) {

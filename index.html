@@ -34,7 +34,7 @@
 
             <div class="options">
                 <div class="options-project">
-                    <button ng-click="removeProject()"><i class="fa fa-times-circle"></i></button>
+                    <button ng-click="confirmDeleteProject()"><i class="fa fa-ban"></i></button>
                     <button ng-click="exportProject(project)"><i class="fa fa-cloud-download"></i></button>
                 </div>
 
@@ -42,17 +42,15 @@
                     <button ng-click="addProject()"><i class="fa fa-plus-circle"></i></button>
                     <button ng-click="showHelp()"><i class="fa fa-question-circle"></i></button>
                 </div>
-<!--                 
+<!--
                 <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button> -->
 
             </div>
         </header>
 
-        <npm-search style="margin-top:50px;display:none;"></npm-search>
-
         <div ng-view></div>
 
-        <lightbox is-active="showsTeaser">
+        <lightbox is-active="showsTeaser" show-close="true">
             <h1>Gulp Fiction - the Royale with cheese for your build workflow!</h1>
             <h3>- Easy visual editing of your gulp file!</h3>
             <h3>- Export your generated gulp file to your Dropbox account or copy it!</h3>
@@ -66,5 +64,12 @@
             <button ng-click="on">Start with an all fresh project</button>
 
         </lightbox>
+
+
+        <confirm-lightbox   is-active="confirmDeleteProjectActive"
+                            project="project"
+                            on-confirm="removeProject(project)">
+            <h1>Delete {{project.name}}?</h1>
+        </confirm-lightbox>
     </body>
 </html>

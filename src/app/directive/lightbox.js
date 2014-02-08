@@ -8,9 +8,11 @@
                 transclude: true,
                 templateUrl: 'app/view/lightbox.tpl.html',
                 scope: {
-                    isActive: '='
+                    isActive: '=',
+                    showClose: '='
                 },
                 link: function (scope, el, attrs) {
+
                     var bodyEl = exports.angular.element(exports.document.body);
 
                     var unregisterIsActiveWatch = scope.$watch('isActive', function () {
@@ -44,25 +46,3 @@
         });
 
 }(this));
-
-
-// // Register Click outside lightbox handler
-// body.on('click.lightbox', function (e) {
-//     if (e.target.classList[0] === LIGHTBOX_CLASS && !scope.preventDefaultClose) {
-//         if (!scope.disableCloseOnBackgroundClick) {
-//             sandbox.$('body').removeClass('overlay-open');
-//             scope.$apply(function () {
-//                 scope.doClose();
-//             });
-//         }
-//     }
-// });
-
-// // Esc key handler
-// scope.$on('ui-keyup:esc', function (e) {
-//     if (scope.isLightboxVisible && !scope.preventDefaultClose) {
-//         scope.$apply(function () {
-//             scope.doClose();
-//         });
-//     }
-// });
