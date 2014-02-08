@@ -1,6 +1,8 @@
 @header-color: @color-first;
+@header-opacity: 0.8;
 
 header {
+	-webkit-user-select: none;
 	background: @header-color;
 	position: fixed;
 	z-index: 9;
@@ -10,6 +12,7 @@ header {
 	.justifyContent(space-between);
 	height: 4rem;
 	box-shadow: 0 2px 2px fade(@color-shadow, 10%);
+	cursor: default;
 
 	&, .fa {
 		color: @color-second;
@@ -26,16 +29,24 @@ header {
 	h1 {
 		line-height: 0.8rem;
 		letter-spacing: -.07rem;
-	//	font-size: 4em;
 		position: relative;
-
-		> * {
+		a {
+			display: block;
+			height: 50px;
+			width: 170px;
+			cursor: pointer;
+			opacity: @header-opacity;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		a > * {
 			position: absolute;
 		}
 
 		.gulp {
 			left: 3rem;
-			top: 0.7rem;		
+			top: 0.7rem;
 		}
 
 		.fiction {
@@ -55,6 +66,7 @@ header {
 
 		&.is-open {
 			menu {
+				opacity: 1;
 				background: darken(@header-color,10%);
 
 				li {
@@ -76,6 +88,10 @@ header {
 		background: @header-color;
 		padding: .5rem;
 		font-weight: bold;
+		opacity: @header-opacity;
+		&:hover {
+			opacity: 1;
+		}
 
 		li {
 			margin-bottom: 0rem;
@@ -110,8 +126,8 @@ header {
 			display: inline-block;
 
 			&:first-child {
-				padding-right: .9rem;
-				border-right: 1px solid @color-second;
+				padding-right: 1.3rem;
+				// border-right: 1px solid @color-second;
 			}
 		}
 
@@ -122,6 +138,11 @@ header {
 			cursor: pointer;
 			padding: 0;
 			margin: 0 0 0 .5rem;
+			opacity: @header-opacity;
+			outline: 0;
+			&:hover {
+				opacity: 1;
+			}
 		}
 	}
 }
