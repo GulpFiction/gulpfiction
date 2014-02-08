@@ -34,16 +34,18 @@
         	<button ng-click="addInputGlob(task)">add src</button>
         </div>
 
-        <button ng-repeat-end ng-click="addTask(-1)" class="add-task">
+        <button ng-repeat-end ng-click="addStep(task, 0)" class="add-task">
             <i class="fa fa-arrow-right"></i>
             <i class="fa fa-plus-circle"></i> 
         </button>
 
-        <div class="step" ng-repeat-start="step in task.steps track by $index">
-        	{{step.name}}
+        <div class="step" ng-repeat-start="step in task.steps">
+            <i class="fa fa-times-circle delete" ng-click="removeStep(task, $index)"></i>
+            <h4 ng-if="!step.justAdded">{{step.name}}</h4>
+            <input ng-if="step.justAdded" type="text">
         </div>
 
-        <button ng-repeat-end ng-click="addTask($index)" class="add-task">
+        <button ng-repeat-end ng-click="addStep(task, $index+1)" class="add-task">
             <i class="fa fa-arrow-right"></i>
             <i class="fa fa-plus-circle"></i> 
         </button>

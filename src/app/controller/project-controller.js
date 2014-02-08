@@ -16,9 +16,12 @@
             task.inputGlob.push({path: newName});
         };
 
-        $scope.addTask = function (position) {
-            // todo
-            console.log('add step at ' + position);
+        $scope.addStep = function (task, position) {
+            task.steps.splice(position, 0, { name: 'new step', justAdded: true });
+        };
+
+        $scope.removeStep = function (task, position) {
+            task.steps.splice(position, 1);
         };
 
         // debounce?

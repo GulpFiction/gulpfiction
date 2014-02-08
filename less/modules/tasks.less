@@ -45,6 +45,7 @@ section.task {
 		position: relative;
 		width: @width / 2;
 		margin: (@height / 3) 0;
+        padding: 0;
 
 		i {
 			transition: all ease .3s;
@@ -76,6 +77,10 @@ section.task {
 				opacity: .8;
 			}
 		}
+
+        &.ng-enter.ng-enter-active, &.ng-leave {
+            width: @width / 2;
+        }
 	}
 
 	.content {
@@ -88,13 +93,49 @@ section.task {
         > * {
             .flexShrink(0);
         }
-
-        .source, .step, .dest {
-            width: @width;
-            margin: 1rem;
-            background: @color-second;
-
-        }
 	}
+
+    .source, .step, .dest {
+        width: @width;
+        margin: 1rem;
+        background: @color-second;
+    }
+
+    .step {
+        position: relative;
+
+        .delete {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1.5rem;
+            margin: .5rem .5rem 0;
+        }
+
+        &.ng-enter.ng-enter-active, &.ng-leave {
+            width: @width;
+            margin-right: 1rem;
+            margin-left: 1rem;
+        }
+    }
+
+    .step, .add-task {
+
+        &.ng-animate {
+            transition: all .5s;
+        }
+
+        &.ng-enter, &.ng-leave.ng-leave-active {
+            opacity: 0;
+            width: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        &.ng-enter.ng-enter-active, &.ng-leave {
+            opacity: 1;
+            overflow: hidden;
+        }
+    }
 
 }
