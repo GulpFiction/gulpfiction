@@ -3,12 +3,13 @@ var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
 var livereload = require('gulp-livereload');
+var ngHtml2Js = require('gulp-ng-html2js');
 
 var components = [
     'bower_components/angular/angular.js'
 ];
 
-gulp.task('default', ['page', 'src', 'less'], function () {
+gulp.task('default', ['page', 'src', 'less', 'views'], function () {
 
 });
 
@@ -19,14 +20,23 @@ gulp.task('page', function () {
 
 gulp.task('src', function () {
     gulp.src(components.concat(['./src/**/*.js']))
-        .pipe(concat("app.js"))
+        .pipe(concat('app.js'))
         .pipe(gulp.dest('build/'));
 });
 
 gulp.task('less', function () {
     gulp.src('./less/**/*.less')
         .pipe(less())
-        .pipe(concat("app.css"))
+        .pipe(concat('app.css'))
+        .pipe(gulp.dest('build/'));
+});
+
+gulp.task('views', function () {
+    gulp.src('src/**/*.html')
+        .pipe(ngHtml2Js({
+            moduleName: "views"
+        }))
+        .pipe(concat('views.js'))
         .pipe(gulp.dest('build/'));
 });
 
@@ -39,4 +49,5 @@ gulp.task('watch', ['reload'], function () {
     gulp.watch('index.html', ['page', 'reload']);
     gulp.watch('./src/**/*.js', ['src', 'reload']);
     gulp.watch('./less/**/*.less', ['less', 'reload']);
+    gulp.watch('./src/**/*.html', ['views', 'reload']);
 });

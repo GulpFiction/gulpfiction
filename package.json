@@ -20,7 +20,8 @@
     "gulp-concat": "~2.1.7",
     "gulp-util": "~2.2.14",
     "gulp": "~3.5.2",
-    "gulp-less": "~1.2.1"
+    "gulp-less": "~1.2.1",
+    "gulp-ng-html2js": "~0.1.4"
   },
   "dependencies": {
     "gulp-livereload": "~1.0.1"
