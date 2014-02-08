@@ -5,6 +5,8 @@
         .value('Gulp', Gulp);
 
     function Gulp() {
+        this.tasks = [];
+        this.name = '';
     }
 
 }(this));
