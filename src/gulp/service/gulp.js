@@ -8,12 +8,24 @@
     ]).factory('gulp', gulpFactory);
 
     function gulpFactory(Project, Task, Step) {
+        var projects = []
 
-        var dummyProjects = [new Project({name: 'one'}), new Project({name: 'two'})];
+        // dummy data
+        var projects = [new Project({name: 'one'}), new Project({name: 'two'})];
 
         return {
             listProjects: function () {
-                return dummyProjects;
+                return projects;
+            },
+            createProject: function () {
+                projects.push(new Project({
+                    name: 'Unknown',
+                    tasks: [
+                        new Task({
+                            name: 'default'
+                        })
+                    ]
+                }))
             }
         };
     }
