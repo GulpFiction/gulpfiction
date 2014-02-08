@@ -1,7 +1,7 @@
 (function (exports) {
     'use strict';
 
-    exports.angular.module('gulp.step', [])
+    exports.angular.module('gulp.Step', [])
         .value('Step', Step);
 
     function Step() {
