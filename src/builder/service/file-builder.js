@@ -15,6 +15,7 @@
         content.push(buildDependencies(gulp));
         content.push(buildTasks(gulp));
         content.push(buildReload(gulp));
+        content.push(buildWatch(gulp));
 
         return content.join(LINEBREAK);
     };
@@ -134,7 +135,7 @@
             INDENT + 'gulp.src(' + JSON.stringify(outputDirs) + ')',
             INDENT + INDENT + '.pipe(livereload())',
             '});'
-        ].join('\n');
+        ].join(LINEBREAK);
 
         return content;
     }
@@ -149,6 +150,31 @@
     function hasReload(gulp) {
         return gulp.tasks.filter(function (task) {
             return task.isReloadEnabled && task.isWatchEnabled;
+        }).length > 0;
+    }
+
+    function buildWatch(gulp) {
+        var content = [], watchDependencies = [];
+        if (!hasWatch(gulp)) { return ''; }
+
+        if (hasReload(gulp)) {
+            watchDependencies.push('reload');
+        }
+
+        content.push('gulp.task("watch", ' + JSON.stringify(watchDependencies) + ', function () {');
+
+        gulp.tasks.forEach(function (task) {
+
+        });
+
+        content.push('});');
+
+        return content.join(LINEBREAK);
+    }
+
+    function hasWatch(gulp) {
+        return gulp.tasks.filter(function (task) {
+            return task.isWatchEnabled;
         }).length > 0;
     }
 
