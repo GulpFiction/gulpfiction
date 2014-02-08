@@ -1,0 +1,28 @@
+{
+  "name": "gulpio",
+  "version": "0.0.0",
+  "description": "gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/staticshowdown/ss14-team-275.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/staticshowdown/ss14-team-275/issues"
+  },
+  "homepage": "https://github.com/staticshowdown/ss14-team-275",
+  "devDependencies": {
+    "gulp-concat": "~2.1.7",
+    "gulp-util": "~2.2.14",
+    "gulp": "~3.5.2",
+    "gulp-less": "~1.2.1"
+  },
+  "dependencies": {
+    "gulp-livereload": "~1.0.1"
+  }
+}
