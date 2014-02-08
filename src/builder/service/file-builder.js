@@ -164,7 +164,17 @@
         content.push('gulp.task("watch", ' + JSON.stringify(watchDependencies) + ', function () {');
 
         gulp.tasks.forEach(function (task) {
+            var taskInputs = getUniqueNames(
+                exports.angular.isArray(task.inputGlob) ? task.inputGlob : [task.inputGlob]
+            );
 
+            taskInputs.forEach(function (taskInput) {
+                var tasks = [task.name];
+                if (task.isWatchEnabled && task.isReloadEnabled) { tasks.push('reload'); }
+                content.push(
+                    INDENT + 'gulp.watch("' + taskInput + '", ' + JSON.stringify(tasks) + ');'
+                );
+            });
         });
 
         content.push('});');
