@@ -9,6 +9,7 @@
         'npm.search.npmSearch',
         'ngRoute',
         'app.projectController',
+        'app.indexController',
         'gulp.gulp'
     ])
     .config(function (DropboxProvider) {
@@ -17,10 +18,7 @@
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'app/view/project.tpl.html',
-                controller: function () {
-                    console.log('o');
-                }
+                controller: 'indexController'
             })
             .when('/:projectName', {
                 templateUrl: 'app/view/project.tpl.html',
