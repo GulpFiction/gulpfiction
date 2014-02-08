@@ -35,8 +35,17 @@
                     $scope.dbAccountInfo = data;
                 });
             });
-
         };
+
+        $scope.exportProject = function (project) {
+            if (Dropbox.isAuthenticated()) {
+                console.log('write to DB');
+                var file = fileBuilder.build(project);
+                Dropbox.writeFile(project.name + '.js', file, {mime_type: 'application/javascript'});
+            }
+            console.log(fileBuilder.build(project));
+        };
+
     }
 
 }(this));

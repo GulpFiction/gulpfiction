@@ -16,10 +16,10 @@
             task.inputGlob.push({path: newName});
         };
 
-        $scope.addTask = function(position) {
+        $scope.addTask = function (position) {
             // todo
-            console.log('add step at ' + position)
-        }
+            console.log('add step at ' + position);
+        };
     }
 
 }(this));
