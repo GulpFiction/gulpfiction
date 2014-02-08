@@ -38,6 +38,46 @@ section.task {
         }
 	}
 
+	.add-task {
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		position: relative;
+		width: @width / 2;
+		margin: (@height / 3) 0;
+
+		i {
+			transition: all ease .3s;
+			font-size: 5rem;
+			vertical-align: middle;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -2.5rem;
+			margin-top: -2.5rem;
+			height: 5rem;
+			width: 5rem;
+		}
+
+		.fa-arrow-right {
+			opacity: .5;
+		}
+
+		.fa-plus-circle {
+			opacity: 0;
+		}
+
+		&:hover {
+			.fa-arrow-right {
+				opacity: 0;
+			}
+
+			.fa-plus-circle {
+				opacity: .8;
+			}
+		}
+	}
+
 	.content {
         .flex();
         .alignItems(stretch);
