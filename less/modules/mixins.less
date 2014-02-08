@@ -40,3 +40,10 @@
 	font-family: FontAwesome;
 	-webkit-font-smoothing: antialiased;
 }
+
+.imageset(@1x) {
+    background-image: ~"url(@{1x}.png)";
+    background-image: -webkit-image-set(~"url(@{1x}.png) 1x", ~"url(@{1x}_@2X.png) 2x");
+    background-image: -moz-image-set(~"url(@{1x}.png) 1x", ~"url(@{1x}_@2X.png) 2x");
+    background-image: -ms-image-set(~"url@{1x}.png) 1x", ~"url(@{1x}_@2X.png) 2x");
+}

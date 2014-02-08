@@ -8,12 +8,45 @@ header {
 	top: 0;
 	.flex();
 	.justifyContent(space-between);
+	height: 4rem;
+	box-shadow: 0 2px 2px fade(@color-shadow, 10%);
+
+	&, .fa {
+		color: @color-second;
+		text-shadow: 0 .1rem 0 @color-shadow;
+	}
 
 	> * {
 		.flex(1);
 		font-size: 2rem;
 		margin: 0;
 		padding: .5rem;
+	}
+
+	h1 {
+		line-height: 0.8rem;
+		letter-spacing: -.07rem;
+	//	font-size: 4em;
+		position: relative;
+
+		> * {
+			position: absolute;
+		}
+
+		.gulp {
+			left: 3rem;
+			top: 0.7rem;		
+		}
+
+		.fiction {
+			top: 2.35rem;
+			left: 3.76rem;
+		}
+
+		img.logo {
+			width: 3rem;
+			height: 3rem;
+		}
 	}
 
 	nav {
@@ -42,6 +75,7 @@ header {
 		text-align: center;
 		background: @header-color;
 		padding: .5rem;
+		font-weight: bold;
 
 		li {
 			margin-bottom: 0rem;
@@ -70,14 +104,14 @@ header {
 
 	.options {
 		text-align: right;
-
+		padding-right: 1rem;
 		button {
 			font-size: 2rem;
 			background: none;
 			border: none;
 			cursor: pointer;
 			padding: 0;
-			margin: 0;
+			margin: 0 0 0 .5rem;
 		}
 	}
 }

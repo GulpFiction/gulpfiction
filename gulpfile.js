@@ -17,7 +17,7 @@ var components = [
 var lessComponents = [
 ];
 
-gulp.task('default', ['components', 'page', 'fonts', 'src', 'less', 'views'], function () {
+gulp.task('default', ['components', 'page', 'fonts', 'images', 'src', 'less', 'views'], function () {
 
 });
 
@@ -29,6 +29,11 @@ gulp.task('page', function () {
 gulp.task('fonts', function () {
     gulp.src('fonts/*')
       .pipe(gulp.dest('build/fonts/'));
+});
+
+gulp.task('images', function () {
+    gulp.src('img/dist/**/*')
+      .pipe(gulp.dest('build/img/'));
 });
 
 gulp.task('components', function () {

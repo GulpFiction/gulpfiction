@@ -16,24 +16,30 @@
         <script src="components.js"></script>
         <script src="app.js"></script>
         <script src="views.js"></script>
+        <link rel="icon" type="image/gif" href="/img/logo.gif" />
     </head>
 
     <body ng-app="app" ng-controller="appController">
         <header>
-            <h1>Gulp Fiction</h1>
+            <h1>
+                <img src="/img/logo.gif" class="logo">
+                <span class="gulp">Gulp</span>
+                <span class="fiction">Fiction</span>
+            </h1>
 
             <project-picker projects="projects" current-project="project" on-switch-project="switchToProject(project)"></project-picker>
 
             <div class="options">
                 <!-- <button ng-click="removeProject()">X</button> -->
-                <button ng-click="addProject()">+</button>
-                <button ng-click="showHelp()">?</button>
+                <button ng-click="addProject()"><i class="fa fa-plus-circle"></i></button>
+                <button ng-click="showHelp()"><i class="fa fa-question-circle"></i> </button>
 <!--                 <button ng-click="exportProject(project)"><i class="fa fa-cloud-download"></i></button>
                 <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button> -->
+
             </div>
         </header>
 
-        <npm-search style="margin-top:50px;display:block;"></npm-search>
+        <npm-search style="margin-top:50px;display:none;"></npm-search>
 
         <div ng-view></div>
         <lightbox is-active="showsHelp">
