@@ -16,7 +16,23 @@
                 name: 'one',
                 tasks: [
                     new Task({
-                        name: 'default'
+                        name: 'default',
+                        steps: [
+                            new Step({
+                                name: 'concat',
+                                options: 'tada'
+                            }),
+                            new Step({
+                                name: 'other',
+                                options: { 'a': 'b' }
+                            })
+                        ]
+                    }),
+                    new Task({
+                        name: 'src'
+                    }),
+                    new Task({
+                        name: 'less'
                     })
                 ]
             }),
