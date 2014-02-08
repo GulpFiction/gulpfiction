@@ -1,16 +1,17 @@
 (function (exports) {
     'use strict';
 
-    var DEFAULT_NAME = 'Unknown Project';
+    var DEFAULT_NAME = 'Untitled Project';
 
     exports.angular.module('gulp.gulp', [
         'gulp.Project',
         'gulp.Task',
         'gulp.Step',
+        'store'
     ]).factory('gulp', gulpFactory);
 
-    function gulpFactory(Project, Task, Step) {
-        var projects = [];
+    function gulpFactory(Project, Task, Step, store) {
+        var projects = store.loadProjects();
 
         return {
             listProjects: function () {
@@ -46,6 +47,8 @@
                 });
 
                 projects.push(project);
+
+                store.saveProjects(projects);
 
                 return project;
             }
