@@ -1,6 +1,8 @@
 (function (exports) {
     'use strict';
 
+    var DEFAULT_NAME = 'Unknown Project';
+
     exports.angular.module('gulp.gulp', [
         'gulp.Project',
         'gulp.Task',
@@ -17,9 +19,9 @@
             getProject: function (projectName) {
                 return findProjectByName(projectName);
             },
-            createProject: function () {
-                projects.push(new Project({
-                    name: 'one',
+            createProject: function (projectName) {
+                var project = new Project({
+                    name: getBlankProjectName(),
                     tasks: [
                         new Task({
                             name: 'default',
@@ -41,7 +43,11 @@
                             name: 'less'
                         })
                     ]
-                }));
+                });
+
+                projects.push(project);
+
+                return project;
             }
         };
 
@@ -53,6 +59,19 @@
                 }
             });
             return result;
+        }
+
+        function getBlankProjectName() {
+            var currentName = DEFAULT_NAME, i = 0;
+
+            if (!findProjectByName(currentName)) { return currentName; }
+
+            do {
+                currentName = DEFAULT_NAME + ' ' + i;
+                i = i + 1;
+            } while (findProjectByName(currentName));
+
+            return currentName;
         }
     }
 

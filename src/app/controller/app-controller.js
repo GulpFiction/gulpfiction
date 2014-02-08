@@ -6,7 +6,24 @@
         'builder.fileBuilder'
     ]).controller('appController', AppController);
 
-    function AppController($scope, gulp, fileBuilder, Dropbox) {
+    function AppController($scope, gulp, fileBuilder, $location, $rootScope, Dropbox) {
+
+        $scope.projects = gulp.listProjects();
+
+        $scope.switchToProject = function (project) {
+            $rootScope.project = project;
+            $location.path('/' + encodeURI(project.name));
+        };
+
+        $scope.exportProject = function (project) {
+            console.log(fileBuilder.build(project));
+        };
+
+        $scope.addProject = function () {
+            var project = gulp.createProject();
+
+            $location.path('/' + encodeURI(project.name));
+        };
 
         $scope.connectDb = function () {
             window.Dropbox = Dropbox;
@@ -19,19 +36,6 @@
                 });
             });
 
-        };
-
-
-        // or use callbacks
-        // Dropbox.copy('dir/image1.jpg', 'dir/image2.jpg').then(function (res) {
-        //      Dropbox.move('dir/image1.jpg', 'dir/image.jpg').then(function (res) {
-        //          $scope.photos = Dropbox.stat('dir');
-        //      });
-        //  });
-        $scope.projects = gulp.listProjects();
-
-        $scope.exportProject = function (project) {
-            console.log(fileBuilder.build(project));
         };
     }
 

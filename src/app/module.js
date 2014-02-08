@@ -30,11 +30,12 @@
                     project: function ($route, gulp, $rootScope, $location) {
                         var project = gulp.getProject($route.current.params.projectName);
 
+                        // show error if project not visible
                         if (!project) {
                             $location.path('/');
                         }
 
-                        // propage to rootScope for picker
+                        // propagate to rootScope for picker
                         $rootScope.project = project;
 
                         return gulp.getProject($route.current.params.projectName);

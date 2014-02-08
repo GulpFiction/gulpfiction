@@ -8,25 +8,26 @@
             replace: true,
             scope: {
                 projects: '=',
-                currentProject: '='
+                currentProject: '=',
+                doSwitchToProject: '&onSwitchProject'
             },
             link: linkFn
         };
 
         function linkFn(scope, element, attrs) {
 
-            scope.$watch('currentProject', function (newValue) {
-                scope.currentProject = newValue;
-            });
+            // scope.$watch('currentProject', function (newValue) {
+            //     scope.currentProject = newValue;
+            // });
 
             scope.switchToProject = function (project) {
                 if (project === scope.currentProject) { return; }
-                scope.currentProject = project;
-                $location.path('/' + project.name);
+                scope.doSwitchToProject({project: project});
             };
         }
     }
 
     exports.angular.module('app.projectPicker', [])
         .directive('projectPicker', ProjectPicker);
+
 })(this);
