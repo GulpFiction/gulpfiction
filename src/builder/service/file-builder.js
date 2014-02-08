@@ -19,7 +19,6 @@
     };
 
     function buildDependencies(gulp) {
-        // @TODO: UNIQUIFY DEPENDENCIES
         var stepNames = getStepNames(gulp), content = [];
 
         // prepend default modules
@@ -47,7 +46,23 @@
             return step.name;
         });
 
-        return stepNames;
+        return uniqueNames(stepNames);
+    }
+
+    function uniqueNames(names) {
+        var nameMap = {}, uniqueNames = [];
+
+        names.forEach(function (name) {
+            nameMap[name] = name;
+        });
+
+        for (name in nameMap) {
+            if (nameMap.hasOwnProperty(name)) {
+                uniqueNames.push(name);
+            }
+        }
+
+        return uniqueNames;
     }
 
     function buildTasks(gulp) {

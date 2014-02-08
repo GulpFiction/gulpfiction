@@ -16,7 +16,7 @@
             myStep.options = 'all.js';
 
             var myStep2 = new Step();
-            myStep2.name = 'other';
+            myStep2.name = 'other-step';
             myStep2.options = {
                 a: 'b'
             };
