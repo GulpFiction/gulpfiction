@@ -1,0 +1,36 @@
+.flex() {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.flex(@value) {
+	-webkit-flex: @value;
+	-ms-flex: @value;
+	flex: @value;
+}
+
+.flexFlow(@value) {
+	-webkit-flex-flow: @value;
+	-ms-flex-flow: @value;
+	flex-flow: @value;
+}
+
+.justifyContent(@value) {
+    -webkit-justify-content: @value;
+    -ms-justify-content: @value;
+    justify-content: @value;
+}
+
+.alignItems(@value) {
+    -webkit-align-items: @value;
+    -ms-align-items: @value;
+    align-items: @value;
+}
+
+.fontAwesome(@content) {
+	content: @content;
+	display: inline-block;
+	font-family: FontAwesome;
+	-webkit-font-smoothing: antialiased;
+}

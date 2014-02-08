@@ -1,0 +1,59 @@
+@header-color: @color-first;
+
+header {
+	background: @header-color;
+	position: fixed;
+	width: 100%;
+	padding: .5rem;
+	.flex();
+	.justifyContent(space-between);
+
+	> * {
+		.flex(1);
+		font-size: 2rem;
+		margin: 0;
+	}
+
+	nav {
+		position: relative;
+	}
+
+	menu {
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		background: @header-color;
+		//height: 1em;
+		//overflow: hidden;
+		li {
+			&:first-child:after {
+				.fontAwesome("\A0\f0d7");
+			}
+
+			&:not(:first-child) {
+				display: none;
+			}
+		}
+
+
+		&:hover {
+			li{
+				display: block;
+			}
+		}
+
+	}
+
+	.options {
+		text-align: right;
+
+		button {
+			font-size: 2rem;
+			background: none;
+			border: none;
+			cursor: pointer;
+			padding: 0;
+			margin: 0;
+		}
+	}
+}

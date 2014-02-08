@@ -14,13 +14,18 @@ var components = [
 var lessComponents = [
 ];
 
-gulp.task('default', ['components', 'page', 'src', 'less', 'views'], function () {
+gulp.task('default', ['components', 'page', 'fonts', 'src', 'less', 'views'], function () {
 
 });
 
 gulp.task('page', function () {
     gulp.src(['index.html', 'bower_components/ngDropbox/callback.html'])
       .pipe(gulp.dest('build/'));
+});
+
+gulp.task('fonts', function () {
+    gulp.src('fonts/*')
+      .pipe(gulp.dest('build/fonts/'));
 });
 
 gulp.task('components', function () {
@@ -38,7 +43,7 @@ gulp.task('src', function () {
 });
 
 gulp.task('less', function () {
-    gulp.src(lessComponents.concat(['./less/**/*.less']))
+    gulp.src(lessComponents.concat(['./less/app.less']))
         .pipe(less())
         .pipe(concat('app.css'))
         .pipe(gulp.dest('build/'));
