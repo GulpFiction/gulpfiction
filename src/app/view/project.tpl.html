@@ -1,1 +1,39 @@
-<p>contentz {{project.name}}</p>
+<h2>{{ project.name }}</h2>
+<section class="task" ng-repeat="task in project.tasks">
+    <div class="settings">
+        <h3>{{ task.name }}</h3>
+        <h4>options</h4>
+        <ul class="reload-options">
+        	<li>
+        		<input ng-model="task.isWatchEnabled" type="checkbox" id="{{ task.name }}_enableWatch">
+        		<label for="{{ task.name }}_enableWatch">watch</label>
+        	</li>
+        	<li ng-if="task.isWatchEnabled">
+        		<input ng-model="task.isReloadEnabled" type="checkbox" id="{{ task.name }}_enableReload">
+        		<label for="{{ task.name }}_enableReload">reload</label>
+        	</li>
+        </ul>
+        <h4>dependencies</h4>
+        <ul class="dependencies">
+        	<li ng-repeat="dependency in project.tasks" ng-if="dependency.name !== task.name">
+
+        		<input ng-model="task.preTasks[dependency.name]" type="checkbox" id="{{ task.name }}_{{ dependency.name }}">
+        		<label for="{{ task.name }}_{{ dependency.name }}">{{ dependency.name }}</label>
+
+        	</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="source">
+        	
+        </div>
+        <ul class="steps">
+            <li ng-repeat="step in task.steps">
+            	
+            </li>
+        </ul>
+        <div class="dest">
+        	
+        </div>
+    </div>
+</section>
