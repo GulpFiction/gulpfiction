@@ -25,7 +25,7 @@
         stepNames.unshift('util');
 
         stepNames.forEach(function (stepName) {
-            content.push('var ' + stepName + ' = require("gulp-' + stepName + '");');
+            content.push('var ' + normalizeStepName(stepName) + ' = require("gulp-' + stepName + '");');
         });
 
         // prepend gulp module
@@ -34,8 +34,20 @@
         return content.join(LINEBREAK);
     }
 
+    function normalizeStepName(stepName) {
+        var parts = stepName.split('-'), normalizedParts;
+
+        normalizedParts = parts.map(function (part, index) {
+            // skip first part - always!
+            if (index === 0) { return part; }
+            return (part.slice(0, 1).toUpperCase() + part.slice(1));
+        });
+
+
+        return normalizedParts.join('');
+    }
+
     function getStepNames(gulp) {
-        // @TODO: NORMALIZE NAMES (IF THERE ARE - IN THE MODULE NAME!!!)
         var steps = [], stepNames;
 
         gulp.tasks.forEach(function (task) {
@@ -101,7 +113,7 @@
     }
 
     function buildStep(step) {
-        return '.pipe(' + step.name + '(' + buildStepOptions(step) + '))';
+        return '.pipe(' + normalizeStepName(step.name) + '(' + buildStepOptions(step) + '))';
     }
 
     function buildStepOptions(step) {
