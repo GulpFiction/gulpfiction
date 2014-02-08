@@ -16,10 +16,6 @@
 
         function linkFn(scope, element, attrs) {
 
-            // scope.$watch('currentProject', function (newValue) {
-            //     scope.currentProject = newValue;
-            // });
-
             scope.switchToProject = function (project) {
                 if (project === scope.currentProject) { return; }
                 scope.doSwitchToProject({project: project});
