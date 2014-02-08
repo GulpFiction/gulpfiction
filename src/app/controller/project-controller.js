@@ -6,6 +6,7 @@
 
     function ProjectController($scope, project) {
         console.log(project);
+        $scope.project = project;
     }
 
 }(this));

@@ -22,12 +22,12 @@
                     console.log('o');
                 }
             })
-            .when('/:projectId', {
+            .when('/:projectName', {
                 templateUrl: 'app/view/project.tpl.html',
                 controller: 'projectController',
                 resolve: {
                     project: function ($routeParams, gulp) {
-                        return gulp.getProject($routeParams.projectId);
+                        return gulp.getProject($routeParams.projectName);
                     }
                 }
             })

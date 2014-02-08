@@ -11,14 +11,37 @@
         var projects = [];
 
         // dummy data
-        projects = [new Project({name: 'one'}), new Project({name: 'two'})];
+        projects = [
+            new Project({
+                name: 'one',
+                tasks: [
+                    new Task({
+                        name: 'default'
+                    })
+                ]
+            }),
+            new Project({
+                name: 'two',
+                tasks: [
+                    new Task({
+                        name: 'default'
+                    })
+                ]
+            })
+        ];
 
         return {
             listProjects: function () {
                 return projects;
             },
-            getProject: function (projectId) {
-                return {};
+            getProject: function (projectName) {
+                var result;
+                projects.forEach(function (project) {
+                    if (project.name === projectName) {
+                        result = project;
+                    }
+                });
+                return result;
             },
             createProject: function () {
                 projects.push(new Project({
