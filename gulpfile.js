@@ -55,7 +55,7 @@ gulp.task('views', function () {
 gulp.task('reload', function () {
     gulp.src('build/*')
         .pipe(livereload());
-})
+});
 
 gulp.task('watch', ['default', 'reload'], function () {
     gulp.watch('index.html', ['page', 'reload']);
