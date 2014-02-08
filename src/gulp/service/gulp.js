@@ -9,11 +9,7 @@
 
     function gulpFactory(Project, Task, Step) {
 
-        var projectOne = new Project();
-        var projectTwo = new Project();
-        projectOne.name = 'one';
-        projectTwo.name = 'two';
-        var dummyProjects = [projectOne, projectTwo];
+        var dummyProjects = [new Project({name: 'one'}), new Project({name: 'two'})];
 
         return {
             listProjects: function () {
