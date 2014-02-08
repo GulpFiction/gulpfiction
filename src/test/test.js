@@ -5,10 +5,14 @@
         'gulp.Gulp',
         'gulp.Task',
         'gulp.Step',
-    ]).value('test', test);
+        'builder.fileBuilder'
+    ]).factory('test', test);
 
-    function test(Gulp, Task, Step) {
-        console.log('tests ran');
+    function test(Gulp, Task, Step, fileBuilder) {
+        return function () {
+            console.log(fileBuilder);
+            console.log('tests ran');
+        };
     }
 
 }(this));
