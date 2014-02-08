@@ -21,20 +21,22 @@
     <body ng-app="app" ng-controller="appController">
         <header>
             <h1>Gulp Fiction</h1>
+
             <project-picker projects="projects" current-project="project" on-switch-project="switchToProject(project)"></project-picker>
 
             <div class="options">
-                <button ng-click="removeProject()">X</button>
+                <!-- <button ng-click="removeProject()">X</button> -->
                 <button ng-click="addProject()">+</button>
-                <button ng-click="exportProject(project)"><i class="fa fa-cloud-download"></i></button>
-                <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button>
+                <button ng-click="showHelp()">?</button>
+<!--                 <button ng-click="exportProject(project)"><i class="fa fa-cloud-download"></i></button>
+                <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button> -->
             </div>
         </header>
 
         <npm-search style="margin-top:50px;display:block;"></npm-search>
 
         <div ng-view></div>
-        <lightbox is-active="false">
+        <lightbox is-active="showsHelp">
             <p>:{{project.name}}</p>
         </lightbox>
     </body>

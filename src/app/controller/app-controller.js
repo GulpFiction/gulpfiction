@@ -10,6 +10,14 @@
 
         $scope.projects = gulp.listProjects();
 
+        $scope.showHelp = function () {
+            $scope.showsHelp = true;
+        };
+
+        $scope.hideHelp = function () {
+            $scope.showsHelp = false;
+        };
+
         $scope.switchToProject = function (project) {
             $rootScope.project = project;
             $location.path('/' + encodeURI(project.name));
