@@ -1,0 +1,15 @@
+<div>
+    Search for gulp packages: <input type="text" ng-model="query"/>
+    <span ng-bind="totalHits"></span>
+
+    <div>{{results.length}}
+        <ul>
+            <li ng-repeat="result in results">
+                <result-row result="result"></result-row>
+            </li>
+        </ul>
+    </div>
+
+
+
+</div>

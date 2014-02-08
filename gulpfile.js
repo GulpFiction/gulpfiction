@@ -8,7 +8,8 @@ var jshint = require('gulp-jshint');
 
 var components = [
     'bower_components/angular/angular.js',
-    'bower_components/ngDropbox/dropbox.js'
+    'bower_components/ngDropbox/dropbox.js',
+    'bower_components/angular-resource/angular-resource.js'
 ];
 
 var lessComponents = [
