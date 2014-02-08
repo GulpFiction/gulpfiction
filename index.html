@@ -12,10 +12,9 @@
     <body ng-app="app" ng-controller="appController">
         <header>
             <h1>Gulp Fiction</h1>
-            <nav>
+            <nav ng-click="navOpen = !navOpen" ng-class="{'is-open': navOpen}">
                 <menu>
-                    <li>Filename</li>
-                    <li>Projectname</li>
+                    <li ng-repeat="project in projects">{{ project.name }}</li>
                 </menu>
             </nav>
             <div class="options">

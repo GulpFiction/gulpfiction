@@ -4,8 +4,7 @@ header {
 	background: @header-color;
 	position: fixed;
 	width: 100%;
-	padding: .5rem;
-	top: 0;
+	top: 0;	
 	.flex();
 	.justifyContent(space-between);
 
@@ -13,10 +12,26 @@ header {
 		.flex(1);
 		font-size: 2rem;
 		margin: 0;
+		padding: .5rem;
 	}
 
 	nav {
 		position: relative;
+		padding: 0;
+
+		&.is-open {
+			menu {
+				background: darken(@header-color,10%);
+
+				li {
+					display: block;
+					&:not(:last-child) {
+					//	margin-bottom: 1rem;
+				}
+			}
+			}
+		}
+
 	}
 
 	menu {
@@ -24,25 +39,31 @@ header {
 		width: 100%;
 		text-align: center;
 		background: @header-color;
-		//height: 1em;
-		//overflow: hidden;
+		padding: .5rem;
+
 		li {
+			margin-bottom: 0rem;
+			cursor: pointer;
+
 			&:first-child:after {
 				.fontAwesome("\A0\f0d7");
 			}
 
 			&:not(:first-child) {
 				display: none;
+				padding: .5rem;
+
+				&:hover {
+					background-color: @color-second;
+				}
+			}
+
+			input {
+				text-align: center;
+				width: 100%;
+				font-size: 1em;
 			}
 		}
-
-
-		&:hover {
-			li{
-				display: block;
-			}
-		}
-
 	}
 
 	.options {
