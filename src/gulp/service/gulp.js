@@ -8,10 +8,10 @@
     ]).factory('gulp', gulpFactory);
 
     function gulpFactory(Project, Task, Step) {
-        var projects = []
+        var projects = [];
 
         // dummy data
-        var projects = [new Project({name: 'one'}), new Project({name: 'two'})];
+        projects = [new Project({name: 'one'}), new Project({name: 'two'})];
 
         return {
             listProjects: function () {
@@ -25,7 +25,7 @@
                             name: 'default'
                         })
                     ]
-                }))
+                }));
             }
         };
     }
