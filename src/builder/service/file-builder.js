@@ -14,6 +14,7 @@
 
         content.push(buildDependencies(gulp));
         content.push(buildTasks(gulp));
+        content.push(buildReload(gulp));
 
         return content.join(LINEBREAK);
     };
@@ -23,6 +24,10 @@
 
         // prepend default modules
         stepNames.unshift('util');
+
+        if (hasReload(gulp)) {
+            stepNames.unshift('livereload');
+        }
 
         stepNames.forEach(function (stepName) {
             content.push('var ' + normalizeStepName(stepName) + ' = require("gulp-' + stepName + '");');
@@ -118,6 +123,33 @@
 
     function buildStepOptions(step) {
         return JSON.stringify(step.options);
+    }
+
+    function buildReload(gulp) {
+        var outputDirs = getUniqueBuildDirs(gulp), content;
+        if (!hasReload(gulp)) { return ''; }
+
+        content = [
+            'gulp.task("reload", function () {',
+            INDENT + 'gulp.src(' + JSON.stringify(outputDirs) + ')',
+            INDENT + INDENT + '.pipe(livereload())',
+            '});'
+        ].join('\n');
+
+        return content;
+    }
+
+    function getUniqueBuildDirs(gulp) {
+        var outputDirs = gulp.tasks.map(function (task) {
+            return task.outputDir;
+        });
+        return getUniqueNames(outputDirs);
+    }
+
+    function hasReload(gulp) {
+        return gulp.tasks.filter(function (task) {
+            return task.isReloadEnabled && task.isWatchEnabled;
+        }).length > 0;
     }
 
 }(this));

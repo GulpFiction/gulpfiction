@@ -28,6 +28,8 @@
             myTask.preTasks = ['more', 'other'];
             myTask.outputDir = 'build/';
             myTask.steps = [myStep, myStep2];
+            myTask.isWatchEnabled = true;
+            myTask.isReloadEnabled = true;
 
             var myTask2 = new Task();
             myTask2.name = 'more';
