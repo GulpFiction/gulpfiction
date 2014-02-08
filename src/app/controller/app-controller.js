@@ -3,7 +3,8 @@
 
     exports.angular.module('app.appController', [
         'gulp.gulp',
-        'builder.fileBuilder'
+        'builder.fileBuilder',
+        'ngAnimate'
     ]).controller('appController', AppController);
 
     function AppController($scope, gulp, fileBuilder, $location, $rootScope, Dropbox) {
