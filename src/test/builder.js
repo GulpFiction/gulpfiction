@@ -2,13 +2,13 @@
     'use strict';
 
     exports.angular.module('test.builder', [
-        'gulp.Gulp',
+        'gulp.Project',
         'gulp.Task',
         'gulp.Step',
         'builder.fileBuilder'
     ]).factory('testBuilder', testBuilder);
 
-    function testBuilder(Gulp, Task, Step, fileBuilder) {
+    function testBuilder(Project, Task, Step, fileBuilder) {
         return function () {
 
             var myStep = new Step();
@@ -38,11 +38,11 @@
             myTask2.outputDir = 'build/';
             myTask2.steps = [myStep, myStep2];
 
-            var myGulp = new Gulp();
-            myGulp.name = 'my';
-            myGulp.tasks = [myTask, myTask2];
+            var myProject = new Project();
+            myProject.name = 'my';
+            myProject.tasks = [myTask, myTask2];
 
-            var content = fileBuilder.build(myGulp);
+            var content = fileBuilder.build(myProject);
 
             console.log('### content ###');
             console.log(content);

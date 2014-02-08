@@ -4,7 +4,7 @@
     exports.angular.module('test.dropbox', [
     ]).factory('testDropbox', testDropbox);
 
-    function testDropbox(Gulp, Task, Step, fileBuilder) {
+    function testDropbox() {
         return function () {
             console.log('dropbox');
         };

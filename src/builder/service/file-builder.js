@@ -9,24 +9,24 @@
     function FileBuilder() {
     }
 
-    FileBuilder.prototype.build = function (gulp) {
+    FileBuilder.prototype.build = function (project) {
         var content = [];
 
-        content.push(buildDependencies(gulp));
-        content.push(buildTasks(gulp));
-        content.push(buildReload(gulp));
-        content.push(buildWatch(gulp));
+        content.push(buildDependencies(project));
+        content.push(buildTasks(project));
+        content.push(buildReload(project));
+        content.push(buildWatch(project));
 
         return content.join(LINEBREAK);
     };
 
-    function buildDependencies(gulp) {
-        var stepNames = getStepNames(gulp), content = [];
+    function buildDependencies(project) {
+        var stepNames = getStepNames(project), content = [];
 
         // prepend default modules
         stepNames.unshift('util');
 
-        if (hasReload(gulp)) {
+        if (hasReload(project)) {
             stepNames.unshift('livereload');
         }
 
@@ -34,7 +34,7 @@
             content.push('var ' + normalizeStepName(stepName) + ' = require("gulp-' + stepName + '");');
         });
 
-        // prepend gulp module
+        // prepend project module
         content.unshift('var gulp = require("gulp");');
 
         return content.join(LINEBREAK);
@@ -53,10 +53,10 @@
         return normalizedParts.join('');
     }
 
-    function getStepNames(gulp) {
+    function getStepNames(project) {
         var steps = [], stepNames;
 
-        gulp.tasks.forEach(function (task) {
+        project.tasks.forEach(function (task) {
             steps = steps.concat(task.steps);
         });
 
@@ -83,8 +83,8 @@
         return uniqueNames;
     }
 
-    function buildTasks(gulp) {
-        return gulp.tasks.map(buildTask).join(LINEBREAK);
+    function buildTasks(project) {
+        return project.tasks.map(buildTask).join(LINEBREAK);
     }
 
     function buildTask(task) {
@@ -126,9 +126,9 @@
         return JSON.stringify(step.options);
     }
 
-    function buildReload(gulp) {
-        var outputDirs = getUniqueBuildDirs(gulp), content;
-        if (!hasReload(gulp)) { return ''; }
+    function buildReload(project) {
+        var outputDirs = getUniqueBuildDirs(project), content;
+        if (!hasReload(project)) { return ''; }
 
         content = [
             'gulp.task("reload", function () {',
@@ -140,30 +140,30 @@
         return content;
     }
 
-    function getUniqueBuildDirs(gulp) {
-        var outputDirs = gulp.tasks.map(function (task) {
+    function getUniqueBuildDirs(project) {
+        var outputDirs = project.tasks.map(function (task) {
             return task.outputDir;
         });
         return getUniqueNames(outputDirs);
     }
 
-    function hasReload(gulp) {
-        return gulp.tasks.filter(function (task) {
+    function hasReload(project) {
+        return project.tasks.filter(function (task) {
             return task.isReloadEnabled && task.isWatchEnabled;
         }).length > 0;
     }
 
-    function buildWatch(gulp) {
+    function buildWatch(project) {
         var content = [], watchDependencies = [];
-        if (!hasWatch(gulp)) { return ''; }
+        if (!hasWatch(project)) { return ''; }
 
-        if (hasReload(gulp)) {
+        if (hasReload(project)) {
             watchDependencies.push('reload');
         }
 
         content.push('gulp.task("watch", ' + JSON.stringify(watchDependencies) + ', function () {');
 
-        gulp.tasks.forEach(function (task) {
+        project.tasks.forEach(function (task) {
             var taskInputs = getUniqueNames(
                 exports.angular.isArray(task.inputGlob) ? task.inputGlob : [task.inputGlob]
             );
@@ -182,8 +182,8 @@
         return content.join(LINEBREAK);
     }
 
-    function hasWatch(gulp) {
-        return gulp.tasks.filter(function (task) {
+    function hasWatch(project) {
+        return project.tasks.filter(function (task) {
             return task.isWatchEnabled;
         }).length > 0;
     }
