@@ -15,7 +15,6 @@
 
         store.onChange(function (ev) {
             // redirect to / state for data safety -- this is ugly but prevents failure
-            console.log(ev);
             $location.path('/');
             $rootScope.$apply();
         });
