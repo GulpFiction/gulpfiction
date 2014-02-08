@@ -16,7 +16,7 @@
 
             <div class="options">
                 <button ng-click="exportProject(project)"><i class="fa fa-cloud-download"></i></button>
-                <button><i class="fa fa-dropbox"></i></button>
+                <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button>
             </div>
         </header>
 

@@ -5,7 +5,6 @@
         'app.appController',
         'views',
         'test.builder',
-        'test.dropbox',
         'dropbox',
         'npm.search.npmSearch',
         'ngRoute',
@@ -16,7 +15,7 @@
         'app.lightbox'
     ])
     .config(function (DropboxProvider) {
-        DropboxProvider.config('bjagvq348k304rt', 'http://localhost:8000/callback.html');
+        DropboxProvider.config('dz3ndmuzjdf7ca4', 'http://localhost:8000/callback.html');
     })
     .config(function ($routeProvider) {
         $routeProvider
@@ -46,9 +45,9 @@
                 redirectTo: '/'
             });
     })
-    .run(function (testBuilder, testDropbox) {
+    .run(function (testBuilder) {
         // testBuilder();
-        testDropbox();
+        // testDropbox();
     });
 
 }(this));
