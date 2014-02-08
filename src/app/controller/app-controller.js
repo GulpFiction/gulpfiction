@@ -39,7 +39,6 @@
 
         $scope.removeProject = function () {
             gulp.removeProject($rootScope.project);
-            $scope.projects = gulp.listProjects();
             $location.path('/');
         };
 

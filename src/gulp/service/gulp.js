@@ -13,15 +13,8 @@
     function gulpFactory(Project, Task, Step, store, $location, $rootScope) {
         var projects = store.loadProjects();
 
-        store.onChange(function (ev) {
-            // redirect to / state for data safety -- this is ugly but prevents failure
-            $location.path('/');
-            $rootScope.$apply();
-        });
-
         return {
             listProjects: function () {
-                projects = store.loadProjects();
                 return projects;
             },
             getProject: function (projectName) {
@@ -30,6 +23,7 @@
             removeProject: function (project) {
                 var projectName = project.name, matchedIndex;
                 projects.forEach(function (project, index) {
+                    console.log(project.name, projectName);
                     if (!matchedIndex && project.name === projectName) {
                         store.removeProject(project);
                         matchedIndex = index;

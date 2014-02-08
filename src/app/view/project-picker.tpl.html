@@ -3,7 +3,7 @@
         <li ng-bind="currentProject.name"></li>
         <li ng-click="switchToProject(project)"
             ng-repeat="project in projects"
-            ng-if="currentProject != project">
+            ng-show="currentProject != project">
             {{ project.name }}
         </li>
     </menu>
