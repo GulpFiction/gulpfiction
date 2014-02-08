@@ -7,7 +7,8 @@ var ngHtml2Js = require('gulp-ng-html2js');
 var jshint = require('gulp-jshint');
 
 var components = [
-    'bower_components/angular/angular.js'
+    'bower_components/angular/angular.js',
+    'bower_components/ngDropbox/dropbox.js'
 ];
 
 var lessComponents = [
@@ -18,7 +19,7 @@ gulp.task('default', ['components', 'page', 'src', 'less', 'views'], function ()
 });
 
 gulp.task('page', function () {
-    gulp.src('index.html')
+    gulp.src(['index.html', 'bower_components/ngDropbox/callback.html'])
       .pipe(gulp.dest('build/'));
 });
 

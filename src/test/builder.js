@@ -1,14 +1,14 @@
 (function (exports) {
     'use strict';
 
-    exports.angular.module('test', [
+    exports.angular.module('test.builder', [
         'gulp.Gulp',
         'gulp.Task',
         'gulp.Step',
         'builder.fileBuilder'
-    ]).factory('test', test);
+    ]).factory('testBuilder', testBuilder);
 
-    function test(Gulp, Task, Step, fileBuilder) {
+    function testBuilder(Gulp, Task, Step, fileBuilder) {
         return function () {
 
             var myStep = new Step();
