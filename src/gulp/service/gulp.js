@@ -51,13 +51,7 @@
                 return projects;
             },
             getProject: function (projectName) {
-                var result;
-                projects.forEach(function (project) {
-                    if (project.name === projectName) {
-                        result = project;
-                    }
-                });
-                return result;
+                return findProjectByName(projectName);
             },
             createProject: function () {
                 projects.push(new Project({
@@ -70,6 +64,16 @@
                 }));
             }
         };
+
+        function findProjectByName(projectName) {
+            var result;
+            projects.forEach(function (project) {
+                if (project.name === projectName) {
+                    result = project;
+                }
+            });
+            return result;
+        }
     }
 
 }(this));
