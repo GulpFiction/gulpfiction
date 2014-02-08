@@ -5,7 +5,8 @@
         .value('Step', Step);
 
     function Step() {
-
+        this.name = '';
+        this.options = {};
     }
 
 }(this));
