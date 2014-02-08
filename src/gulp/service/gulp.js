@@ -10,11 +10,19 @@
         'store'
     ]).factory('gulp', gulpFactory);
 
-    function gulpFactory(Project, Task, Step, store) {
+    function gulpFactory(Project, Task, Step, store, $location, $rootScope) {
         var projects = store.loadProjects();
+
+        store.onChange(function (ev) {
+            // redirect to / state for data safety -- this is ugly but prevents failure
+            console.log(ev);
+            $location.path('/');
+            $rootScope.$apply();
+        });
 
         return {
             listProjects: function () {
+                projects = store.loadProjects();
                 return projects;
             },
             getProject: function (projectName) {

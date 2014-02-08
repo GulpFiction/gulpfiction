@@ -45,7 +45,6 @@
             }
             console.log(fileBuilder.build(project));
         };
-
     }
 
 }(this));
