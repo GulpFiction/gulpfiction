@@ -1,12 +1,10 @@
 section.task {
     @width: 12rem;
     @height: 1.4142 * @width;
-
-	border-bottom: 1px solid gainsboro;
     height: 10rem;
 	.flex();
     height: @height;
-    border-bottom: @color-third solid .5rem;
+    border-bottom: fade(@brown, 50%) dashed 1px;
 
 	ul {
 		margin: 0;
@@ -15,6 +13,10 @@ section.task {
 
 	li {
 		list-style-type: none;
+	}
+
+	h3, h4 {
+		color: @color-second;
 	}
 
 	h3 {
@@ -61,9 +63,12 @@ section.task {
 		border: none;
 		cursor: pointer;
 		position: relative;
-		width: @width / 2;
+		width: @width / 6;
 		margin: (@height / 3) 0;
         padding: 0;
+		-webkit-transform: scale(.6);
+		transition: all ease .1s;
+
 
 		i {
 			transition: all ease .3s;
@@ -87,6 +92,8 @@ section.task {
 		}
 
 		&:hover {
+			-webkit-transform: scale(.7);
+
 			.fa-arrow-right {
 				opacity: 0;
 			}
@@ -106,9 +113,8 @@ section.task {
         .alignItems(stretch);
 		.flex(1);
 		overflow-x: scroll;
-        box-shadow: inset 0 0 3px fade(@color-shadow, 30%);
+    //    box-shadow: inset 0 0 13px fade(@color-shadow, 30%);
     //    .imageset("/img/bg/white_leather");
-    //	background-color: darken(@color-first, 00%);
 
         > * {
             .flexShrink(0);
@@ -116,11 +122,12 @@ section.task {
 	}
 
     .source, .step, .dest {
-        	box-shadow: 0 0 15px fade(@color-shadow, 40%);
+        //	box-shadow: 0 0 15px fade(@color-shadow, 40%);
         	padding: .5rem;
             width: @width;
-            margin: 1rem;
-            background: @color-second;
+            margin: 1rem 1rem;
+            background: lighten(@color-first, 5%);
+
     }
 
     .step {
