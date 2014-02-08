@@ -27,6 +27,17 @@
             getProject: function (projectName) {
                 return findProjectByName(projectName);
             },
+            removeProject: function (project) {
+                var projectName = project.name, matchedIndex;
+                projects.forEach(function (project, index) {
+                    if (!matchedIndex && project.name === projectName) {
+                        store.removeProject(project);
+                        matchedIndex = index;
+                    }
+                });
+                projects.splice(matchedIndex, 1);
+                return project;
+            },
             createProject: function (projectName) {
                 var project = new Project({
                     name: getBlankProjectName(),

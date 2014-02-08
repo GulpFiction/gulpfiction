@@ -24,6 +24,7 @@
             <project-picker projects="projects" current-project="project" on-switch-project="switchToProject(project)"></project-picker>
 
             <div class="options">
+                <button ng-click="removeProject()">X</button>
                 <button ng-click="addProject()">+</button>
                 <button ng-click="exportProject(project)"><i class="fa fa-cloud-download"></i></button>
                 <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button>

@@ -21,8 +21,13 @@
 
         $scope.addProject = function () {
             var project = gulp.createProject();
-
             $location.path('/' + encodeURI(project.name));
+        };
+
+        $scope.removeProject = function () {
+            gulp.removeProject($rootScope.project);
+            $scope.projects = gulp.listProjects();
+            $location.path('/');
         };
 
         $scope.connectDb = function () {

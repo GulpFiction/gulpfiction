@@ -34,6 +34,10 @@
                     if (!exports.localStorage) { return; }
                     exports.localStorage.clear();
                 },
+                rm: function (key) {
+                    if (!exports.localStorage) { return; }
+                    exports.localStorage.removeItem(key);
+                },
                 onChange: function (listenerFn) {
                     listeners.push(listenerFn);
                 }

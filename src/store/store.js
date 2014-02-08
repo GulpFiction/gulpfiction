@@ -35,6 +35,17 @@
                     var saveCopy = exports.angular.copy(project);
                     localStorage.set(PROJECT_PREFIX + project.name, saveCopy);
                 },
+                removeProject: function (project) {
+                    localStorage.rm(PROJECT_PREFIX + project.name);
+                    var projectNames = localStorage.get(PROJECT_LIST_KEY) || [];
+                    var saveNames = [];
+                    projectNames.forEach(function (name) {
+                        if (name !== normalizeName(project.name)) {
+                            saveNames.push(name);
+                        }
+                    });
+                    localStorage.set(PROJECT_LIST_KEY, saveNames);
+                },
                 onChange: function (listenerFn) {
                     localStorage.onChange(listenerFn);
                 }
