@@ -4,7 +4,8 @@
     exports.angular.module('app.indexController', [])
         .controller('indexController', IndexController);
 
-    function IndexController($location) {
+    function IndexController($location, gulp) {
+        gulp.createProject();
         $location.path('/one');
     }
 

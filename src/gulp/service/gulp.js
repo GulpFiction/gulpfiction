@@ -10,42 +10,6 @@
     function gulpFactory(Project, Task, Step) {
         var projects = [];
 
-        // dummy data
-        projects = [
-            new Project({
-                name: 'one',
-                tasks: [
-                    new Task({
-                        name: 'default',
-                        steps: [
-                            new Step({
-                                name: 'concat',
-                                options: 'tada'
-                            }),
-                            new Step({
-                                name: 'other',
-                                options: { 'a': 'b' }
-                            })
-                        ]
-                    }),
-                    new Task({
-                        name: 'src'
-                    }),
-                    new Task({
-                        name: 'less'
-                    })
-                ]
-            }),
-            new Project({
-                name: 'two',
-                tasks: [
-                    new Task({
-                        name: 'default'
-                    })
-                ]
-            })
-        ];
-
         return {
             listProjects: function () {
                 return projects;
@@ -55,10 +19,26 @@
             },
             createProject: function () {
                 projects.push(new Project({
-                    name: 'Unknown',
+                    name: 'one',
                     tasks: [
                         new Task({
-                            name: 'default'
+                            name: 'default',
+                            steps: [
+                                new Step({
+                                    name: 'concat',
+                                    options: 'tada'
+                                }),
+                                new Step({
+                                    name: 'other',
+                                    options: { 'a': 'b' }
+                                })
+                            ]
+                        }),
+                        new Task({
+                            name: 'src'
+                        }),
+                        new Task({
+                            name: 'less'
                         })
                     ]
                 }));
