@@ -1,7 +1,7 @@
 (function (exports) {
     'use strict';
 
-    var LINEBREAK = '\n';
+    var LINEBREAK = '\n', INDENT = '    ';
 
     exports.angular.module('builder.fileBuilder', [])
         .service('fileBuilder', FileBuilder);
@@ -54,22 +54,12 @@
     }
 
     function buildTask(task) {
-        var taskContent = [];
-
-        taskContent.push(buildTaskHead(task));
+        var taskContent = [], preTasks = buildPreTasks(task);
+        taskContent.push('gulp.task("' + task.name + '", [' + preTasks + '], {');
         taskContent.push(buildTaskContent(task));
-        taskContent.push(buildTaskFoot(task));
+        taskContent.push('});');
 
         return taskContent.join(LINEBREAK);
-    }
-
-    function buildTaskHead(task) {
-        var content = [], preTasks = buildPreTasks(task);
-
-        content.push('gulp.task("' + task.name + '", [' + preTasks + '], {');
-        content.push('});');
-
-        return content.join(LINEBREAK);
     }
 
     function buildPreTasks(task) {
@@ -79,11 +69,14 @@
     }
 
     function buildTaskContent(task) {
-        return 'a';
-    }
+        var content = [];
 
-    function buildTaskFoot(task) {
-        return 'a';
+        content.push('gulp.src("' + task.inputGlob + '")');
+        content.push(INDENT + '.pipe(gulp.dest("' + task.outputDir + '"));')
+
+        return content.map(function (line) {
+            return INDENT + line;
+        }).join(LINEBREAK);
     }
 
 }(this));

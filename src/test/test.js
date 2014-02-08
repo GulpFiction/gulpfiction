@@ -29,9 +29,16 @@
             myTask.outputDir = 'build/';
             myTask.steps = [myStep, myStep2];
 
+            var myTask2 = new Task();
+            myTask2.name = 'more';
+            myTask2.inputGlob = 'src/**/*.js';
+            myTask2.preTasks = ['a', 'b'];
+            myTask2.outputDir = 'build/';
+            myTask2.steps = [myStep, myStep2];
+
             var myGulp = new Gulp();
             myGulp.name = 'my';
-            myGulp.tasks = [myTask];
+            myGulp.tasks = [myTask, myTask2];
 
             var content = fileBuilder.build(myGulp);
 
