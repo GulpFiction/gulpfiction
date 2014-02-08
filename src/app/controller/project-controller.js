@@ -4,8 +4,8 @@
     exports.angular.module('app.projectController', [])
         .controller('projectController', ProjectController);
 
-    function ProjectController($scope) {
-
+    function ProjectController($scope, project) {
+        console.log(project);
     }
 
 }(this));

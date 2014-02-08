@@ -17,6 +17,9 @@
             listProjects: function () {
                 return projects;
             },
+            getProject: function (projectId) {
+                return {};
+            },
             createProject: function () {
                 projects.push(new Project({
                     name: 'Unknown',
