@@ -8,7 +8,7 @@
         this.steps = [];
         this.preTasks = [];
         this.name = '';
-        this.inputGlob = [];
+        this.inputGlob = [{path: ''}];
         this.outputDir = '';
         this.isWatchEnabled = false;
         this.isReloadEnabled = false;

@@ -1,3 +1,41 @@
 section.task {
-	
+    @width: 12rem;
+    @height: 1.4142 * @width;
+
+	border-bottom: 1px solid gainsboro;
+    height: 10rem;
+	.flex();
+    height: @height;
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		list-style-type: none;
+	}
+
+	.settings {
+		width: @width;
+	}
+
+	.content {
+        .flex();
+        .alignItems(stretch);
+		.flex(1);
+		overflow-x: scroll;
+
+        > * {
+            .flexShrink(0);
+        }
+
+        .source, .step, .dest {
+            width: @width;
+            margin: 1rem;
+            background: @color-second;
+
+        }
+	}
+
 }

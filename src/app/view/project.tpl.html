@@ -1,4 +1,3 @@
-<h2>{{ project.name }}</h2>
 <section class="task" ng-repeat="task in project.tasks">
     <div class="settings">
         <h3>{{ task.name }}</h3>
@@ -25,15 +24,27 @@
     </div>
     <div class="content">
         <div class="source">
-        	
+            <h4>Source</h4>
+        	<ul>
+        		<li ng-repeat="input in task.inputGlob track by $index">
+        			<input type="text" ng-model="input.path"/>
+        			<button ng-click="removeInputGlob(task, $index);">remove</button>
+        		</li> 
+        	</ul>
+        	<button ng-click="addInputGlob(task)">add src</button>
         </div>
-        <ul class="steps">
-            <li ng-repeat="step in task.steps">
-            	
-            </li>
-        </ul>
+
+        <button ng-repeat-end ng-click="addTask(-1)">add step</button>
+
+        <div class="step" ng-repeat-start="step in task.steps track by $index">
+        	{{step.name}}
+        </div>
+
+        <button ng-repeat-end ng-click="addTask($index)">add step</button>
+
         <div class="dest">
-        	
+            <h4>Destination</h4>
+        	<input type="text" ng-model="task.outputDir"/>
         </div>
     </div>
 </section>
