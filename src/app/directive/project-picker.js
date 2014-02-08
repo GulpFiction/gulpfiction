@@ -7,15 +7,20 @@
             templateUrl: 'app/view/project-picker.tpl.html',
             replace: true,
             scope: {
-                projects: '='
+                projects: '=',
+                currentProject: '='
             },
             link: linkFn
         };
 
         function linkFn(scope, element, attrs) {
-            scope.currentProject = scope.projects[0];
+
+            scope.$watch('currentProject', function (newValue) {
+                scope.currentProject = newValue;
+            });
 
             scope.switchToProject = function (project) {
+                if (project === scope.currentProject) { return; }
                 scope.currentProject = project;
                 $location.path('/' + project.name);
             };
