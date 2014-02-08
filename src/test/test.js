@@ -15,12 +15,19 @@
             myStep.name = 'concat';
             myStep.options = 'all.js';
 
+            var myStep2 = new Step();
+            myStep2.name = 'other';
+            myStep2.options = {
+                a: 'b'
+            };
+
+
             var myTask = new Task();
             myTask.name = 'default';
-            myTask.inputGlob = 'src/**/*.js'
+            myTask.inputGlob = 'src/**/*.js';
             myTask.pretasks = [];
             myTask.outputDir = 'build/';
-            myTask.steps = [myStep];
+            myTask.steps = [myStep, myStep2];
 
             var myGulp = new Gulp();
             myGulp.name = 'my';
