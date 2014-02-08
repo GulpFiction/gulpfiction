@@ -27,7 +27,9 @@
                 templateUrl: 'app/view/project.tpl.html',
                 controller: 'projectController',
                 resolve: {
-                    project: function ($route, gulp) {
+                    project: function ($route, gulp, $rootScope) {
+                        var project = gulp.getProject($route.current.params.projectName);
+                        $rootScope.project = project;
                         return gulp.getProject($route.current.params.projectName);
                     }
                 }
