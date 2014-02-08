@@ -58,11 +58,11 @@
             return step.name;
         });
 
-        return uniqueNames(stepNames);
+        return getUniqueNames(stepNames);
     }
 
-    function uniqueNames(names) {
-        var nameMap = {}, uniqueNames = [];
+    function getUniqueNames(names) {
+        var nameMap = {}, uniqueNames = [], name;
 
         names.forEach(function (name) {
             nameMap[name] = name;
