@@ -1,0 +1,25 @@
+{
+  "name": "ngDropbox",
+  "ignore": [
+    "**/.*",
+    "test",
+    "node_modules",
+    "components",
+    "karma.conf.js"
+  ],
+  "devDependencies": {
+    "angular": "~1.2.4",
+    "angular-mocks": "~1.2.4"
+  },
+  "homepage": "https://github.com/christiansmith/ngDropbox",
+  "_release": "1e3721360e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1e3721360eeba66a603544b14d62a53470b6bcd8"
+  },
+  "_source": "git@github.com:christiansmith/ngDropbox.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:christiansmith/ngDropbox.git",
+  "_direct": true
+}
