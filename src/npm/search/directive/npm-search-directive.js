@@ -5,7 +5,7 @@
     function NpmSearch(NpmPackage, $timeout) {
         return {
             restrict: 'E',
-            templateUrl: 'npm/search/views/npm-search.tpl.html',
+            templateUrl: 'npm/search/view/npm-search.tpl.html',
             scope: {
 
             },

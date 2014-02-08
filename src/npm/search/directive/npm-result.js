@@ -6,7 +6,7 @@
 
         return {
             restrict: 'E',
-            templateUrl: 'npm/search/views/npm-result.tpl.html',
+            templateUrl: 'npm/search/view/npm-result.tpl.html',
             scope: {
                 result: '='
             },
