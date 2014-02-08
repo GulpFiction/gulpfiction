@@ -10,6 +10,8 @@
         this.name = '';
         this.inputGlob = '';
         this.outputDir = '';
+        this.isWatchEnabled = false;
+        this.isReloadEnabled = false;
     }
 
 }(this));
