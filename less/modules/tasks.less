@@ -235,6 +235,11 @@ section.task {
 			}
         }
 
+        &.ng-animate .remove {
+            transition: none;
+            opacity: 0;
+        }
+
         &.ng-enter.ng-enter-active, &.ng-leave:not(.ng-leave-active) {
             width: @width;
             margin-right: 1rem;
