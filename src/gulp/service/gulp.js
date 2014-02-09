@@ -13,7 +13,7 @@
     function gulpFactory(Project, Task, Step, store, $location, $rootScope) {
         var projects = store.loadProjects();
 
-        return {
+        var gulp = {
             listProjects: function () {
                 return projects;
             },
@@ -23,7 +23,6 @@
             removeProject: function (project) {
                 var projectName = project.name, matchedIndex;
                 projects.forEach(function (project, index) {
-                    console.log(project.name, projectName);
                     if (!matchedIndex && project.name === projectName) {
                         store.removeProject(project);
                         matchedIndex = index;
@@ -31,6 +30,16 @@
                 });
                 projects.splice(matchedIndex, 1);
                 return project;
+            },
+            removeProjectByName: function (projectName) {
+                var matchedIndex;
+                projects.forEach(function (project, index) {
+                    if (!matchedIndex && project.name === projectName) {
+                        store.removeProject(project);
+                        matchedIndex = index;
+                    }
+                });
+                projects.splice(matchedIndex, 1);
             },
             createProject: function (projectName) {
                 var project = new Project({
@@ -65,6 +74,8 @@
                 return project;
             }
         };
+
+        return gulp;
 
         function findProjectByName(projectName) {
             var result;

@@ -9,7 +9,8 @@
             scope: {
                 projects: '=',
                 currentProject: '=',
-                doSwitchToProject: '&onSwitchProject'
+                doSwitchToProject: '&onSwitchProject',
+                doRenameProject: '&onRenameProject'
             },
             link: linkFn
         };

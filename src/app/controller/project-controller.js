@@ -35,7 +35,10 @@
         };
 
         // debounce?
-        var unregisterProjectWatch = $scope.$watch('project', function () {
+        var unregisterProjectWatch = $scope.$watch('project', function (newProject, oldProject) {
+            if (newProject && oldProject && newProject.name !== oldProject.name) {
+                store.removeProject(oldProject);
+            }
             store.saveProject($scope.project);
         }, true);
 
