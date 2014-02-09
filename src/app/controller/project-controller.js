@@ -7,7 +7,7 @@
         'npm.search.npmPackage'
     ]).controller('projectController', ProjectController);
 
-    function ProjectController($scope, project, store, Step, Task, NpmPackage) {
+    function ProjectController($scope, $timeout, project, store, Step, Task, NpmPackage) {
         $scope.project = project;
 
         $scope.removeInputGlob = function (task, index) {
@@ -55,10 +55,16 @@
         };
 
         $scope.addTask = function () {
-            project.tasks.push(new Task({
+            var newTask = new Task({
                 name: createTaskName()
-            }));
+            });
+            project.tasks.push(newTask);
+
             // select new task here
+            $timeout(function () {
+                var elList = exports.document.querySelectorAll('.settings h3 input');
+                elList[elList.length - 1].focus();
+            }, 0);
         };
 
         $scope.fetchReadmeFromGithub = function (step) {
