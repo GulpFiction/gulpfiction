@@ -78,9 +78,9 @@
 
         <div ng-view class="maincontent"></div>
 
-        <lightbox is-active="showsTeaser" 
-                show-close="true" 
-                class="teaser" 
+        <lightbox is-active="showsTeaser"
+                show-close="true"
+                class="teaser"
                 on-close="closeTeaser()"
                 custom-width="600">
             <div class="teaser-heading">
@@ -101,14 +101,14 @@
             <p>
                 If you are a front-end developer like we are you might love setting up
                 and maintaining the build workflow like we are. <i>Not at all</i>. Fiddeling
-                around with <i>grunt</i> or the new and fancy <i>gulp.js</i> config files is 
-                no fun so a lot of boilerplates were set up to help you. This is another 
-                approach to enable you to <b>shorten the build setup</b> with a graphical user interface for <b>automatic gulp.js creation</b> and file upload for <b>dropbox</b> 
+                around with <i>grunt</i> or the new and fancy <i>gulp.js</i> config files is
+                no fun so a lot of boilerplates were set up to help you. This is another
+                approach to enable you to <b>shorten the build setup</b> with a graphical user interface for <b>automatic gulp.js creation</b> and file upload for <b>dropbox</b>
                 or <b>direct download</b>.
             </p>
 
             <p>
-                If you haven't heard of <a href="http://gulpjs.com/">gulp.js</a> &mdash; it's 
+                If you haven't heard of <a href="http://gulpjs.com/">gulp.js</a> &mdash; it's
                 like grunt just <i>a lot</i> faster.
                 If you haven't heard of grunt... well... nice weather out there, isn't it?
             </p>
@@ -117,7 +117,7 @@
         <lightbox is-active="showsDropboxExport" show-close="true">
             <h1>Want to use Dropbox? You're one smart motherfu<i class="fa fa-asterisk"></i><i class="fa fa-asterisk"></i><i class="fa fa-asterisk"></i>r.</h1>
 
-            <span ng-if="isDropboxAuthenticated"> {{dbAccountInfo.display_name}} is connected <button ng-click="logoutDropbox()">Logout</button></span>
+
 
             <h3>You can use Dropbox to auto-update your local gulpfile on save.</h3>
 
@@ -129,12 +129,19 @@
                 <p>Great, now you need to setup the link on your local filesystem. Open Terminal and switch to your project directory, then execute the following command to create a symbolic link:</p>
                 <pre><code>$ ln -s ~/Dropbox/gulp-fiction/{{project.id}}.js gulpfile.js</code></pre>
                 <p>Now hit save to export to Dropbox!</p>
+
+
                 <button style="font-size:2rem;" ng-show="isDropboxAuthenticated && !showExportProgress" ng-click="exportProjectToDropbox(project)" class="button">
                     <i class="fa fa-dropbox"></i> Save</button>
 
                 <button ng-if="showExportProgress" disabled><i class="fa fa-spinner fa-spin" class="button"></i> Exporting…</button>
+                &nbsp;
 
                 <span ng-if="showExportDone"><i class="fa fa-check"></i> Saved</span>
+
+                <span ng-if="isDropboxAuthenticated"><button ng-click="logoutDropbox()" class="button"><i class="fa fa-sign-out"></i> Logout {{dbAccountInfo.display_name}}</button></span>
+
+
             </div>
         </lightbox>
 
