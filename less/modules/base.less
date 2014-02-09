@@ -72,13 +72,30 @@ button {
 	}
 	&.button {
 		font-size: 2rem;
+		padding: .5rem;
+		background: fade(@color-second, 70);
+		border-radius: 3px;
+		transition: .2s all;
+
+		&:hover {
+			background: fade(@color-second, 80);
+		}
 	}
+}
+
+.button-container {
+	text-align: right;
+	margin-top: 1rem;
 }
 
 .lightbox-content {
 	background: white;
 	padding: 2rem;
 	width: 750px;
+
+	h1:first-of-type {
+		margin-top: 0;
+	}
 }
 
 input[type="checkbox"] {

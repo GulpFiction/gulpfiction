@@ -2,7 +2,9 @@
     <div>
         <div ng-transclude></div>
 
-        <button ng-click="close()">Cancel</button>
-        <button ng-click="confirm()">Confirm</button>
+        <div class="button-container">
+            <button ng-click="close()" class="button">Cancel</button>
+            <button ng-click="confirm()" class="button">Confirm</button>
+        </div>
     </div>
 </lightbox>
