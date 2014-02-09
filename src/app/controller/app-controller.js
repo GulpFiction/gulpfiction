@@ -31,10 +31,6 @@
             $location.path('/' + encodeURI(project.name));
         };
 
-        $scope.exportProject = function (project) {
-            console.log(fileBuilder.build(project));
-        };
-
         $scope.addProject = function () {
             var project = gulp.createProject();
             $location.path('/' + encodeURI(project.name));
@@ -56,21 +52,21 @@
             if (!dropboxCredentials) {
                 Dropbox.authenticate().then(function (response) {
                     // @TODO: store response.access_token in localstorage
-                    
+
                     $scope.isDropboxAuthenticated = true;
                     Dropbox.accountInfo().then(function (data) {
                         console.log(data);
                         $scope.dbAccountInfo = data;
                         localStorage.set(DROPBOX_KEY, { token:response.access_token, uid: data.uid });
                     });
-                });   
+                });
             } else {
                 Dropbox.setCredentials({
                     access_token: dropboxCredentials.token,
                     token_type: "bearer",
                     uid: dropboxCredentials.uid
                 });
-                
+
                 Dropbox.accountInfo().then(function (data) {
                     $scope.isDropboxAuthenticated = true;
                     $scope.dbAccountInfo = data;
@@ -84,14 +80,11 @@
                             $scope.dbAccountInfo = data;
                             localStorage.set(DROPBOX_KEY, { token:response.access_token, uid: data.uid });
                         });
-                    });   
+                    });
                 });
             }
-            
+
         };
-
-
-
 
         $scope.exportProjectToDropbox = function (project) {
             if (Dropbox.isAuthenticated()) {
