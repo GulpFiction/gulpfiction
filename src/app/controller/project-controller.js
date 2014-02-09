@@ -2,10 +2,11 @@
     'use strict';
 
     exports.angular.module('app.projectController', [
-        'gulp.Step'
+        'gulp.Step',
+        'gulp.Task'
     ]).controller('projectController', ProjectController);
 
-    function ProjectController($scope, project, store, Step) {
+    function ProjectController($scope, project, store, Step, Task) {
         $scope.project = project;
 
         $scope.removeInputGlob = function (task, index) {
@@ -44,6 +45,12 @@
             });
 
             if (result !== undefined) { project.tasks.splice(result, 1); }
+        };
+
+        $scope.addTask = function () {
+            project.tasks.push(new Task({
+                name: 'more'
+            }));
         };
 
         // debounce?
