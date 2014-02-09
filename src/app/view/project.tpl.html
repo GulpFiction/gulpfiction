@@ -60,6 +60,7 @@
 
             <div ng-if="!step.justAdded">
                 <h4>{{step.name}} <a ng-click="step.showPackageDetails = true"><i class="fa fa-info-circle"></i></a></h4>
+                <p class="description">By <b>{{step.author}}</b>. Version <b>{{step.version}}</b></p>
                 <div ui-ace="{mode:'json',showGutter:false}" style="height:160px"></div>
             </div>
 

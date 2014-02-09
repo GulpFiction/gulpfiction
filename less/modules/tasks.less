@@ -1,5 +1,5 @@
 section.task {
-    @width: 12rem;
+    @width: 15rem;
     @height: 1.4142 * @width;
     height: 10rem;
 	.flex();
@@ -141,6 +141,7 @@ section.task {
 		.flex(1);
 		overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
+        padding: 0 1rem;
 
         > * {
             .flexShrink(0);
@@ -161,7 +162,7 @@ section.task {
         //	box-shadow: 0 0 15px fade(@color-shadow, 40%);
     	padding: .5rem;
         width: @width;
-        margin: 1rem 1rem;
+        margin: 2rem 1rem;
 
     }
 
@@ -173,7 +174,7 @@ section.task {
     		.transform(rotate(45deg));
 	    	z-index: -1;
     		top: -29rem;
-			left: -91rem;
+			left: -88rem;
 			content: ' ';
 			display: block;
 			position: absolute;
@@ -188,16 +189,21 @@ section.task {
 		background: rgba(255,255,255,.7);
         position: relative;
 
+        .description {
+        	font-style: normal;
+        }
+
         &:hover, &.is-focused {
         	background: rgba(255,255,255,1);
         }
 
         .delete {
             position: absolute;
-            top: 0;
-            right: 0;
-            font-size: 1.5rem;
-            margin: .5rem .5rem 0;
+			top: -1.1rem;
+			right: -1rem;
+			font-size: 2rem;
+			margin: .5rem .5rem 0;
+			cursor: pointer;
         }
 
         &.ng-enter.ng-enter-active, &.ng-leave {
