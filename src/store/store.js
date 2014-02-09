@@ -54,9 +54,4 @@
             return store;
         });
 
-    function normalizeName(name) {
-        // no more then 50 chars
-        return name.substr(0, 50);
-    }
-
 }(this));
