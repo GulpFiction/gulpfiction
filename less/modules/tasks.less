@@ -210,6 +210,18 @@ section.task {
     	overflow: hidden;
     	position: relative;
         cursor: default;
+        .flex();
+        .flexDirection(column);
+
+        ul {
+            .flex(1);
+            overflow-y: scroll;
+        }
+
+        > * {
+            position: relative;
+            z-index: 1;
+        }
 
         button.add {
             width: 100%;
@@ -217,7 +229,7 @@ section.task {
 
     	&:before {
     		.transform(rotate(45deg));
-	    	z-index: -1;
+	    	z-index: 0;
     		top: -29rem;
 			left: -88rem;
 			content: ' ';
