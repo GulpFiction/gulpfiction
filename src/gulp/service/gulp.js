@@ -8,7 +8,7 @@
         'gulp.Task',
         'gulp.Step',
         'store'
-    ]).factory('gulp', gulpFactory);
+    ]).factory('gulp', gulpFactory).value('getBlankProjectNameWithProjects', getBlankProjectNameWithProjects);
 
     function gulpFactory(Project, Task, Step, store, $location, $rootScope) {
         var projects = store.loadProjects();
@@ -65,8 +65,6 @@
             }
         };
 
-        return gulp;
-
         function findProjectById(projectId) {
             var result;
             projects.forEach(function (project) {
@@ -99,6 +97,31 @@
 
             return currentName;
         }
+
+        return gulp;
+    }
+
+    function findProjectByNameWithProjects(projectName, projects) {
+        var result;
+        projects.forEach(function (project) {
+            if (project.name === projectName) {
+                result = project;
+            }
+        });
+        return result;
+    }
+
+    function getBlankProjectNameWithProjects(projects) {
+        var currentName = DEFAULT_NAME, i = 0;
+
+        if (!findProjectByNameWithProjects(currentName, projects)) { return currentName; }
+
+        do {
+            currentName = DEFAULT_NAME + ' ' + i;
+            i = i + 1;
+        } while (findProjectByNameWithProjects(currentName, projects));
+
+        return currentName;
     }
 
 }(this));

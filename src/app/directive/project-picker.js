@@ -1,7 +1,7 @@
 (function (exports) {
     'use strict';
 
-    function ProjectPicker($location) {
+    function ProjectPicker($location, $timeout, getBlankProjectNameWithProjects, $rootScope) {
         return {
             restrict: 'E',
             templateUrl: 'app/view/project-picker.tpl.html',
@@ -15,6 +15,11 @@
         };
 
         function linkFn(scope, element, attrs) {
+            var inputEl = exports.document.querySelector('menu input');
+            inputEl.addEventListener('blur', function () {
+                scope.currentProject.name = scope.currentProject.name || getBlankProjectNameWithProjects(scope.projects);
+                if (!$rootScope.$$phase) { scope.$apply(); }
+            });
 
             scope.switchToProject = function (project) {
                 if (project === scope.currentProject) { return; }
@@ -24,7 +29,7 @@
         }
     }
 
-    exports.angular.module('app.projectPicker', [])
+    exports.angular.module('app.projectPicker', ['gulp.gulp'])
         .directive('projectPicker', ProjectPicker);
 
 })(this);

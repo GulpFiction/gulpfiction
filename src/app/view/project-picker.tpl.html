@@ -2,7 +2,7 @@
         data-tooltip="Rename your project" data-tooltip-options="only-help bottom oneline">
     <menu>
         <li ng-class="{'is-focused':pickerFocused}">
-        	<input ng-model="currentProject.name" required ng-max-length="20"
+        	<input ng-model="currentProject.name" required
         		ng-focus="pickerFocused=true; navOpen=false" 
         		ng-blur="pickerFocused=false;" />
         	<span ng-show="projects.length > 1" 
