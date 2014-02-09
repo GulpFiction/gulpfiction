@@ -24,7 +24,7 @@
             console.log()
             var el = angular.element(this);
             var task = el.scope().task;
-            task.name = ensureCorrectTaskName(task.name) || createTaskName();
+            task.name = ensureCorrectTaskName(task.name || '') || createTaskName();
             if (!$rootScope.$$phase) { $rootScope.$apply(); }
         });
 
@@ -111,6 +111,8 @@
             $scope.showsDropboxExport = true;
         };
 
+        $scope.correctTaskPattern = /[^a-zA-Z0-9-_]/;
+
 
         function getDropboxAccountInfo(token, uid) {
             Dropbox.setCredentials({
@@ -170,7 +172,7 @@
         function ensureCorrectTaskName(name) {
             var correctName = '';
 
-            correctName = name.replace(/[^a-zA-Z0-9-_]/, '');
+            correctName = name.replace($scope.correctTaskPattern, '');
 
             return correctName;
         }

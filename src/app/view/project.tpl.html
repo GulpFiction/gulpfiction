@@ -15,7 +15,7 @@
         </confirm-lightbox>
 
         <h3>
-            <input ng-model="task.name" />
+            <input ng-model="task.name" required ng-pattern="/^[a-zA-Z0-9-_]+$/"/>
         </h3>
 
         <ul class="reload-options">
