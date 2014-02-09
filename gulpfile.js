@@ -17,7 +17,8 @@ var components = [
     'bower_components/angular-markdown-directive/markdown.js',
     'bower_components/ngDropbox/dropbox.js',
     'bower_components/angular-ui-ace/ui-ace.js',
-    'bower_components/ace-builds/src-min-noconflict/mode-json.js'
+    'bower_components/ace-builds/src-min-noconflict/mode-json.js',
+    'lib/ngClip.js'
 ];
 
 var lessComponents = [

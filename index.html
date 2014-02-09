@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Gulp Fiction</title>
         <link rel="stylesheet" href="app.css" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.1.7/ZeroClipboard.min.js"></script>
         <script type="text/javascript">
           (function(d) {
             var config = {
@@ -31,7 +32,6 @@
                     <span class="fiction">Fiction</span>
                 </a>
             </h1>
-
 
             <project-picker projects="projects" current-project="project" on-switch-project="switchToProject(project)"></project-picker>
 
@@ -70,6 +70,13 @@
         </lightbox>
 
         <lightbox is-active="showsExport" show-close="true">
+            <h2>Any time of the day is a good time for pie!</h2>
+
+            <div class="export-left">
+                <h3 clip-copy="currentExportContent">Copy by clicking in here</h3>
+                <div ui-ace readonly="true" style="height:40rem" ng-model="currentExportContent"></div>
+            </div>
+            <h3>Export to DropBox</h3>
             <button ng-if="!isDropboxAuthenticated" ng-click="connectDb()"><i class="fa fa-dropbox"></i>
                 <span> Connect to DropBox</span>
             </button>
@@ -78,7 +85,6 @@
             <span ng-if="showExportDone"><i class="fa fa-check"></i> Saved to Dropbox</span>
             <span ng-if="isDropboxAuthenticated"> {{dbAccountInfo.display_name}} <button ng-click="logoutDropbox()">Logout</button></span>
 
-            <pre>{{currentExportContent}}</pre>
         </lightbox>
 
 
