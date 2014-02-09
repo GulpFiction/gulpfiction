@@ -52,7 +52,7 @@
         </button>
 
         <div class="step" ng-repeat-start="step in task.steps">
-            <span class="delete" data-tooltip="Remove this step" data-tooltip-options="left"><i class="fa fa-times-circle" ng-click="removeStep(task, $index)"></i></span>
+            <i class="delete fa fa-times-circle" ng-click="removeStep(task, $index)"></i>
 
             <div ng-if="step.justAdded">
                 <npm-search on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
