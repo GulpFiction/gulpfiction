@@ -1,4 +1,5 @@
-<nav ng-class="{'is-open': navOpen}">
+<nav ng-class="{'is-open': navOpen}"
+        data-tooltip="Choose your project" data-tooltip-options="only-help right">
     <menu>
         <li><input ng-model="currentProject.name" /> <span data-tooltip="Select project" data-tooltip-options="bottom oneline"><i ng-click="navOpen = !navOpen" class="fa fa-caret-down"></i></span></li>
         <li ng-click="switchToProject(project)"

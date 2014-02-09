@@ -14,12 +14,8 @@
 
         $scope.projects = gulp.listProjects();
 
-        $scope.showHelp = function () {
-            $scope.showsHelp = true;
-        };
-
-        $scope.hideHelp = function () {
-            $scope.showsHelp = false;
+        $scope.toggleHelp = function () {
+            $scope.showsHelp = !$scope.showsHelp;
         };
 
         $scope.showTeaser = function () {

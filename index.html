@@ -20,12 +20,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     </head>
 
-    <body ng-app="app" ng-controller="appController">
+    <body ng-app="app" ng-controller="appController" ng-class="{'show-help': showsHelp }">
         <keyup-events></keyup-events>
         <header>
 
             <h1>
-                <a ng-click="showTeaser()">
+                <a ng-click="showTeaser()" data-tooltip="Show teaser" data-tooltip-options="only-help right">
                     <img src="/img/logo.gif" class="logo">
                     <span class="gulp">Gulp</span>
                     <span class="fiction">Fiction</span>
@@ -35,15 +35,19 @@
 
             <project-picker projects="projects" current-project="project" on-switch-project="switchToProject(project)"></project-picker>
 
-            <div class="options">
-                <div class="options-project">
+            <div class="options"> 
+                <div class="options-project"
+                data-tooltip="Project Actions"
+                data-tooltip-options="left only-help">
                     <button ng-click="confirmDeleteProject()" data-tooltip-options="oneline bottom" data-tooltip="Remove project" data-tooltip-options="oneline"><i class="fa fa-times-circle"></i></button>
                     <button ng-click="exportProject(project)" data-tooltip-options="oneline bottom" data-tooltip="Export gulpfile.js" data-tooltip-options="oneline"><i class="fa fa-cloud-download"></i></button>
                 </div>
 
-                <div class="options-app">
+                <div class="options-app"
+                data-tooltip="App Actions"
+                data-tooltip-options="bottom only-help oneline">
                     <button ng-click="addProject()" data-tooltip-options="oneline bottom" data-tooltip="Add project" data-tooltip-options="oneline"><i class="fa fa-plus-circle"></i></button>
-                    <button ng-click="showHelp()" data-tooltip-options="oneline bottom" data-tooltip="Help" data-tooltip-options="oneline"><i class="fa fa-question-circle"></i></button>
+                    <button ng-click="toggleHelp()" data-tooltip-options="oneline bottom" data-tooltip="Help" data-tooltip-options="oneline"><i class="fa fa-question-circle"></i></button>
                 </div>
             </div>
         </header>

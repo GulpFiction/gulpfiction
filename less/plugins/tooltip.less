@@ -29,6 +29,7 @@
         font-size: 13px;
         font-weight: normal;
         line-height: 1.2;
+        letter-spacing: normal;
         text-align: left;
         white-space: normal;
         padding: 10px;
@@ -91,6 +92,10 @@
             right: 100%;
         }
 
+        &:before {
+            margin-right: (@arrow * 2);
+        }
+
         &:after {
             border-left-color: @background;            
         }
@@ -118,7 +123,8 @@
         border-top-color: @background;
     }
 
-    &:hover {
+    body:not(.show-help) &:hover:not([data-tooltip-options*="only-help"]),
+    body.show-help &[data-tooltip-options*="help"] {
         &:after, &:before {
             visibility: visible;
             opacity: 1;

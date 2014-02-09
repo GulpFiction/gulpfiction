@@ -1,5 +1,7 @@
-<section class="task" ng-repeat="task in project.tasks">
-    <div class="settings">
+<section class="task" ng-repeat="task in project.tasks"
+        data-tooltip="Define your task steps" data-tooltip-options="only-help bottom oneline">
+    <div class="settings"
+        data-tooltip="Set your task settings" data-tooltip-options="only-help right">
         <span data-tooltip="Delete this task" data-tooltip-options="right"><i class="fa fa-times-circle" ng-click="removeTask(task.name)"></i></span>
         <h3 inline-edit model="task.name" on-save="changeTaskName(task, changedValue)"></h3>
         <h4>options</h4>
