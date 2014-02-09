@@ -35,11 +35,45 @@ section.task {
 	.settings {
 		width: @width;
         padding: 1rem;
-        background: fade(@color-first, 20%);
+        background: fade(@color-first, 50%);
         position: relative;
 
+        .delete {
+        	position: absolute;
+        	right: 1rem;
+        	top: 1rem;
+        	opacity: .5;
+        	transition: all ease .2s;
+        	cursor: pointer;
+
+        	&:hover {
+        		opacity: 1;
+        	}
+
+        	i {
+        		font-size: 2.1rem;
+        	}
+        }
+
         h3 {
-            margin-top: 0;
+            margin-top: -.4rem;
+
+            input {
+            	background: transparent;
+            	border: none;
+            	font-weight: 500;
+          		font-size: 2rem;
+          		width: 80%;
+
+          		&:hover {
+          			background: rgba(255,255,255,.2);
+          		}
+
+          		&:focus {
+          			outline: none;
+          			background: rgba(255,255,255,.6);
+          		}
+            }
         }
 
         .reload-options {
@@ -111,6 +145,16 @@ section.task {
         > * {
             .flexShrink(0);
         }
+
+        h4 {
+        	font-size: 1.5rem;
+        	line-height: 1;
+        }
+
+        .description {
+        	font-style: italic;
+        	margin: .1rem 0 .5rem;
+        }
 	}
 
     .source, .step, .dest {
@@ -118,12 +162,35 @@ section.task {
     	padding: .5rem;
         width: @width;
         margin: 1rem 1rem;
-    //    background: lighten(@color-first, 5%);
-    	background: white;
+
+    }
+
+    .source, .dest {
+    	overflow: hidden;
+    	position: relative;
+
+    	&:before {
+    		.transform(rotate(45deg));
+	    	z-index: -1;
+    		top: -29rem;
+			left: -91rem;
+			content: ' ';
+			display: block;
+			position: absolute;
+			width: 100rem;
+			height: 100rem;
+			background: red;
+			background: rgba(255,255,255,.7);
+	    }
     }
 
     .step {
+		background: rgba(255,255,255,.7);
         position: relative;
+
+        &:hover, &.is-focused {
+        	background: rgba(255,255,255,1);
+        }
 
         .delete {
             position: absolute;

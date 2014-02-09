@@ -2,9 +2,15 @@
         data-tooltip="Define your task steps" data-tooltip-options="only-help bottom oneline">
     <div class="settings"
         data-tooltip="Set your task settings" data-tooltip-options="only-help right">
-        <span data-tooltip="Delete this task" data-tooltip-options="right"><i class="fa fa-times-circle" ng-click="removeTask(task.name)"></i></span>
-        <h3 inline-edit model="task.name" on-save="changeTaskName(task, changedValue)"></h3>
-        <h4>options</h4>
+
+        <span data-tooltip="Delete this task" data-tooltip-options="right" class="delete">
+            <i class="fa fa-times-circle" ng-click="removeTask(task.name)"></i>
+        </span>
+
+        <h3>
+            <input ng-model="task.name" />
+        </h3>
+
         <ul class="reload-options">
         	<li>
         		<input ng-model="task.isWatchEnabled" type="checkbox" id="{{ task.name }}_enableWatch">
@@ -28,7 +34,8 @@
     </div>
     <div class="content">
         <div class="source">
-            <h4>Source</h4>
+            <h4>Sources</h4>
+            <p class="description">Paths for source files.</p>
         	<ul>
         		<li ng-repeat="input in task.inputGlob track by $index"
                 class="input-container">
@@ -48,7 +55,6 @@
             <i class="fa fa-times-circle delete" ng-click="removeStep(task, $index)"></i>
 
             <div ng-if="step.justAdded">
-                <h4>New Step</h4>
                 <npm-search on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
             </div>
 
@@ -75,6 +81,7 @@
 
         <div class="dest">
             <h4>Destination</h4>
+            <p class="description">Path for the result of this task.</p>
             <div class="input-container">
                 <input placeholder="enter path" type="text" ng-model="task.outputDir"/>
             </div>
