@@ -1,6 +1,6 @@
 <nav ng-class="{'is-open': navOpen}">
     <menu>
-        <li><input ng-model="currentProject.name" /> <span data-tooltip="Select project"><i ng-click="navOpen = !navOpen" class="fa fa-caret-down"></i></span></li>
+        <li><input ng-model="currentProject.name" /> <span data-tooltip="Select project" data-tooltip-options="bottom oneline"><i ng-click="navOpen = !navOpen" class="fa fa-caret-down"></i></span></li>
         <li ng-click="switchToProject(project)"
             ng-repeat="project in projects"
             ng-show="currentProject != project">

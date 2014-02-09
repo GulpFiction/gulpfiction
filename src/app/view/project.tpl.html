@@ -1,6 +1,6 @@
 <section class="task" ng-repeat="task in project.tasks">
     <div class="settings">
-        <span data-tooltip="Delete this task"><i class="fa fa-times-circle" ng-click="removeTask(task.name)"></i></span>
+        <span data-tooltip="Delete this task" data-tooltip-options="right"><i class="fa fa-times-circle" ng-click="removeTask(task.name)"></i></span>
         <h3 inline-edit model="task.name" on-save="changeTaskName(task, changedValue)"></h3>
         <h4>options</h4>
         <ul class="reload-options">
@@ -29,7 +29,7 @@
         	<ul>
         		<li ng-repeat="input in task.inputGlob track by $index">
         			<input type="text" ng-model="input.path"/>
-        			<button ng-if="task.inputGlob.length > 1" ng-click="removeInputGlob(task, $index);">remove</button>
+        			<button class="remove" ng-if="task.inputGlob.length > 1" ng-click="removeInputGlob(task, $index);"></button>
         		</li>
         	</ul>
         	<button ng-click="addInputGlob(task)">add src</button>
@@ -42,8 +42,11 @@
 
         <div class="step" ng-repeat-start="step in task.steps">
             <i class="fa fa-times-circle delete" ng-click="removeStep(task, $index)"></i>
-
-            <npm-search ng-if="step.justAdded" on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
+            
+            <div ng-if="step.justAdded">
+                <h4>New Step</h4>
+                <npm-search on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
+            </div>
 
             <div ng-if="!step.justAdded">
                 <h4>{{step.name}} <a ng-click="step.showPackageDetails = true"><i class="fa fa-info-circle"></i></a></h4>
