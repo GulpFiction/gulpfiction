@@ -26,10 +26,14 @@
         <header>
 
             <h1>
-                <a ng-click="showTeaser()" data-tooltip="Show teaser" data-tooltip-options="right">
-                    <img src="/img/logo.gif" class="logo">
-                    <span class="gulp">Gulp</span>
-                    <span class="fiction">Fiction</span>
+                <a ng-click="showTeaser()" 
+                        data-tooltip="Show teaser" 
+                        data-tooltip-options="right">
+                    <div class="logo">
+                        <img src="/img/logo.gif">
+                        <span class="gulp">Gulp</span>
+                        <span class="fiction">Fiction</span>
+                    </div>
                 </a>
             </h1>
 
@@ -60,8 +64,16 @@
 
         <div ng-view></div>
 
-        <lightbox is-active="showsTeaser" show-close="true">
-            <h1>Gulp Fiction - the Royale with cheese for your build workflow!</h1>
+        <lightbox is-active="showsTeaser" show-close="true" class="teaser">
+            <div class="teaser-heading">
+                <div class="logo">
+                    <img src="/img/logo.gif">
+                    <span class="gulp">Gulp</span>
+                    <span class="fiction">Fiction</span>
+                </div>
+                <p>The Royale With Cheese for you build workflow.</p>
+            </div>          
+
             <h3>- Easy visual editing of your gulp file!</h3>
             <h3>- Export your generated gulp file to your Dropbox account or copy it!</h3>
             <h3>- Search for steps and build tasks!</h3>
