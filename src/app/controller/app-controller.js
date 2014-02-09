@@ -38,6 +38,13 @@
         $scope.addProject = function () {
             var project = gulp.createProject();
             $location.path('/' + encodeURI(project.name));
+            if (exports.document.querySelector) {
+                $timeout(function () {
+                    exports.document.querySelector('menu li').classList.add('is-focused');
+                    exports.document.querySelector('menu input').focus();
+                    exports.document.querySelector('menu input').value = '';
+                });
+            }
         };
 
         $scope.removeProject = function () {

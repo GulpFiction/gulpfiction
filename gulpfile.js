@@ -17,7 +17,7 @@ var components = [
     'bower_components/angular-markdown-directive/markdown.js',
     'bower_components/ngDropbox/dropbox.js',
     'bower_components/angular-ui-ace/ui-ace.js',
-    'bower_components/ace-builds/src-min-noconflict/mode-json.js'
+    'bower_components/ace-builds/src-min-noconflict/mode-json.js',
 ];
 
 var lessComponents = [
@@ -28,7 +28,7 @@ gulp.task('default', ['components', 'page', 'fonts', 'images', 'src', 'less', 'v
 });
 
 gulp.task('page', function () {
-    gulp.src(['index.html', 'bower_components/ngDropbox/callback.html'])
+    gulp.src(['index.html', 'bower_components/ngDropbox/callback.html', 'bower_components/ace-builds/src-min-noconflict/worker-json.js'])
       .pipe(gulp.dest('build/'));
 });
 
