@@ -41,6 +41,11 @@
 	-webkit-font-smoothing: antialiased;
 }
 
+.transform(@value) {
+    -webkit-transform: @value;
+    transform: @value;
+}
+
 .imageset(@1x) {
     background-image: ~"url(@{1x}.png)";
     background-image: -webkit-image-set(~"url(@{1x}.png) 1x", ~"url(@{1x}_@2X.png) 2x");
