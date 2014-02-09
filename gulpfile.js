@@ -7,6 +7,7 @@ var ngHtml2Js = require('gulp-ng-html2js');
 var jshint = require('gulp-jshint');
 
 var components = [
+    'bower_components/ace-builds/src-min-noconflict/ace.js',
     'bower_components/angular/angular.js',
     'bower_components/angular-resource/angular-resource.js',
     'bower_components/angular-route/angular-route.js',
@@ -14,7 +15,8 @@ var components = [
     'bower_components/angular-animate/angular-animate.js',
     'bower_components/showdown/compressed/showdown.js',
     'bower_components/angular-markdown-directive/markdown.js',
-    'bower_components/ngDropbox/dropbox.js'
+    'bower_components/ngDropbox/dropbox.js',
+    'bower_components/angular-ui-ace/ui-ace.js'
 ];
 
 var lessComponents = [

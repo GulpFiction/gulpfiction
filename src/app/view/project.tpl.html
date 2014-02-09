@@ -52,7 +52,7 @@
 
             <div ng-if="!step.justAdded">
                 <h4>{{step.name}} <a ng-click="step.showPackageDetails = true"><i class="fa fa-info-circle"></i></a></h4>
-                <p>{{step.description}}</p>
+                <div ui-ace="{mode:'json',showGutter:false}" style="height:160px"></div>
             </div>
 
             <lightbox is-active="step.showPackageDetails" show-close="true" on-close="step.showPackageDetails = false;">
