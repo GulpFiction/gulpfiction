@@ -70,20 +70,43 @@
         </lightbox>
 
         <lightbox is-active="showsExport" show-close="true">
-            <h2>Any time of the day is a good time for pie!</h2>
+            <h1>Any time of the day is a good time for pie!</h1>
 
+            <span ng-if="isDropboxAuthenticated"> {{dbAccountInfo.display_name}} is connected <button ng-click="logoutDropbox()">Logout</button></span>
+
+            <h3>Export your file to DropBox and link it with your project</h3>
+
+            <ol>
+                <li>Export your generated gulp-file to your Dropbox</li>
+                <li>Create a symbolic link to your Dropbox:<br/>
+                    <pre><code>ln -s '/path/to/Dropbox/Gulp Fiction/{{project.name}}.js {{project.name}}.js'</code></pre>
+                </li>
+                <li>There is no third step!</li>
+            </ol>
+            <br>
+
+
+            <div>
+                <button ng-if="!isDropboxAuthenticated" ng-click="connectDb()" class="button"><i class="fa fa-dropbox"></i>
+                    <span> Connect to DropBox</span>
+                </button>
+
+                <button style="font-size:2rem;" ng-show="isDropboxAuthenticated && !showExportProgress" ng-click="exportProjectToDropbox(project)" class="button">
+                    <i class="fa fa-dropbox"></i> Save</button>
+
+                <button ng-if="showExportProgress" disabled><i class="fa fa-spinner fa-spin" class="button"></i> Exporting…</button>
+
+                <span ng-if="showExportDone"><i class="fa fa-check"></i> Saved</span>
+
+            </div>
+
+            <!--
             <div class="export-left">
                 <h3 clip-copy="currentExportContent">Copy by clicking in here</h3>
-                <div ui-ace readonly="true" style="height:40rem" ng-model="currentExportContent"></div>
+
             </div>
-            <h3>Export to DropBox</h3>
-            <button ng-if="!isDropboxAuthenticated" ng-click="connectDb()"><i class="fa fa-dropbox"></i>
-                <span> Connect to DropBox</span>
-            </button>
-            <button ng-show="isDropboxAuthenticated && !showExportProgress" ng-click="exportProjectToDropbox(project)"><i class="fa fa-dropbox"></i> Save to DropBox</button>
-            <button ng-if="showExportProgress" disabled><i class="fa fa-spinner fa-spin"></i> Exporting to Dropbox</button>
-            <span ng-if="showExportDone"><i class="fa fa-check"></i> Saved to Dropbox</span>
-            <span ng-if="isDropboxAuthenticated"> {{dbAccountInfo.display_name}} <button ng-click="logoutDropbox()">Logout</button></span>
+            <div ui-ace readonly="true" style="height:40rem" ng-model="currentExportContent"></div>
+            -->
 
         </lightbox>
 
