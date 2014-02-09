@@ -53,18 +53,21 @@
 
         <div class="step" 
                 ng-repeat-start="step in task.steps" 
-                ng-click="setFocusedStep(step)"
                 ng-class="{'is-focused': step === focusedStep}">
             <button class="remove" ng-click="removeStep(task, $index)"></button>
             
             <npm-search class="npm-search" ng-if="step.justAdded" on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
 
-            <div ng-if="!step.justAdded">
-                <h4>{{step.name}}</h4>
-                <p class="description">By <b>{{step.author}}</b>. Version <b>{{step.version}}</b></p>
-                <div ui-ace="{mode:'json',showGutter:false}" style="height:160px"></div>
-            </div>
+            <div ng-click="setFocusedStep(step)">
 
+
+                <div ng-if="!step.justAdded">
+                    <h4>{{step.name}}</h4>
+                    <p class="description">By <b>{{step.author}}</b>. Version <b>{{step.version}}</b></p>
+                    <div ui-ace="{mode:'json',showGutter:false}" style="height:160px"></div>
+                </div>
+
+            </div>    
         </div>
 
         <button ng-repeat-end ng-click="addStep(task, $index+1)" class="add-step">

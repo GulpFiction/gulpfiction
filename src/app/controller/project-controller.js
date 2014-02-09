@@ -26,6 +26,7 @@
         $scope.assignPackageToStep = function (step, npmPackage) {
             step.justAdded = false;
             step.setPackage(npmPackage);
+            $scope.setFocusedStep(step);
         };
 
         $scope.removeStep = function (task, position) {
