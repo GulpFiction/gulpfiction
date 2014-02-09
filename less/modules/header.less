@@ -108,8 +108,15 @@ header {
 
 			input {
 				text-align: center;
-				width: 100%;
+				width: 90%;
 				font-size: 1em;
+				border: 0;
+				background: none;
+				outline: 0;
+				&:active, &:focus {
+					background-color: white;
+					border: 2px inset;
+				}
 			}
 		}
 	}
