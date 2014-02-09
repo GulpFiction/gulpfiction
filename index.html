@@ -39,8 +39,14 @@
                 <div class="options-project"
                 data-tooltip="Project Actions"
                 data-tooltip-options="left only-help">
-                    <button ng-click="confirmDeleteProject()" data-tooltip-options="oneline bottom" data-tooltip="Remove project" data-tooltip-options="oneline"><i class="fa fa-times-circle"></i></button>
-                    <button ng-click="exportProject(project)" data-tooltip-options="oneline bottom" data-tooltip="Export gulpfile.js" data-tooltip-options="oneline"><i class="fa fa-cloud-download"></i></button>
+                    <button ng-click="confirmDeleteProject()" data-tooltip-options="oneline bottom" data-tooltip="Remove project" data-tooltip-options="oneline"><i class="fa fa-times-circle"></i>
+                    </button>
+
+                    <button ng-click="openExportProject(project)" data-tooltip-options="oneline bottom" data-tooltip="Export gulpfile.js" data-tooltip-options="oneline"><i class="fa fa-cloud-download"></i>
+                    </button>
+
+                    <button ng-click="openExportToDropbox(project)" data-tooltip-options="oneline bottom" data-tooltip="Export gulpfile.js to Dropbox" data-tooltip-options="oneline"><i class="fa fa-dropbox"></i>
+                    </button>
                 </div>
 
                 <div class="options-app"
@@ -69,8 +75,8 @@
 
         </lightbox>
 
-        <lightbox is-active="showsExport" show-close="true">
-            <h1>Any time of the day is a good time for pie!</h1>
+        <lightbox is-active="showsDropboxExport" show-close="true">
+            <h1>Want to use Dropbox? You're one smart motherfu<i class="fa fa-asterisk"></i><i class="fa fa-asterisk"></i><i class="fa fa-asterisk"></i>r.</h1>
 
             <span ng-if="isDropboxAuthenticated"> {{dbAccountInfo.display_name}} is connected <button ng-click="logoutDropbox()">Logout</button></span>
 
@@ -85,7 +91,6 @@
             </ol>
             <br>
 
-
             <div>
                 <button ng-if="!isDropboxAuthenticated" ng-click="connectDb()" class="button"><i class="fa fa-dropbox"></i>
                     <span> Connect to Dropbox</span>
@@ -99,22 +104,24 @@
                 <span ng-if="showExportDone"><i class="fa fa-check"></i> Saved</span>
 
             </div>
+        </lightbox>
 
-            <!--
+
+        <lightbox is-active="showsExport" show-close="true">
+            <h1>Any time of the day is a good time for pie!</h1>
             <div class="export-left">
                 <h3 clip-copy="currentExportContent">Copy by clicking in here</h3>
 
             </div>
             <div ui-ace readonly="true" style="height:40rem" ng-model="currentExportContent"></div>
-            -->
 
         </lightbox>
 
 
         <confirm-lightbox   is-active="confirmDeleteProjectActive"
-                            project="project"
-                            on-confirm="removeProject(project)">
-            <h1>Delete {{project.name}}?</h1>
+                            name="{{project.name}}"
+                            on-confirm="removeProject(toDeleteItem)">
+            <h1>Delete {{name}}?</h1>
         </confirm-lightbox>
 
     </body>

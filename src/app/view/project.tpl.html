@@ -4,8 +4,14 @@
         data-tooltip="Set your task settings" data-tooltip-options="only-help right">
 
         <span data-tooltip="Delete this task" data-tooltip-options="right" class="delete">
-            <i class="fa fa-times-circle" ng-click="removeTask(task.name)"></i>
+            <i class="fa fa-times-circle" ng-click="confirmRemoveTask(task)"></i>
         </span>
+
+        <confirm-lightbox   is-active="task.confirmRemoveTask"
+                            name="{{task.name}}"
+                            on-confirm="removeTask(task.name)">
+            <h1>Delete {{name}}?</h1>
+        </confirm-lightbox>
 
         <h3>
             <input ng-model="task.name" />
@@ -51,11 +57,11 @@
             <i class="fa fa-plus-circle"></i>
         </button>
 
-        <div class="step" 
-                ng-repeat-start="step in task.steps" 
+        <div class="step"
+                ng-repeat-start="step in task.steps"
                 ng-class="{'is-focused': step === focusedStep}">
             <button class="remove" ng-click="removeStep(task, $index)"></button>
-            
+
             <npm-search class="npm-search" ng-if="step.justAdded" on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
 
             <div ng-click="setFocusedStep(step)">
@@ -66,7 +72,7 @@
                     <div ui-ace="{mode:'json',showGutter:false}" style="height:160px"></div>
                 </div>
 
-            </div>    
+            </div>
         </div>
 
         <button ng-repeat-end ng-click="addStep(task, $index+1)" class="add-step">

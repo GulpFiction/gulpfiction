@@ -86,9 +86,14 @@
             }
         };
 
-        $scope.exportProject = function (project) {
+        $scope.openExportProject = function (project) {
             $scope.currentExportContent = fileBuilder.build(project);
             $scope.showsExport = true;
+        };
+
+        $scope.openExportToDropbox = function (project) {
+            $scope.currentExportContent = fileBuilder.build(project);
+            $scope.showsDropboxExport = true;
         };
 
 

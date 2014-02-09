@@ -8,14 +8,14 @@
             templateUrl: 'app/view/confirm-lightbox.tpl.html',
             scope: {
                 isActive: '=',
-                project: '=',
+                name: '@',
                 doConfirm: '&onConfirm'
             },
             link: function (scope, el, attrs) {
 
                 scope.confirm = function () {
-                    scope.close();
                     scope.doConfirm();
+                    scope.close();
                 };
 
                 scope.close = function () {

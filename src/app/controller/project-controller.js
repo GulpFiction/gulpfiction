@@ -39,6 +39,7 @@
         };
 
         $scope.removeTask = function (name) {
+            console.log('removeTask', name);
             var result;
 
             project.tasks.forEach(function (task, index) {
@@ -48,6 +49,10 @@
             });
 
             if (result !== undefined) { project.tasks.splice(result, 1); }
+        };
+
+        $scope.confirmRemoveTask = function (task) {
+            task.confirmRemoveTask = true;
         };
 
         $scope.addTask = function () {
