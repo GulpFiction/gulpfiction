@@ -6,19 +6,25 @@
         'npm.search.npmPackage'
     ]).service('NpmPackageCache', NpmPackageCache);
 
-    function NpmPackageCache(NpmPackage) {
+    function NpmPackageCache(NpmPackage, $q) {
+
         this.packages = [];
 
         this.getCachedPackages = function () {
+            var self = this;
             if (this.packages.length > 0) {
-                console.log('cache hit');
-                return this.packages;
+                var deferred = $q.defer();
+                deferred.resolve(this.packages);
+                return deferred.promise;
             } else {
                 var query = NpmPackage.getGulpQueryPayload();
-                console.log('cache miss');
                 return NpmPackage.search({}, {query: query}).$promise.then(function (response) {
-                    this.packages = response.hits.hits;
-                    return this.packages;
+                    // remove strange "undefined" package https://github.com/Gozala/undefined.js
+                    response.hits.hits.splice(0, 1);
+                    self.packages = response.hits.hits.map(function (res) {
+                        return res._source;
+                    });
+                    return self.packages;
                 });
             }
         };
