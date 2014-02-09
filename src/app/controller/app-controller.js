@@ -53,20 +53,20 @@
                     Dropbox.accountInfo().then(function (data) {
                         console.log(data);
                         $scope.dbAccountInfo = data;
-                        localStorage.set(DROPBOX_KEY, { token:response.access_token, uid: data.uid });
+                        localStorage.set(DROPBOX_KEY, { token: response.access_token, uid: data.uid });
                     });
                 });
             } else {
                 Dropbox.setCredentials({
                     access_token: dropboxCredentials.token,
-                    token_type: "bearer",
+                    token_type: 'bearer',
                     uid: dropboxCredentials.uid
                 });
 
                 Dropbox.accountInfo().then(function (data) {
                     $scope.isDropboxAuthenticated = true;
                     $scope.dbAccountInfo = data;
-                }, function(error) {
+                }, function (error) {
                     Dropbox.authenticate().then(function (response) {
                         // @TODO: store response.access_token in localstorage
                         console.log(response.access_token);
@@ -74,7 +74,7 @@
                         $scope.isDropboxAuthenticated = true;
                         Dropbox.accountInfo().then(function (data) {
                             $scope.dbAccountInfo = data;
-                            localStorage.set(DROPBOX_KEY, { token:response.access_token, uid: data.uid });
+                            localStorage.set(DROPBOX_KEY, { token: response.access_token, uid: data.uid });
                         });
                     });
                 });
@@ -93,8 +93,6 @@
         $scope.exportProject = function (project) {
             $scope.currentExportContent = fileBuilder.build(project);
             $scope.showsExport = true;
-            var token = localStorage.get(DROPBOX_KEY) || '';
-            // Dropbox.options.headers.Authorization = 'Bearer ' + token;
         };
     }
 
