@@ -4,15 +4,8 @@
         data-tooltip="Set your task settings" data-tooltip-options="only-help right">
 
         <span data-tooltip="Delete this task" data-tooltip-options="right" class="delete">
-            <i class="fa fa-times-circle" ng-click="confirmRemoveTask(task)"></i>
+            <i class="fa fa-times-circle" ng-click="removeTask(task.id)"></i>
         </span>
-
-        <confirm-lightbox   is-active="showConfirmRemoveTask"
-                            name="{{task.name}}"
-                            custom-width="300"
-                            on-confirm="removeTask(task.id)">
-            <h1>Delete task {{name}}?</h1>
-        </confirm-lightbox>
 
         <h3>
             <input ng-model="task.name" required ng-pattern="/^[a-zA-Z0-9-_]+$/"/>
