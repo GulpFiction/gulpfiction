@@ -18,6 +18,7 @@ var components = [
     'bower_components/ngDropbox/dropbox.js',
     'bower_components/angular-ui-ace/ui-ace.js',
     'bower_components/ace-builds/src-min-noconflict/mode-json.js',
+    'bower_components/angular-ui-utils/ui-utils.js',
     'lib/ngClip.js',
     'bower_components/angular-uuid4/angular-uuid4.js'
 ];

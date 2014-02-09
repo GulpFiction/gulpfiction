@@ -10,7 +10,7 @@
         <confirm-lightbox   is-active="task.confirmRemoveTask"
                             name="{{task.name}}"
                             custom-width="300"
-                            on-confirm="removeTask(task.name)">
+                            on-confirm="removeTask(task.id)">
             <h1>Delete task {{name}}?</h1>
         </confirm-lightbox>
 
@@ -31,7 +31,7 @@
         </ul>
         <h4>dependencies</h4>
         <ul class="dependencies">
-        	<li ng-repeat="dependency in project.tasks" ng-if="dependency.name !== task.name">
+        	<li ng-repeat="dependency in project.tasks | unique:'name'" ng-if="dependency.name !== task.name">
 
         		<input ng-model="task.preTasks[dependency.name]" type="checkbox" id="{{ task.name }}_{{ dependency.name }}">
         		<label for="{{ task.name }}_{{ dependency.name }}">{{ dependency.name }}</label>

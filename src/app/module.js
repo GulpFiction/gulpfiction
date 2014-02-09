@@ -20,7 +20,8 @@
         'ui.ace',
         'ngClipboard',
         'app.documentationSidebar',
-        'uuid4'
+        'uuid4',
+        'ui.utils'
     ])
     .config(function (DropboxProvider) {
         DropboxProvider.config('dz3ndmuzjdf7ca4', 'http://localhost:8000/callback.html');

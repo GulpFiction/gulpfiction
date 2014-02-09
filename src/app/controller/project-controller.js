@@ -38,11 +38,11 @@
             task.name = changedValue;
         };
 
-        $scope.removeTask = function (name) {
+        $scope.removeTask = function (taskId) {
             var result;
 
             project.tasks.forEach(function (task, index) {
-                if (task.name === name) {
+                if (task.id === taskId) {
                     result = index;
                 }
             });
