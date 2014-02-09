@@ -25,7 +25,6 @@
                 return this.getGulpMatchQueryPayloadFor();
             };
 
-
             NpmPackage.getGulpMatchQueryPayloadFor = function (query) {
                 return {
                     match: {
