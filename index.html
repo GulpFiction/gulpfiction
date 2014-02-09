@@ -130,14 +130,13 @@
                 <pre><code>$ ln -s ~/Dropbox/gulp-fiction/{{project.id}}.js gulpfile.js</code></pre>
                 <p>Now hit save to export to Dropbox!</p>
 
+                <div ng-if="showExportDone"><i class="fa fa-check"></i> Saved</div>
 
                 <button style="font-size:2rem;" ng-show="isDropboxAuthenticated && !showExportProgress" ng-click="exportProjectToDropbox(project)" class="button">
                     <i class="fa fa-dropbox"></i> Save</button>
 
                 <button ng-if="showExportProgress" disabled><i class="fa fa-spinner fa-spin" class="button"></i> Exporting…</button>
                 &nbsp;
-
-                <span ng-if="showExportDone"><i class="fa fa-check"></i> Saved</span>
 
                 <span ng-if="isDropboxAuthenticated"><button ng-click="logoutDropbox()" class="button"><i class="fa fa-sign-out"></i> Logout {{dbAccountInfo.display_name}}</button></span>
 
