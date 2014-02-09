@@ -24,7 +24,7 @@
         'ui.utils'
     ])
     .config(function (DropboxProvider) {
-        DropboxProvider.config('dz3ndmuzjdf7ca4', 'http://localhost:8000/callback.html');
+        DropboxProvider.config('dz3ndmuzjdf7ca4', 'https://ss14-team-275.divshot.io/callback.html');
     })
     .config(function ($routeProvider) {
         $routeProvider
