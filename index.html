@@ -26,8 +26,8 @@
         <header>
 
             <h1>
-                <a ng-click="showTeaser()" 
-                        data-tooltip="Show teaser" 
+                <a ng-click="showTeaser()"
+                        data-tooltip="Show teaser"
                         data-tooltip-options="right">
                     <div class="logo">
                         <img src="/img/logo.gif">
@@ -72,7 +72,7 @@
                     <span class="fiction">Fiction</span>
                 </div>
                 <p>The Royale With Cheese for you build workflow.</p>
-            </div>          
+            </div>
 
             <h3>- Easy visual editing of your gulp file!</h3>
             <h3>- Export your generated gulp file to your Dropbox account or copy it!</h3>
@@ -122,7 +122,7 @@
         <lightbox is-active="showsExport" show-close="true">
             <h1>Any time of the day is a good time for pie!</h1>
             <div class="export-left">
-                <h3 clip-copy="currentExportContent">Copy by clicking in here</h3>
+                <button clip-copy="currentExportContent">» Copy by clicking here «</button>
 
             </div>
             <div ui-ace readonly="true" style="height:40rem" ng-model="currentExportContent"></div>
