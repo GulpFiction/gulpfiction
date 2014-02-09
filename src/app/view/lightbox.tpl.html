@@ -1,5 +1,5 @@
-<div class="lightbox" ng-show="isActive">
-    <div class="lightbox-content">
+<div class="lightbox" ng-show="isActive" >
+    <div class="lightbox-content" style="width:{{customWidth}}px;">
         <div ng-transclude></div>
 
         <button ng-if="showClose" ng-click="close()" class="close-button">close</button>

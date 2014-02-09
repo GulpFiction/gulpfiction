@@ -39,7 +39,6 @@
         };
 
         $scope.removeTask = function (name) {
-            console.log('removeTask', name);
             var result;
 
             project.tasks.forEach(function (task, index) {

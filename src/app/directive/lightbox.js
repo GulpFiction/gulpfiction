@@ -10,6 +10,7 @@
                 scope: {
                     isActive: '=',
                     showClose: '=',
+                    customWidth: '=',
                     doClose: '&onClose'
                 },
                 link: function (scope, el, attrs) {

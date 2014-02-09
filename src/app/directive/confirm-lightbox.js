@@ -9,6 +9,7 @@
             scope: {
                 isActive: '=',
                 name: '@',
+                customWidth: '=',
                 doConfirm: '&onConfirm'
             },
             link: function (scope, el, attrs) {
