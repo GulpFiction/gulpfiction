@@ -88,6 +88,7 @@ section.task {
             	font-weight: 500;
           		font-size: 2rem;
           		width: 75%;
+                transition: all .2s;
 
           		&:hover {
           			background: rgba(255,255,255,.2);
@@ -97,6 +98,10 @@ section.task {
           			outline: none;
           			background: rgba(255,255,255,.6);
           		}
+
+                &.ng-invalid {
+                    background: @color-second;
+                }
             }
         }
 
