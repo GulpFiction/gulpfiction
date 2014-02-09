@@ -15,8 +15,8 @@
             link: function (scope, el, attrs) {
 
                 scope.confirm = function () {
-                    scope.doConfirm();
                     scope.close();
+                    scope.doConfirm();
                 };
 
                 scope.close = function () {

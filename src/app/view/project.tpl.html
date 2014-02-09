@@ -7,7 +7,7 @@
             <i class="fa fa-times-circle" ng-click="confirmRemoveTask(task)"></i>
         </span>
 
-        <confirm-lightbox   is-active="task.confirmRemoveTask"
+        <confirm-lightbox   is-active="showConfirmRemoveTask"
                             name="{{task.name}}"
                             custom-width="300"
                             on-confirm="removeTask(task.id)">

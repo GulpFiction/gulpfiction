@@ -3,12 +3,12 @@
     <menu>
         <li ng-class="{'is-focused':pickerFocused}">
         	<input ng-model="currentProject.name" required
-        		ng-focus="pickerFocused=true; navOpen=false" 
+        		ng-focus="pickerFocused=true; navOpen=false"
         		ng-blur="pickerFocused=false;" />
-        	<span ng-show="projects.length > 1" 
-        			class="select-button" 
+        	<span ng-show="projects.length > 1"
+        			class="select-button"
         			ng-class="{'is-open': navOpen}"
-        			data-tooltip="Select project" 
+        			data-tooltip="Select project"
         			data-tooltip-options="bottom oneline only-help">
         		<i ng-click="navOpen = !navOpen" class="fa fa-caret-down"></i>
         	</span>

@@ -20,18 +20,32 @@
         };
 
         $scope.addStep = function (task, position) {
+            var selectLast = false;
             // remove empty step from (other) task
             if (task.newStepAtPosition) {
                 if (position > task.newStepAtPosition.position) {
                     position = position - 1;
+                    selectLast = true;
                 }
-                console.log('remove at', task.newStepAtPosition);
                 task.steps.splice(task.newStepAtPosition.position, 1);
                 task.newStepAtPosition = false;
             }
             task.steps.splice(position, 0, new Step({ justAdded: true }));
             task.newStepAtPosition = {position: position};
-            console.log('set at', task.newStepAtPosition);
+
+            if (exports.document.querySelector) {
+                $timeout(function () {
+                    if (selectLast) {
+                        var elems = exports.document.querySelectorAll('.npm-search input');
+                        if (elems.length > 1) {
+                            elems[elems.length - 1].focus();
+                        } else {
+                            elems[0].focus();
+                        }
+                    }
+                    exports.document.querySelector('.npm-search input').focus();
+                });
+            }
         };
 
         $scope.assignPackageToStep = function (step, npmPackage) {
@@ -51,6 +65,7 @@
         };
 
         $scope.removeTask = function (taskId) {
+            $scope.showConfirmRemoveTask = false;
             var result;
 
             project.tasks.forEach(function (task, index) {
@@ -63,7 +78,7 @@
         };
 
         $scope.confirmRemoveTask = function (task) {
-            task.confirmRemoveTask = true;
+            $scope.showConfirmRemoveTask = true;
         };
 
         $scope.addTask = function () {
