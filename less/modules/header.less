@@ -1,4 +1,4 @@
-@header-color: @color-first;
+@header-color: fade(@color-first, 90);
 @header-opacity: 0.8;
 
 header {
@@ -82,9 +82,7 @@ header {
 		position: absolute;
 		width: 100%;
 		text-align: center;
-		background: @header-color;
 		font-weight: bold;
-	//	opacity: @header-opacity;
 		padding: 0 .5rem;
 
 		li {

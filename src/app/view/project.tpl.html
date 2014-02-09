@@ -46,13 +46,13 @@
         	<button ng-click="addInputGlob(task)" class="add"> add src</button>
         </div>
 
-        <button ng-repeat-end ng-click="addStep(task, 0)" class="add-task">
+        <button ng-repeat-end ng-click="addStep(task, 0)" class="add-step">
             <i class="fa fa-arrow-right"></i>
             <i class="fa fa-plus-circle"></i>
         </button>
 
         <div class="step" ng-repeat-start="step in task.steps">
-            <i class="delete fa fa-times-circle" ng-click="removeStep(task, $index)"></i>
+            <button class="remove" ng-click="removeStep(task, $index)"></button>
 
             <div ng-if="step.justAdded">
                 <npm-search on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
@@ -75,7 +75,7 @@
 
         </div>
 
-        <button ng-repeat-end ng-click="addStep(task, $index+1)" class="add-task">
+        <button ng-repeat-end ng-click="addStep(task, $index+1)" class="add-step">
             <i class="fa fa-arrow-right"></i>
             <i class="fa fa-plus-circle"></i>
         </button>
@@ -90,9 +90,9 @@
     </div>
 
 </section>
-<section class="task">
+<section class="task add-task">
     <div class="settings">
-        <button ng-click="addTask()" data-tooltip="Add task">Add task +</a>
+        <button ng-click="addTask()" class="add"><br>add task</button>
     </div>
     <div class="content">
     </div>

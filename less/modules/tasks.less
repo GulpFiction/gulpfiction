@@ -1,13 +1,25 @@
 section.task {
     @width: 15rem;
     @height: 1.4142 * @width;
-    height: 10rem;
 	.flex();
     height: @height;
     border-bottom: fade(@brown, 50%) dashed 1px;
+    transition: all .3s;
 
     &:nth-child(odd) {
     	background: rgba(255,255,255,.4)
+    }
+
+    &.ng-animate {
+        overflow: hidden;
+    }
+
+    &.ng-enter, &.ng-leave.ng-leave-active {
+        height: 0;
+    }
+
+    &.ng-enter.ng-enter-active, &.ng-leave {
+        height: @height;
     }
 
 	ul {
@@ -67,7 +79,7 @@ section.task {
             	border: none;
             	font-weight: 500;
           		font-size: 2rem;
-          		width: 80%;
+          		width: 75%;
 
           		&:hover {
           			background: rgba(255,255,255,.2);
@@ -87,7 +99,7 @@ section.task {
         }
 	}
 
-	.add-task {
+	.add-step {
 		background: transparent;
 		border: none;
 		cursor: pointer;
@@ -96,7 +108,6 @@ section.task {
 		margin: (@height / 3) -1.5rem;
         padding: 0;
 		-webkit-transform: scale(.6);
-		transition: all ease .1s;
 
 
 		i {
@@ -185,7 +196,6 @@ section.task {
 			position: absolute;
 			width: 100rem;
 			height: 100rem;
-			background: red;
 			background: rgba(255,255,255,.7);
 	    }
     }
@@ -203,7 +213,7 @@ section.task {
         	background: rgba(255,255,255,1);
         }
 
-        .delete {
+        .remove {
             position: absolute;
 			top: -1.1rem;
 			right: -1rem;
@@ -211,14 +221,14 @@ section.task {
 			margin: .5rem .5rem 0;
 			cursor: pointer;
 			opacity: .7;
-			transition: .2s ease opacity;
+			transition: .2s ease all;
 
 			&:hover {
 				opacity: 1;
 			}
         }
 
-        &.ng-enter.ng-enter-active, &.ng-leave {
+        &.ng-enter.ng-enter-active, &.ng-leave:not(.ng-leave-active) {
             width: @width;
             margin-right: 1rem;
             margin-left: 1rem;
@@ -227,10 +237,15 @@ section.task {
         }
     }
 
-    .step, .add-task {
+    .step, .add-step {
+        transition: all ease .2s;
 
         &.ng-animate {
-            transition: all .5s;
+            transition: all .3s;
+
+            &.remove {
+                transition: all .3s;
+            }
         }
 
         &.ng-enter, &.ng-leave.ng-leave-active {
@@ -253,6 +268,28 @@ section.task {
         overflow: scroll;
         height: 32rem;
         background-color: #eee;
+    }
+
+    &.add-task {
+        
+        .settings {
+            .flex();
+        }
+
+        button {
+            opacity: .7;
+            transition: opacity .2s;
+            width: 100%;
+            text-align: center;
+
+            &:before {
+                font-size: 5rem;
+            }
+
+            &:hover {
+                opacity: .9;
+            }
+        }
     }
 
 }
