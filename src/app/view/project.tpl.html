@@ -58,8 +58,7 @@
                     <h1><a ng-href="{{step.homepage}}" target="_blank">{{step.name}}</a> by {{step.author}}, version: {{step.version}}</h1>
                     <p>{{step.description}}</p>
                     <h4>README</h4>
-                    <div class="task-readme-container" btf-markdown="step.readme">
-                    </div>
+                    <div ng-if="step.readme" class="task-readme-container" btf-markdown="step.readme"></div>
                 </div>
             </lightbox>
 
