@@ -98,6 +98,22 @@ button {
 	}
 }
 
+.full-height .lightbox-content {
+	height: 80vh;
+	.flex();
+	.flexDirection(column);
+
+	> div {
+		.flex();
+		.flexDirection(column);
+		.flex(1);
+	}
+
+	.ace_editor {
+		.flex(1);
+	}
+}
+
 input[type="checkbox"] {
 	opacity: 0;
 	position: absolute;
