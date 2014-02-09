@@ -52,7 +52,7 @@
                             ]
                         }),
                         new Task({
-                            name: 'new task',
+                            name: 'new_task',
                         })
                     ]
                 });
