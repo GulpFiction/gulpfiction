@@ -56,7 +56,7 @@
                 ng-click="setFocusedStep(step)"
                 ng-class="{'is-focused': step === focusedStep}">
             <button class="remove" ng-click="removeStep(task, $index)"></button>
-
+            
             <npm-search class="npm-search" ng-if="step.justAdded" on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
 
             <div ng-if="!step.justAdded">

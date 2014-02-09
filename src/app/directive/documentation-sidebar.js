@@ -11,12 +11,10 @@
                     focusedStep: '='
                 },
                 link: function (scope, el, attrs) {
-                    console.log('documentationSidebar');
 
                     var bodyEl = exports.angular.element(exports.document.body);
 
                     scope.$watch('isActive', function (newValue) {
-                        console.log(newValue);                        
                         if (newValue) {    
                             bodyEl.addClass('has-sidebar');
                         } else {
@@ -24,11 +22,7 @@
                         }
                     });
 
-
-                    // // unregister
-                    // scope.$on('$destroy', scope.$on('keyup:esc'));
                     scope.$on('$destroy', scope.$watch('isActive'));
-
                 }
             };
         });
