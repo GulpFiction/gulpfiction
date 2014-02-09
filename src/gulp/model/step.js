@@ -7,7 +7,7 @@
             function Step(data) {
                 this.id = uuid4.generate();
                 this.name = '';
-                this.options = {};
+                this.options = '';
                 exports.angular.extend(this, data);
             }
 

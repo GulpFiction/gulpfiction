@@ -8,7 +8,8 @@
         'gulp.gulp',
         'builder.fileBuilder',
         'ngAnimate',
-        'localStorage'
+        'localStorage',
+        'app.stepOptions'
     ]).controller('appController', AppController);
 
     function AppController($scope, gulp, fileBuilder, $location, $rootScope, Dropbox, localStorage, $timeout) {
@@ -23,7 +24,6 @@
         if (dropboxCredentials) {
             getDropboxAccountInfo(dropboxCredentials.token, dropboxCredentials.uid);
         }
-
 
         $scope.projects = gulp.listProjects();
 

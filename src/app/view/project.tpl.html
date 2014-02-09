@@ -70,7 +70,7 @@
                 <div ng-if="!step.justAdded">
                     <h4>{{step.name}}</h4>
                     <p class="description">By <b>{{step.author}}</b>. Version <b>{{step.version}}</b></p>
-                    <div ui-ace="{mode:'json',showGutter:false}" style="height:160px"></div>
+                    <step-options options="step.options"></step-options>
                 </div>
 
             </div>
