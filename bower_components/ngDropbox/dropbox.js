@@ -101,12 +101,12 @@ angular.module('dropbox', [])
           oauthHeader(config);
 
           function success(response) {
-            console.log(config, response.data);
+
             deferred.resolve(response.data);
           }
 
           function failure(fault) {
-            console.log(config, fault);
+
             deferred.reject(fault);
           }
 
@@ -296,7 +296,7 @@ angular.module('dropbox', [])
                 return entry.path;
               });
 
-              console.log('readdir of ' + path, entries);
+
               deferred.resolve();
             }
 
