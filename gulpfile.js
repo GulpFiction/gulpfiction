@@ -7,6 +7,7 @@ var ngHtml2Js = require('gulp-ng-html2js');
 var jshint = require('gulp-jshint');
 
 var components = [
+    'bower_components/jquery/jquery.js',
     'bower_components/ace-builds/src-min-noconflict/ace.js',
     'bower_components/angular/angular.js',
     'bower_components/angular-resource/angular-resource.js',

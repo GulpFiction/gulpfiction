@@ -1,4 +1,4 @@
-(function (exports) {
+ (function (exports) {
     'use strict';
 
     var DROPBOX_KEY = 'dropbox_credentials';
@@ -18,6 +18,15 @@
         if (!isNotVirgin) {
             $scope.showsTeaser = true;
         }
+
+        // ensure correct task names on blur!!!
+        exports.$('body').on('focusout', '.task h3 input', function (ev) {
+            console.log()
+            var el = angular.element(this);
+            var task = el.scope().task;
+            task.name = ensureCorrectTaskName(task.name) || createTaskName();
+            if (!$rootScope.$$phase) { $rootScope.$apply(); }
+        });
 
         // init dropbox account, if stored
         var dropboxCredentials = localStorage.get(DROPBOX_KEY);
@@ -134,6 +143,36 @@
             $scope.isDropboxAuthenticated = false;
             $scope.showExportDone = false;
             $scope.dbAccountInfo = null;
+        }
+
+        function createTaskName() {
+            var DEFAULT = 'task';
+            var currentName = DEFAULT, i = 0;
+
+            if (!findTasksWithName(currentName)) { return currentName; }
+
+            do {
+                currentName = DEFAULT + '' + i;
+                i = i + 1;
+            } while (findTasksWithName(currentName));
+
+            return currentName;
+
+            function findTasksWithName(name) {
+                var found = false;
+                $scope.project.tasks.forEach(function (task) {
+                    if (task.name === name) { found = true; }
+                });
+                return found;
+            }
+        }
+
+        function ensureCorrectTaskName(name) {
+            var correctName = '';
+
+            correctName = name.replace(/[^a-zA-Z0-9-_]/, '');
+
+            return correctName;
         }
     }
 
