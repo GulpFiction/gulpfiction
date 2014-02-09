@@ -46,36 +46,30 @@
         	<button ng-click="addInputGlob(task)" class="add"> add src</button>
         </div>
 
-        <button ng-repeat-end ng-click="addStep(task, 0)" class="add-task">
+        <button ng-repeat-end ng-click="addStep(task, 0)" class="add-step">
             <i class="fa fa-arrow-right"></i>
             <i class="fa fa-plus-circle"></i>
         </button>
 
-        <div class="step" ng-repeat-start="step in task.steps">
-            <i class="delete fa fa-times-circle" ng-click="removeStep(task, $index)"></i>
+        <div class="step" 
+                ng-repeat-start="step in task.steps" 
+                ng-click="setFocusedStep(step)"
+                ng-class="{'is-focused': step === focusedStep}">
+            <button class="remove" ng-click="removeStep(task, $index)"></button>
 
             <div ng-if="step.justAdded">
                 <npm-search on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
             </div>
 
             <div ng-if="!step.justAdded">
-                <h4>{{step.name}} <a ng-click="step.showPackageDetails = true"><i class="fa fa-info-circle"></i></a></h4>
+                <h4>{{step.name}}</h4>
                 <p class="description">By <b>{{step.author}}</b>. Version <b>{{step.version}}</b></p>
                 <div ui-ace="{mode:'json',showGutter:false}" style="height:160px"></div>
             </div>
 
-            <lightbox is-active="step.showPackageDetails" show-close="true" on-close="step.showPackageDetails = false;">
-                <div>
-                    <h1><a ng-href="{{step.homepage}}" target="_blank">{{step.name}}</a> by {{step.author}}, version: {{step.version}}</h1>
-                    <p>{{step.description}}</p>
-                    <!-- <h4>README</h4> <button ng-click="fetchReadmeFromGithub(step)">Fetch readme from GitHub</button> -->
-                    <div ng-if="step.readme" class="task-readme-container" btf-markdown="step.readme"></div>
-                </div>
-            </lightbox>
-
         </div>
 
-        <button ng-repeat-end ng-click="addStep(task, $index+1)" class="add-task">
+        <button ng-repeat-end ng-click="addStep(task, $index+1)" class="add-step">
             <i class="fa fa-arrow-right"></i>
             <i class="fa fa-plus-circle"></i>
         </button>
@@ -90,10 +84,15 @@
     </div>
 
 </section>
-<section class="task">
+<section class="task add-task">
     <div class="settings">
-        <button ng-click="addTask()" data-tooltip="Add task">Add task +</a>
+        <button ng-click="addTask()" class="add"><br>add task</button>
     </div>
     <div class="content">
     </div>
 </section>
+
+<documentation-sidebar focused-step="focusedStep" is-active="sidebarActive">
+</documentation-sidebar>
+
+

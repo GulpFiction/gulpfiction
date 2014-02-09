@@ -1,4 +1,4 @@
-@header-color: @color-first;
+@header-color: fade(@color-first, 90);
 @header-opacity: 0.8;
 
 header {
@@ -68,6 +68,8 @@ header {
 				opacity: 1;
 				background: darken(@header-color,10%);
 				padding-bottom: .5rem;
+				max-height: 100vh;
+				overflow-y: scroll;
 
 				li {
 					display: block;
@@ -82,9 +84,7 @@ header {
 		position: absolute;
 		width: 100%;
 		text-align: center;
-		background: @header-color;
 		font-weight: bold;
-	//	opacity: @header-opacity;
 		padding: 0 .5rem;
 
 		li {

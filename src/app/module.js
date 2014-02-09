@@ -18,7 +18,8 @@
         'app.inlineEdit',
         'btford.markdown',
         'ui.ace',
-        'ngClipboard'
+        'ngClipboard',
+        'app.documentationSidebar'
     ])
     .config(function (DropboxProvider) {
         DropboxProvider.config('dz3ndmuzjdf7ca4', 'http://localhost:8000/callback.html');
