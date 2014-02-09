@@ -16,7 +16,7 @@
 
                     var bodyEl = exports.angular.element(exports.document.body);
 
-                    var unregisterIsActiveWatch = scope.$watch('isActive', function () {
+                    scope.$watch('isActive', function () {
                         if (scope.isActive) {
                             bodyEl.addClass('has-lightbox');
 
@@ -39,9 +39,9 @@
                         scope.doClose();
                     };
 
-                    scope.$on('$destroy', function () {
-                        unregisterIsActiveWatch();
-                    });
+                    // unregister
+                    scope.$on('$destroy', scope.$on('keyup:esc'));
+                    scope.$on('$destroy', scope.$watch('isActive'));
 
                 }
             };
