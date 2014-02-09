@@ -2,7 +2,7 @@
     <input type="text" ng-model="query" placeholder="search npm..."/>
     <div>
         <ul>
-            <li ng-repeat="result in results | filter:'gulp-'"
+            <li ng-repeat="result in filteredSupset"
                 ng-click="selectResult(result)">
                 <result-row result="result"></result-row>
             </li>

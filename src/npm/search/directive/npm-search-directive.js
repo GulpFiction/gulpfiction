@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function NpmSearch(NpmPackageCache, $timeout) {
+    function NpmSearch(NpmPackageCache, $timeout, $filter) {
         return {
             restrict: 'E',
             templateUrl: 'npm/search/view/npm-search.tpl.html',
@@ -10,44 +10,23 @@
                 doSelectPackage: '&onSelectPackage'
             },
             link: function (scope, element, attrs) {
-                scope.packages = NpmPackageCache.getCachedPackages();
-                console.log(scope.packages);
 
-                var debounce;
-
-                var unwatchQuery = scope.$watch('query', function (newValue, oldValue) {
-
-                    if (newValue === oldValue) { return; }
-
-                    $timeout.cancel(debounce);
-                    debounce = $timeout(function () {
-                        scope.$apply(function () {
-                            performSearch(newValue);
-                        });
-                    }, 100);
-
-                    function performSearch(query) {
-                        console.log(query);
-                    }
-
-                    // function performSearch(query) {
-                    //     var payload = NpmPackage.getGulpMatchQueryPayloadFor(query);
-                    //     var res = NpmPackage.search({}, {query: payload});
-
-                    //     res.$promise.then(function (response) {
-                    //         scope.results = response.hits.hits;
-                    //         scope.totalHits = 'Found ' + response.hits.total;
-                    //     });
-                    // }
+                NpmPackageCache.getCachedPackages().then(function (results) {
+                    // map soure data
+                    scope.results = results;
                 });
+
+                scope.$watch('query', function (newQeury, oldQuery) {
+                    if (!newQeury || newQeury === oldQuery) { return; }
+                    scope.filteredSupset = $filter('filter')(scope.results, {name: 'gulp-' + newQeury});
+                });
+
+
 
                 scope.selectResult = function (result) {
-                    scope.doSelectPackage({npmPackage: result._source});
+                    scope.doSelectPackage({npmPackage: result});
                 };
 
-                scope.$on('$destroy', function () {
-                    unwatchQuery();
-                });
             }
         };
     }
