@@ -1,7 +1,8 @@
 <div class="lightbox" ng-show="isActive" >
     <div class="lightbox-content" style="width:{{customWidth}}px;">
+        <button ng-if="showClose" ng-click="close()" class="close"></button>
         <div ng-transclude></div>
 
-        <button ng-if="showClose" ng-click="close()" class="close-button">close</button>
+        
     </div>
 </div>
