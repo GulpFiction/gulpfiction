@@ -30,6 +30,9 @@ section.task {
 	h4 {
 		font-weight: normal;
 		margin: 0;
+        i {
+            cursor: pointer;
+        }
 	}
 
 	.settings {
@@ -169,6 +172,7 @@ section.task {
     .source, .dest {
     	overflow: hidden;
     	position: relative;
+        cursor: default;
 
     	&:before {
     		.transform(rotate(45deg));
@@ -186,6 +190,7 @@ section.task {
     }
 
     .step {
+        cursor: default;
 		background: rgba(255,255,255,.7);
         position: relative;
 
