@@ -56,8 +56,9 @@
 
         $scope.addTask = function () {
             project.tasks.push(new Task({
-                name: 'more'
+                name: createTaskName()
             }));
+            // select new task here
         };
 
         $scope.fetchReadmeFromGithub = function (step) {
@@ -82,6 +83,28 @@
         $scope.$on('$destroy', function () {
             unregisterProjectWatch();
         });
+
+        function createTaskName() {
+            var DEFAULT = 'task';
+            var currentName = DEFAULT, i = 0;
+
+            if (!findTasksWithName(currentName)) { return currentName; }
+
+            do {
+                currentName = DEFAULT + '' + i;
+                i = i + 1;
+            } while (findTasksWithName(currentName));
+
+            return currentName;
+
+            function findTasksWithName(name) {
+                var found = false;
+                $scope.project.tasks.forEach(function (task) {
+                    if (task.name === name) { found = true; }
+                });
+                return found;
+            }
+        }
     }
 
 }(this));
