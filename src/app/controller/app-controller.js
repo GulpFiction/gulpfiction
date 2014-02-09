@@ -10,7 +10,7 @@
         'localStorage'
     ]).controller('appController', AppController);
 
-    function AppController($scope, gulp, fileBuilder, $location, $rootScope, Dropbox, localStorage) {
+    function AppController($scope, gulp, fileBuilder, $location, $rootScope, Dropbox, localStorage, $timeout) {
 
         // window.Dropbox = Dropbox;
         // init dropbox account, if stored
@@ -71,6 +71,9 @@
                     .then(function (response) {
                         $scope.showExportProgress = false;
                         $scope.showExportDone = true;
+                        $timeout(function () {
+                            $scope.showExportDone = false;
+                        }, 4000);
                     });
             } else {
                 getAndStoreDropboxAccess();
@@ -112,6 +115,7 @@
             localStorage.rm(DROPBOX_KEY);
             dropboxCredentials = null;
             $scope.isDropboxAuthenticated = false;
+            $scope.showExportDone = false;
             $scope.dbAccountInfo = null;
         }
     }
