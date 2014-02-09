@@ -34,7 +34,7 @@
         	<li ng-repeat="dependency in project.tasks | unique:'name'" ng-if="dependency.name !== task.name">
 
         		<input ng-model="task.preTasks[dependency.id]" type="checkbox" id="{{ task.name }}_{{ dependency.name }}">
-        		<label for="{{ task.name }}_{{ dependency.name }}">{{ dependency.name }}</label>
+        		<label for="{{ task.name }}_{{ dependency.name }}">{{ dependency.name || 'task' }}</label>
 
         	</li>
         </ul>

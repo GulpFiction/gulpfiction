@@ -20,7 +20,7 @@
         }
 
         // ensure correct task names on blur!!!
-        exports.$('body').on('focusout', '.task h3 input', function (ev) {
+        exports.$('body').on('change', '.task h3 input', function (ev) {
             console.log()
             var el = angular.element(this);
             var task = el.scope().task;
