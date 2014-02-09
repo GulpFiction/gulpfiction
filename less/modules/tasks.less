@@ -59,6 +59,8 @@ section.task {
         background: fade(@color-first, 50%);
         position: relative;
         cursor: default;
+        .flex();
+        .flexDirection(column);
 
         .delete {
         	position: absolute;
@@ -98,10 +100,28 @@ section.task {
             }
         }
 
+        h4 {
+            margin-bottom: .2rem;
+        }
+
         .reload-options {
         	li {
         		display: inline-block;
         	}
+        }
+
+        .dependencies {
+            .flex(1);
+            overflow-y: scroll;
+
+            li {
+                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 50%;
+                line-height: 1;
+            }
         }
 	}
 
