@@ -14,7 +14,7 @@ header {
 	box-shadow: 0 2px 2px fade(@color-shadow, 10%);
 	cursor: default;
 
-	&, .fa {
+	&, .fa, input {
 		color: @color-second;
 		text-shadow: 0 .1rem 0 @color-shadow;
 	}
@@ -30,16 +30,15 @@ header {
 		line-height: 0.8rem;
 		letter-spacing: -.07rem;
 		position: relative;
+
 		a {
 			display: block;
 			height: 50px;
 			width: 170px;
 			cursor: pointer;
-			opacity: @header-opacity;
-			&:hover {
-				opacity: 1;
-			}
+
 		}
+
 		a > * {
 			position: absolute;
 		}
@@ -68,12 +67,10 @@ header {
 			menu {
 				opacity: 1;
 				background: darken(@header-color,10%);
+				padding-bottom: .5rem;
 
 				li {
 					display: block;
-					&:not(:last-child) {
-						//	margin-bottom: 1rem;
-					}
 				}
 			}
 		}
@@ -86,36 +83,48 @@ header {
 		width: 100%;
 		text-align: center;
 		background: @header-color;
-		padding: .5rem;
 		font-weight: bold;
-		opacity: @header-opacity;
-		&:hover {
-			opacity: 1;
-		}
+	//	opacity: @header-opacity;
+		padding: 0 .5rem;
 
 		li {
 			margin-bottom: 0rem;
 			cursor: pointer;
+			padding: 1px;
+			font-weight: 700;
 
 			&:not(:first-child) {
 				display: none;
 				padding: .5rem;
+			}
 
-				&:hover {
-					background-color: lighten(@color-first, 10);
-				}
+			&:hover {
+				background-color: rgba(255,255,255, .4);
+			}
+
+			&.is-focused {
+				background-color: white;
 			}
 
 			input {
 				text-align: center;
-				width: 90%;
-				font-size: 1em;
+				width: 100%;
+				font-size: 1.4em;
 				border: 0;
-				background: none;
+				background: rgba(0, 0, 0, 0);
 				outline: 0;
-				&:active, &:focus {
-					background-color: white;
-					border: 2px inset;
+				font-weight: 900;
+				display: block;
+				margin-top: -0.5rem;
+			}
+
+			.select-button {
+				right: 2rem;
+				position: absolute;
+				top: 0.1rem;
+
+				i {
+					font-size: 4rem;
 				}
 			}
 		}

@@ -20,6 +20,7 @@
             scope.switchToProject = function (project) {
                 if (project === scope.currentProject) { return; }
                 scope.doSwitchToProject({project: project});
+                scope.navOpen = false;
             };
         }
     }
