@@ -54,8 +54,8 @@ section.task {
 		border: none;
 		cursor: pointer;
 		position: relative;
-		width: @width / 6;
-		margin: (@height / 3) 0;
+		width: 5rem;
+		margin: (@height / 3) -1.5rem;
         padding: 0;
 		-webkit-transform: scale(.6);
 		transition: all ease .1s;
@@ -95,7 +95,9 @@ section.task {
 		}
 
         &.ng-enter.ng-enter-active, &.ng-leave {
-            width: @width / 2;
+            width: 5rem;
+            margin-left: -1.5rem;
+            margin-right: -1.5rem;
         }
 	}
 
@@ -105,7 +107,6 @@ section.task {
 		.flex(1);
 		overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
-    //    .imageset("/img/bg/white_leather");
 
         > * {
             .flexShrink(0);
