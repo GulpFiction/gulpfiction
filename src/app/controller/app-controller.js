@@ -42,7 +42,6 @@
                 $timeout(function () {
                     exports.document.querySelector('menu li').classList.add('is-focused');
                     exports.document.querySelector('menu input').focus();
-                    exports.document.querySelector('menu input').value = '';
                 });
             }
         };
