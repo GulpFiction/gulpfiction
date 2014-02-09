@@ -14,7 +14,8 @@
         'gulp.gulp',
         'app.lightbox',
         'app.confirmLightbox',
-        'app.keyupEvents'
+        'app.keyupEvents',
+        'app.inlineEdit'
     ])
     .config(function (DropboxProvider) {
         DropboxProvider.config('dz3ndmuzjdf7ca4', 'http://localhost:8000/callback.html');

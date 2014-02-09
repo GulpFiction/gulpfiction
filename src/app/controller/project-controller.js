@@ -30,6 +30,10 @@
             task.steps.splice(position, 1);
         };
 
+        $scope.changeTaskName = function (task, changedValue) {
+            task.name = changedValue;
+        };
+
         // debounce?
         var unregisterProjectWatch = $scope.$watch('project', function () {
             store.saveProject($scope.project);

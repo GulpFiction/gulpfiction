@@ -1,0 +1,11 @@
+<input ng-show="editModeActive" type="text" on-enter="save()" on-esc="cancel()" ng-model="model" >
+
+<div ng-if="editModeActive">
+    <a ng-click="cancel()"><i class="fa fa-times-circle"></i></a>
+    <a ng-click="save()"><i class="fa fa-check-circle"></i></a>
+</div>
+
+<span ng-mouseenter="showEdit = true" ng-mouseleave="showEdit = false">
+    <span ng-hide="editModeActive" ng-click="edit()">{{model}}</span>
+    <a ng-show="showEdit" ng-click="edit()"><i class="fa fa-pencil-square"></i></a>
+</span>

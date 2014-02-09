@@ -11,6 +11,9 @@
                     case 27:
                         $rootScope.$broadcast('keyup:esc', e);
                         break;
+                    case 13:
+                        $rootScope.$broadcast('keyup:enter', e);
+                        break;
                     }
                 });
             }
