@@ -64,7 +64,8 @@
                 var file = fileBuilder.build(project);
                 Dropbox.writeFile(project.name + '.js', file, {mime_type: 'application/javascript'});
             }
-            console.log(fileBuilder.build(project));
+            $scope.currentExportContent = fileBuilder.build(project);
+            $scope.showsExport = true;
         };
     }
 
