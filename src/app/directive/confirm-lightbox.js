@@ -23,13 +23,16 @@
                     scope.isActive = false;
                 };
 
+                var unregister = function () {};
                 scope.$watch('isActive', function (isActive) {
                     if (isActive) {
-                        scope.$on('keyup:enter', function (e) {
+                        unregister = scope.$on('keyup:enter', function (e) {
                             scope.$apply(function () {
                                 scope.confirm();
                             });
                         });
+                    } else {
+                        unregister();
                     }
                 });
                 // unregister
