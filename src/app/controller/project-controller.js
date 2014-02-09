@@ -3,10 +3,11 @@
 
     exports.angular.module('app.projectController', [
         'gulp.Step',
-        'gulp.Task'
+        'gulp.Task',
+        'npm.search.npmPackage'
     ]).controller('projectController', ProjectController);
 
-    function ProjectController($scope, project, store, Step, Task) {
+    function ProjectController($scope, project, store, Step, Task, NpmPackage) {
         $scope.project = project;
 
         $scope.removeInputGlob = function (task, index) {
@@ -51,6 +52,13 @@
             project.tasks.push(new Task({
                 name: 'more'
             }));
+        };
+
+        $scope.fetchReadmeFromGithub = function (step) {
+            NpmPackage.fetchReadmeFromGithub({owner: step.author, repoName: step.name})
+                .$promise.then(function (response) {
+                    step.readme = response.content;
+                });
         };
 
         // debounce?

@@ -18,8 +18,9 @@
                 return deferred.promise;
             } else {
                 var query = NpmPackage.getGulpQueryPayload();
-                return NpmPackage.search({}, {query: query}).$promise.then(function (response) {
-                    // remove strange "undefined" package https://github.com/Gozala/undefined.js
+                var params = NpmPackage.getSearchParams();
+                return NpmPackage.search(params, {query: query}).$promise.then(function (response) {
+                    // This removes strange "undefined" package https://github.com/Gozala/undefined.js
                     response.hits.hits.splice(0, 1);
                     self.packages = response.hits.hits.map(function (res) {
                         return res._source;
