@@ -22,6 +22,19 @@
                     scope.isActive = false;
                 };
 
+                scope.$watch('isActive', function (isActive) {
+                    if (isActive) {
+                        scope.$on('keyup:enter', function (e) {
+                            scope.$apply(function () {
+                                scope.confirm();
+                            });
+                        });
+                    }
+                });
+                // unregister
+                scope.$on('$destroy', scope.$watch('isActive'));
+                scope.$on('$destroy', scope.$on('keyup:enter'));
+
             }
         };
     }
