@@ -2,5 +2,11 @@
     <div class="lightbox-content" style="width:{{customWidth}}px;">
         <button ng-if="showClose" ng-click="close()" class="close"></button>
         <div ng-transclude></div>
+
+        <div ng-if="showBigClose" class="button-container">
+            <button class="button cancel" ng-click="close()">
+                Sounds cool, let me start!
+            </button>
+        </div>
     </div>
 </div>

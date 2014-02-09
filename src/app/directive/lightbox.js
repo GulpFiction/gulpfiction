@@ -11,6 +11,7 @@
                     isActive: '=',
                     showClose: '=',
                     customWidth: '=',
+                    showBigClose: '=',
                     doClose: '&onClose'
                 },
                 link: function (scope, el, attrs) {

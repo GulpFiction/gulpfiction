@@ -93,11 +93,15 @@ button {
 	}
 
 	&.button {
-		font-size: 2rem;
-		padding: .5rem;
+		padding: .7rem;
+		font-size: 1.5rem;
 		background: fade(@color-second, 70);
 		border-radius: 3px;
 		transition: .2s all;
+
+		&.cancel {
+			background: lightgrey;
+		}
 
 		&:hover {
 			background: fade(@color-second, 80);
@@ -124,7 +128,7 @@ button {
 	text-align: right;
 	margin-top: 1rem;
 
-	.button {
+	.button, button {
 		margin-left: 1rem;
 	}
 }
@@ -199,10 +203,6 @@ input[type="checkbox"] {
 		&:focus {
 			background: rgba(255,255,255,0.8);
 		}
-	}
-
-	button {
-		margin-left: .3rem;
 	}
 }
 
