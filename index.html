@@ -35,7 +35,7 @@
 
             <project-picker projects="projects" current-project="project" on-switch-project="switchToProject(project)"></project-picker>
 
-            <div class="options"> 
+            <div class="options">
                 <div class="options-project"
                 data-tooltip="Project Actions"
                 data-tooltip-options="left only-help">
@@ -70,8 +70,14 @@
         </lightbox>
 
         <lightbox is-active="showsExport" show-close="true">
-            <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button>
-            <button ng-show="isDropboxAuthenticated" ng-click="exportProjectToDropbox(project)"><i class="fa fa-dropbox"></i>Save</button>
+            <button ng-if="!isDropboxAuthenticated" ng-click="connectDb()"><i class="fa fa-dropbox"></i>
+                <span> Connect to DropBox</span>
+            </button>
+            <button ng-show="isDropboxAuthenticated && !showExportProgress" ng-click="exportProjectToDropbox(project)"><i class="fa fa-dropbox"></i> Save to DropBox</button>
+            <button ng-if="showExportProgress" disabled><i class="fa fa-spinner fa-spin"></i> Exporting to Dropbox</button>
+            <span ng-if="showExportDone"><i class="fa fa-check"></i> Saved to Dropbox</span>
+            <span ng-if="isDropboxAuthenticated"> {{dbAccountInfo.display_name}} <button ng-click="logoutDropbox()">Logout</button></span>
+
             <pre>{{currentExportContent}}</pre>
         </lightbox>
 

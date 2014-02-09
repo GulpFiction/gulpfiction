@@ -12,6 +12,14 @@
 
     function AppController($scope, gulp, fileBuilder, $location, $rootScope, Dropbox, localStorage) {
 
+        // window.Dropbox = Dropbox;
+        // init dropbox account, if stored
+        var dropboxCredentials = localStorage.get(DROPBOX_KEY);
+        if (dropboxCredentials) {
+            getDropboxAccountInfo(dropboxCredentials.token, dropboxCredentials.uid);
+        }
+
+
         $scope.projects = gulp.listProjects();
 
         $scope.toggleHelp = function () {
@@ -42,51 +50,30 @@
         };
 
         $scope.connectDb = function () {
-            window.Dropbox = Dropbox;
-            var dropboxCredentials = localStorage.get(DROPBOX_KEY);
-
             if (!dropboxCredentials) {
-                Dropbox.authenticate().then(function (response) {
-                    // @TODO: store response.access_token in localstorage
-
-                    $scope.isDropboxAuthenticated = true;
-                    Dropbox.accountInfo().then(function (data) {
-                        console.log(data);
-                        $scope.dbAccountInfo = data;
-                        localStorage.set(DROPBOX_KEY, { token: response.access_token, uid: data.uid });
-                    });
-                });
+                getAndStoreDropboxAccess();
             } else {
-                Dropbox.setCredentials({
-                    access_token: dropboxCredentials.token,
-                    token_type: 'bearer',
-                    uid: dropboxCredentials.uid
-                });
-
-                Dropbox.accountInfo().then(function (data) {
-                    $scope.isDropboxAuthenticated = true;
-                    $scope.dbAccountInfo = data;
-                }, function (error) {
-                    Dropbox.authenticate().then(function (response) {
-                        // @TODO: store response.access_token in localstorage
-                        console.log(response.access_token);
-                        localStorage.set(DROPBOX_KEY, response.access_token);
-                        $scope.isDropboxAuthenticated = true;
-                        Dropbox.accountInfo().then(function (data) {
-                            $scope.dbAccountInfo = data;
-                            localStorage.set(DROPBOX_KEY, { token: response.access_token, uid: data.uid });
-                        });
-                    });
-                });
+                getDropboxAccountInfo(dropboxCredentials.token, dropboxCredentials.uid);
             }
+        };
 
+        $scope.logoutDropbox = function () {
+            clearAndLogoutDropbox();
         };
 
         $scope.exportProjectToDropbox = function (project) {
+            $scope.showExportProgress = false;
+            $scope.showExportDone = false;
             if (Dropbox.isAuthenticated()) {
-                console.log('write to DB');
                 var file = fileBuilder.build(project);
-                Dropbox.writeFile(project.name + '.js', file, {mime_type: 'application/javascript'});
+                $scope.showExportProgress = true;
+                Dropbox.writeFile(project.name + '.js', file, {mime_type: 'application/javascript'})
+                    .then(function (response) {
+                        $scope.showExportProgress = false;
+                        $scope.showExportDone = true;
+                    });
+            } else {
+                getAndStoreDropboxAccess();
             }
         };
 
@@ -94,6 +81,39 @@
             $scope.currentExportContent = fileBuilder.build(project);
             $scope.showsExport = true;
         };
+
+
+        function getDropboxAccountInfo(token, uid) {
+            Dropbox.setCredentials({
+                access_token: token,
+                token_type: 'bearer',
+                uid: uid
+            });
+
+            Dropbox.accountInfo().then(function (data) {
+                $scope.isDropboxAuthenticated = true;
+                $scope.dbAccountInfo = data;
+            }, function (error) {
+                getAndStoreDropboxAccess();
+            });
+        }
+
+        function getAndStoreDropboxAccess() {
+            Dropbox.authenticate().then(function (response) {
+                Dropbox.accountInfo().then(function (data) {
+                    $scope.isDropboxAuthenticated = true;
+                    $scope.dbAccountInfo = data;
+                    localStorage.set(DROPBOX_KEY, { token: response.access_token, uid: data.uid });
+                });
+            });
+        }
+
+        function clearAndLogoutDropbox() {
+            localStorage.rm(DROPBOX_KEY);
+            dropboxCredentials = null;
+            $scope.isDropboxAuthenticated = false;
+            $scope.dbAccountInfo = null;
+        }
     }
 
 }(this));
