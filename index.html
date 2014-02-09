@@ -62,7 +62,11 @@
 
         <div ng-view></div>
 
-        <lightbox is-active="showsTeaser" show-close="true" class="teaser" on-close="closeTeaser()">
+        <lightbox is-active="showsTeaser" 
+                show-close="true" 
+                class="teaser" 
+                on-close="closeTeaser()"
+                custom-width="600">
             <div class="teaser-heading">
                 <div class="logo">
                     <img src="/img/logo.gif">
@@ -72,17 +76,26 @@
                 <p>The Royale With Cheese for you build workflow.</p>
             </div>
 
-            <h3>- Easy visual editing of your gulp file!</h3>
-            <h3>- Export your generated gulp file to your Dropbox account or copy it!</h3>
-            <h3>- Search for steps and build tasks!</h3>
-
-            <h3>More:</h3>
             <ul>
-                <li><a href="http://gulpjs.com/" targe="_blank">What the f*** is a gulp file?</a></li>
+                <li>Easy visual editing of your gulp file!</li>
+                <li>Export your generated gulp file to your Dropbox account or copy it!</li>
+                <li>Search for steps and build tasks!</li>
             </ul>
-            <button ng-click="on">Look at Gulp Fiction's own build file</button>
-            <button ng-click="on">Start with an all fresh project</button>
 
+            <p>
+                If you are a front-end developer like we are you might love setting up
+                and maintaining the build workflow like we are. <i>Not at all</i>. Fiddeling
+                around with <i>grunt</i> or the new and fancy <i>gulp.js</i> config files is 
+                no fun so a lot of boilerplates were set up to help you. This is another 
+                approach to enable you to <b>shorten the build setup</b> with a graphical user interface for <b>automatic gulp.js creation</b> and file upload for <b>dropbox</b> 
+                or <b>direct download</b>.
+            </p>
+
+            <p>
+                If you haven't heard of <a href="http://gulpjs.com/">gulp</a> &mdash; it's 
+                like grunt just <i>a lot</i> faster.
+                If you haven't heard of grunt... well... Nice weather out there, isnt it?
+            </p>
         </lightbox>
 
         <lightbox is-active="showsDropboxExport" show-close="true">
