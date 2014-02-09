@@ -20,10 +20,22 @@
         };
 
         $scope.addStep = function (task, position) {
+            // remove empty step from (other) task
+            if (task.newStepAtPosition) {
+                if (position > task.newStepAtPosition.position) {
+                    position = position - 1;
+                }
+                console.log('remove at', task.newStepAtPosition);
+                task.steps.splice(task.newStepAtPosition.position, 1);
+                task.newStepAtPosition = false;
+            }
             task.steps.splice(position, 0, new Step({ justAdded: true }));
+            task.newStepAtPosition = {position: position};
+            console.log('set at', task.newStepAtPosition);
         };
 
         $scope.assignPackageToStep = function (step, npmPackage) {
+            $scope.newStepAtTask = false;
             step.justAdded = false;
             step.setPackage(npmPackage);
             $scope.setFocusedStep(step);
