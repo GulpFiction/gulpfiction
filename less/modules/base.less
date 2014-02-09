@@ -48,11 +48,18 @@ menu {
 button {
 	outline: none;
 	font-size: 1rem;
+	cursor: pointer;
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
 
-	&.remove {
-		&:before {
-			.fontAwesome("\f057");
-		}
+	&.remove:before {
+		.fontAwesome("\f057");
+	}
+
+	&.add:before {
+		.fontAwesome("\f055");
 	}
 }
 
@@ -73,5 +80,33 @@ input[type="checkbox"] {
 
 	&:checked + label:before {
 		.fontAwesome("\f046");
+	}
+}
+
+.input-container {
+	.flex();
+	margin-bottom: .5rem;
+
+	input {
+		.flex(1);
+		background: rgba(255,255,255,0.6);
+		border: none;
+		outline: none;
+		transition: all .2s;
+		padding: .1rem .3rem;
+		margin: 0;
+		font-size: 1rem;
+
+		&:hover {
+			background: rgba(255,255,255,0.7);
+		}
+
+		&:focus {
+			background: rgba(255,255,255,0.8);
+		}
+	}
+
+	button {
+		margin-left: .3rem;
 	}
 }
