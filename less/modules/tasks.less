@@ -209,6 +209,8 @@ section.task {
         cursor: default;
 		background: rgba(255,255,255,.7);
         position: relative;
+        .flex();
+        .flexDirection(column);
 
         .description {
         	font-style: normal;
@@ -239,6 +241,38 @@ section.task {
             margin-left: 1rem;
             padding-right: .5rem;
             padding-left: .5rem;
+        }
+
+        .npm-search {
+            .flex(1);
+            .flex();
+            .flexDirection(column);
+        }
+
+        .npm-results {
+            .flex(1);
+            overflow: scroll;
+
+            li {
+                padding: .2rem;
+
+                &:hover {
+                    cursor: pointer;
+                    background: fade(@color-second, 20);
+                }
+            }
+        }
+
+        h5 {
+            margin: 0 0 .2rem;
+        }
+
+        .result {
+            font-style: italic;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: .2rem;
         }
     }
 

@@ -5,6 +5,7 @@
     function NpmSearch(NpmPackageCache, $timeout, $filter) {
         return {
             restrict: 'E',
+            replace: true,
             templateUrl: 'npm/search/view/npm-search.tpl.html',
             scope: {
                 doSelectPackage: '&onSelectPackage'

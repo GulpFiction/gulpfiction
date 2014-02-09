@@ -1,6 +1,8 @@
 <div>
-    <input type="text" ng-model="query" placeholder="search npm..."/>
-    <div>
+    <div class="input-container">
+        <input type="text" ng-model="query" placeholder="search npm..."/>
+    </div>
+    <div ng-if="query.length > 0" class="npm-results">
         <ul>
             <li ng-repeat="result in filteredSupset"
                 ng-click="selectResult(result)">
@@ -9,5 +11,4 @@
             <li ng-show="filteredSupset.length == 0">No matches :-(</li>
         </ul>
     </div>
-
 </div>
