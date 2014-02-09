@@ -73,7 +73,7 @@
             if (Dropbox.isAuthenticated()) {
                 var file = fileBuilder.build(project);
                 $scope.showExportProgress = true;
-                Dropbox.writeFile(project.name + '.js', file, {mime_type: 'application/javascript'})
+                Dropbox.writeFile(project.id + '.js', file, {mime_type: 'application/javascript'})
                     .then(function (response) {
                         $scope.showExportProgress = false;
                         $scope.showExportDone = true;
