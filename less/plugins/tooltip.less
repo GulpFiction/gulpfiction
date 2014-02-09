@@ -132,10 +132,12 @@
         }
     }
 
-    section:not(:first-child) &[data-tooltip-options*="help"] {
-        &:after, &:before {
-            display: none;
-        }
+    .task:not(:first-child) &, &.task:not(:first-child) {
+        &[data-tooltip-options*="help"] {
+            &:after, &:before {
+                display: none;
+            }
+       }
     }
 
     .show-help &[data-tooltip-options*="help"] {
