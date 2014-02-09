@@ -4,7 +4,7 @@
 
     exports.angular.module('npm.search.npmPackage', ['ngResource'])
         .factory('NpmPackage', function ($resource) {
-            this.pageSize = 50;
+            this.pageSize = 350;
             this.page = 0;
 
             var NPM_URL = 'http://npmjs.org:9200/npm/package/_search';
@@ -17,13 +17,7 @@
                 search: {
                     url: NPM_URL,
                     method: 'POST',
-                    isArray: false,
-                    // transformRequest: function (data, headersGetter) {
-                    //     return {query: true};
-                    // },
-                    // transformResponse: function (data) {
-                    //     // console.log(data);
-                    // }
+                    isArray: false
                 }
             });
 
