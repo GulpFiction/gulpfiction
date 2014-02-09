@@ -48,7 +48,7 @@ menu {
 	.flex();
 	.alignItems(center);
 	.justifyContent(space-around);
-	transition: all 1s;
+	transition: all .3s;
 
 	.close-button {
 		margin-top: 2rem;
@@ -56,19 +56,21 @@ menu {
 
 	&.ng-animate {
 		transition: all .3s;
+		display: -webkit-flex !important;
+		display: flex !important;
 	}
 
-	&.ng-enter {
+	&.ng-hide-remove {
 		opacity: 0;
 		.transform(translateY(-250px));
 	}
 
-	&.ng-enter.ng-enter-active, &.ng-leave {
-		background: rgba(0,0,0,.4);
+	&.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add {
+		opacity: 1;
 		.transform(translateY(0));
 	}
 
-	&.ng-leave.ng-leave-active {
+	&.ng-hide-add.ng-hide-add-active {
 		opacity: 0;
 		.transform(translateY(250px));
 	}
