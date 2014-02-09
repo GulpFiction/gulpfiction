@@ -1,0 +1,48 @@
+.documentation-sidebar {
+	position: fixed;
+	top: 4rem;
+	right: 0rem;
+	width: 40rem;
+	background: white;
+	height: calc(~"100% - 4rem");
+	z-index: 0;
+
+	> div {
+		padding: 2rem;
+		height: 100%;
+		width: 100%;
+		overflow-y: scroll;
+
+		.sub-line {
+			font-style: italic;
+		}
+
+		h2 {
+			margin-top: 0;
+			line-height: 1;
+		}
+	}
+
+	&, > button {
+		background: rgba(255,255,255,.98);
+		transition: all ease .4s;
+		.transform(translateX(100%));
+	}
+
+	> button {
+		padding: 0 0 .4rem;
+		width: 3rem;
+		height: 3rem;
+		position: absolute;
+		top: 0;
+		left: -3rem;
+		border-radius: 0 0 0 5px;
+		text-align: center;
+		font-size: 2rem;
+		vertical-align: middle;
+	}
+
+	&.is-open, &.is-open > button {
+		.transform(translateX(0));
+	}
+}

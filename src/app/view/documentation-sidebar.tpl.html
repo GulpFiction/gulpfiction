@@ -1,0 +1,19 @@
+<div class="documentation-sidebar" ng-class="{'is-open': isActive}">
+	<button ng-click="close()">»</button>
+	<div>
+		<h2>
+			{{focusedStep.name}}
+		</h2>
+		<p class="sub-line">
+			by {{focusedStep.author}}, version: {{focusedStep.version}}. 
+			<a ng-href="{{focusedStep.homepage}}" target="_blank">homepage</a>.
+			</p>
+
+	    <p>{{focusedStep.description}}</p>
+
+	    <div ng-if="focusedStep && focusedStep.readme" 
+	    		class="task-readme-container" 
+	    		btf-markdown="focusedStep.readme">
+	   </div>
+	</div>
+</div>

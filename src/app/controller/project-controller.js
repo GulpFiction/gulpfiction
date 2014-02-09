@@ -61,6 +61,11 @@
                 });
         };
 
+        $scope.setFocusedStep = function (step) {
+            $scope.focusedStep = step;
+            $scope.sidebarActive = true;
+        };
+
         // debounce?
         var unregisterProjectWatch = $scope.$watch('project', function (newProject, oldProject) {
             if (newProject && oldProject && newProject.name !== oldProject.name) {

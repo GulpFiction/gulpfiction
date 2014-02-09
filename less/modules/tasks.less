@@ -4,7 +4,14 @@ section.task {
 	.flex();
     height: @height;
     border-bottom: fade(@brown, 50%) dashed 1px;
-    transition: all .3s;
+    transition: all .4s ease;
+    transition-delay: 0s;
+
+ 	body.has-sidebar & {
+ 		padding-right: 40rem;
+	    transition-delay: .2s;
+
+ 	}
 
     &:nth-child(odd) {
     	background: rgba(255,255,255,.4)
