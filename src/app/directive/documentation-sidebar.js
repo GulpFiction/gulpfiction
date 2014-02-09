@@ -8,25 +8,21 @@
                 templateUrl: 'app/view/documentation-sidebar.tpl.html',
                 scope: {
                     isActive: '=',
-                    doClose: '&onClose',
                     focusedStep: '='
                 },
                 link: function (scope, el, attrs) {
+                    console.log('documentationSidebar');
 
                     var bodyEl = exports.angular.element(exports.document.body);
 
-                    scope.$watch('isActive', function () {
-                        if (scope.isActive) {
+                    scope.$watch('isActive', function (newValue) {
+                        console.log(newValue);                        
+                        if (newValue) {    
                             bodyEl.addClass('has-sidebar');
                         } else {
                             bodyEl.removeClass('has-sidebar');
                         }
                     });
-
-                    scope.close = function () {
-                        scope.isActive = false;
-                        scope.doClose();
-                    };
 
 
                     // // unregister

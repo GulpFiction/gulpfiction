@@ -29,6 +29,7 @@
         };
 
         $scope.removeStep = function (task, position) {
+            $scope.sidebarActive = false;             
             task.steps.splice(position, 1);
         };
 
@@ -62,8 +63,10 @@
         };
 
         $scope.setFocusedStep = function (step) {
-            $scope.focusedStep = step;
-            $scope.sidebarActive = true;
+            if (step.justAdded !== true) {
+                $scope.focusedStep = step;
+                $scope.sidebarActive = true;                
+            }
         };
 
         // debounce?
