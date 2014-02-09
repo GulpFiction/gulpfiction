@@ -6,16 +6,16 @@
 
     function IndexController($location, gulp) {
 
-        var existingProjects = gulp.listProjects(), projectName;
+        var existingProjects = gulp.listProjects(), projectId;
 
         if (existingProjects.length) {
-            projectName = existingProjects[0].name; // later use last project here
+            projectId = existingProjects[0].id; // later use last project here
         } else {
-            projectName = gulp.createProject().name;
+            projectId = gulp.createProject().id;
         }
 
         // redirect to freshly created project
-        $location.path('/' + encodeURI(projectName));
+        $location.path('/' + projectId);
     }
 
 }(this));

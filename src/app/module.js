@@ -19,7 +19,8 @@
         'btford.markdown',
         'ui.ace',
         'ngClipboard',
-        'app.documentationSidebar'
+        'app.documentationSidebar',
+        'uuid4'
     ])
     .config(function (DropboxProvider) {
         DropboxProvider.config('dz3ndmuzjdf7ca4', 'http://localhost:8000/callback.html');
@@ -30,12 +31,12 @@
                 template: '',
                 controller: 'indexController'
             })
-            .when('/:projectName', {
+            .when('/:projectId', {
                 templateUrl: 'app/view/project.tpl.html',
                 controller: 'projectController',
                 resolve: {
                     project: function ($route, gulp, $rootScope, $location) {
-                        var project = gulp.getProject($route.current.params.projectName);
+                        var project = gulp.getProject($route.current.params.projectId);
 
                         // show error if project not visible
                         if (!project) {
@@ -45,7 +46,7 @@
                         // propagate to rootScope for picker
                         $rootScope.project = project;
 
-                        return gulp.getProject($route.current.params.projectName);
+                        return gulp.getProject($route.current.params.projectId);
                     }
                 }
             })

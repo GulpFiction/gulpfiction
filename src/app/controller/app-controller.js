@@ -32,12 +32,12 @@
 
         $scope.switchToProject = function (project) {
             $rootScope.project = project;
-            $location.path('/' + encodeURI(project.name));
+            $location.path('/' + project.id);
         };
 
         $scope.addProject = function () {
             var project = gulp.createProject();
-            $location.path('/' + encodeURI(project.name));
+            $location.path('/' + project.id);
             if (exports.document.querySelector) {
                 $timeout(function () {
                     exports.document.querySelector('menu li').classList.add('is-focused');

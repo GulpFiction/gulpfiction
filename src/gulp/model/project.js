@@ -2,12 +2,15 @@
     'use strict';
 
     exports.angular.module('gulp.Project', [])
-        .value('Project', Project);
+        .factory('Project', function (uuid4) {
+            return Project;
 
-    function Project(data) {
-        this.tasks = [];
-        this.name = '';
-        exports.angular.extend(this, data);
-    }
+            function Project(data) {
+                this.id = uuid4.generate();
+                this.tasks = [];
+                this.name = '';
+                exports.angular.extend(this, data);
+            }
+        });
 
 }(this));

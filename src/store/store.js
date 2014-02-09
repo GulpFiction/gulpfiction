@@ -9,42 +9,42 @@
     exports.angular.module('store', ['localStorage'])
         .factory('store', function (localStorage) {
 
-            var projectNames = localStorage.get(PROJECT_LIST_KEY);
+            var projectIds = localStorage.get(PROJECT_LIST_KEY);
             // if projects are corrupted, reset localStorage
-            if (!projectNames || !projectNames.length) {
+            if (!projectIds || !projectIds.length) {
                 localStorage.reset();
             }
 
             var store = {
                 loadProjects: function () {
-                    var projectNames = localStorage.get(PROJECT_LIST_KEY) || [];
-                    return projectNames.map(store.loadProject).filter(function (res) { return res; });
+                    var projectIds = localStorage.get(PROJECT_LIST_KEY) || [];
+                    return projectIds.map(store.loadProjectById).filter(function (res) { return res; });
                 },
-                loadProject: function (projectName) {
-                    return localStorage.get(PROJECT_PREFIX + projectName);
+                loadProjectById: function (projectId) {
+                    return localStorage.get(PROJECT_PREFIX + projectId);
                 },
                 saveProjects: function (projects) {
-                    var projectNames = projects.map(function (project) {
-                        return normalizeName(project.name);
+                    var projectIds = projects.map(function (project) {
+                        return project.id;
                     });
-                    localStorage.set(PROJECT_LIST_KEY, projectNames);
+                    localStorage.set(PROJECT_LIST_KEY, projectIds);
                     projects.forEach(this.saveProject);
                 },
                 saveProject: function (project) {
                     if (!project) { return; }
                     var saveCopy = exports.angular.copy(project);
-                    localStorage.set(PROJECT_PREFIX + project.name, saveCopy);
+                    localStorage.set(PROJECT_PREFIX + project.id, saveCopy);
                 },
                 removeProject: function (project) {
-                    localStorage.rm(PROJECT_PREFIX + project.name);
-                    var projectNames = localStorage.get(PROJECT_LIST_KEY) || [];
-                    var saveNames = [];
-                    projectNames.forEach(function (name) {
-                        if (name !== normalizeName(project.name)) {
-                            saveNames.push(name);
+                    localStorage.rm(PROJECT_PREFIX + project.id);
+                    var projectIds = localStorage.get(PROJECT_LIST_KEY) || [];
+                    var saveIds = [];
+                    projectIds.forEach(function (id) {
+                        if (id !== project.id) {
+                            saveIds.push(id);
                         }
                     });
-                    localStorage.set(PROJECT_LIST_KEY, saveNames);
+                    localStorage.set(PROJECT_LIST_KEY, saveIds);
                 },
                 onChange: function (listenerFn) {
                     localStorage.onChange(listenerFn);

@@ -17,29 +17,19 @@
             listProjects: function () {
                 return projects;
             },
-            getProject: function (projectName) {
-                return findProjectByName(projectName);
+            getProject: function (projectId) {
+                return findProjectById(projectId);
             },
             removeProject: function (project) {
-                var projectName = project.name, matchedIndex;
+                var projectId = project.id, matchedIndex;
                 projects.forEach(function (project, index) {
-                    if (!matchedIndex && project.name === projectName) {
+                    if (!matchedIndex && project.id === projectId) {
                         store.removeProject(project);
                         matchedIndex = index;
                     }
                 });
                 projects.splice(matchedIndex, 1);
                 return project;
-            },
-            removeProjectByName: function (projectName) {
-                var matchedIndex;
-                projects.forEach(function (project, index) {
-                    if (!matchedIndex && project.name === projectName) {
-                        store.removeProject(project);
-                        matchedIndex = index;
-                    }
-                });
-                projects.splice(matchedIndex, 1);
             },
             createProject: function (projectName) {
                 var project = new Project({
@@ -76,6 +66,16 @@
         };
 
         return gulp;
+
+        function findProjectById(projectId) {
+            var result;
+            projects.forEach(function (project) {
+                if (project.id === projectId) {
+                    result = project;
+                }
+            });
+            return result;
+        }
 
         function findProjectByName(projectName) {
             var result;

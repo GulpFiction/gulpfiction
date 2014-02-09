@@ -30,7 +30,7 @@
         };
 
         $scope.removeStep = function (task, position) {
-            $scope.sidebarActive = false;             
+            $scope.sidebarActive = false;
             task.steps.splice(position, 1);
         };
 
@@ -66,15 +66,12 @@
         $scope.setFocusedStep = function (step) {
             if (step.justAdded !== true) {
                 $scope.focusedStep = step;
-                $scope.sidebarActive = true;                
+                $scope.sidebarActive = true;
             }
         };
 
         // debounce?
         var unregisterProjectWatch = $scope.$watch('project', function (newProject, oldProject) {
-            if (newProject && oldProject && newProject.name !== oldProject.name) {
-                store.removeProject(oldProject);
-            }
             store.saveProject($scope.project);
         }, true);
 
