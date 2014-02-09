@@ -92,29 +92,22 @@
 
             <span ng-if="isDropboxAuthenticated"> {{dbAccountInfo.display_name}} is connected <button ng-click="logoutDropbox()">Logout</button></span>
 
-            <h3>Export your file to DropBox and link it with your project</h3>
+            <h3>You can use Dropbox to auto-update your local gulpfile on save.</h3>
 
-            <ol>
-                <li>Export your generated gulp-file to your Dropbox</li>
-                <li>Create a symbolic link to your Dropbox:<br/>
-                    <pre><code>$ ln -s ~/Dropbox/gulp-fiction/{{project.id}}.js gulpfile.js</code></pre>
-                </li>
-                <li>There is no third step!</li>
-            </ol>
-            <br>
+            <button ng-if="!isDropboxAuthenticated" ng-click="connectDb()" class="button"><i class="fa fa-dropbox"></i>
+                <span>Connect to Dropbox</span>
+            </button>
 
-            <div>
-                <button ng-if="!isDropboxAuthenticated" ng-click="connectDb()" class="button"><i class="fa fa-dropbox"></i>
-                    <span> Connect to Dropbox</span>
-                </button>
-
+            <div ng-hide="!isDropboxAuthenticated">
+                <p>Great, now you need to setup the link on your local filesystem. Open Terminal and switch to your project directory, then execute the following command to create a symbolic link:</p>
+                <pre><code>$ ln -s ~/Dropbox/gulp-fiction/{{project.id}}.js gulpfile.js</code></pre>
+                <p>Now hit save to export to Dropbox!</p>
                 <button style="font-size:2rem;" ng-show="isDropboxAuthenticated && !showExportProgress" ng-click="exportProjectToDropbox(project)" class="button">
                     <i class="fa fa-dropbox"></i> Save</button>
 
                 <button ng-if="showExportProgress" disabled><i class="fa fa-spinner fa-spin" class="button"></i> Exporting…</button>
 
                 <span ng-if="showExportDone"><i class="fa fa-check"></i> Saved</span>
-
             </div>
         </lightbox>
 
