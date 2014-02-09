@@ -11,6 +11,7 @@
         pointer-events: none;
         z-index: 9999;
         -webkit-backface-visibility: hidden;
+        font-size: 14px;
 
         visibility: hidden;
         opacity: 0;
@@ -26,13 +27,12 @@
         .imageset("/img/bg/debut_dark");
         box-shadow: 1px 1px 10px rgba(0,0,0,0.5), inset 0 0 5px black;
         text-shadow: none;
-        font-size: 13px;
         font-weight: normal;
-        line-height: 1.2;
+        line-height: 1;
         letter-spacing: normal;
         text-align: left;
         white-space: normal;
-        padding: 10px;
+        padding: .7em;
 
         -webkit-font-smoothing: antialiased;
         width: @width;
@@ -77,7 +77,7 @@
             white-space: nowrap;
             margin-left: 0;
             margin-bottom: 0;
-            margin-top: -17px;
+            margin-top: -1.2em;
         }
 
         &:after {
@@ -129,6 +129,12 @@
             visibility: visible;
             opacity: 1;
             transition-delay: 0.5s;
+        }
+    }
+
+    .show-help &[data-tooltip-options*="help"] {
+        &:after, &:before {
+            font-size: 18px;            
         }
     }
 }
