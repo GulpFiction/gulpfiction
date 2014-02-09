@@ -2,6 +2,7 @@
     'use strict';
 
     var DROPBOX_KEY = 'dropbox_credentials';
+    var NOT_VIRGIN_KEY = 'not_virgin';
 
     exports.angular.module('app.appController', [
         'gulp.gulp',
@@ -12,7 +13,11 @@
 
     function AppController($scope, gulp, fileBuilder, $location, $rootScope, Dropbox, localStorage, $timeout) {
 
-        // window.Dropbox = Dropbox;
+        var isNotVirgin = localStorage.get(NOT_VIRGIN_KEY);
+        if (!isNotVirgin) {
+            $scope.showsTeaser = true;
+        }
+
         // init dropbox account, if stored
         var dropboxCredentials = localStorage.get(DROPBOX_KEY);
         if (dropboxCredentials) {
@@ -26,8 +31,9 @@
             $scope.showsHelp = !$scope.showsHelp;
         };
 
-        $scope.showTeaser = function () {
-            $scope.showsTeaser = true;
+        $scope.closeTeaser = function () {
+            $scope.showsTeaser = false;
+            localStorage.set(NOT_VIRGIN_KEY, true);
         };
 
         $scope.switchToProject = function (project) {
