@@ -41,21 +41,37 @@
                 <div class="options-project"
                 data-tooltip="Project Actions"
                 data-tooltip-options="left only-help">
-                    <button ng-click="confirmDeleteProject()" data-tooltip-options="oneline bottom" data-tooltip="Remove project" data-tooltip-options="oneline"><i class="fa fa-times-circle"></i>
+                    <button ng-click="confirmDeleteProject()" 
+                            data-tooltip-options="oneline bottom" 
+                            data-tooltip="Remove project" 
+                            data-tooltip-options="oneline">
+                        <i class="fa fa-times-circle"></i>
                     </button>
 
-                    <button ng-click="openExportProject(project)" data-tooltip-options="oneline bottom" data-tooltip="Export gulpfile.js" data-tooltip-options="oneline"><i class="fa fa-cloud-download"></i>
+                    <button ng-click="openExportProject(project)" 
+                            data-tooltip-options="oneline bottom" 
+                            data-tooltip="Export gulpfile.js" 
+                            data-tooltip-options="oneline">
+                        <i class="fa fa-floppy-o"></i>
                     </button>
 
-                    <button ng-click="openExportToDropbox(project)" data-tooltip-options="oneline bottom" data-tooltip="Export gulpfile.js to Dropbox" data-tooltip-options="oneline"><i class="fa fa-dropbox"></i>
+                    <button ng-click="openExportToDropbox(project)" 
+                            data-tooltip-options="oneline bottom" 
+                            data-tooltip="Export gulpfile.js to Dropbox" 
+                            data-tooltip-options="oneline">
+                        <i class="fa fa-dropbox"></i>
                     </button>
                 </div>
 
                 <div class="options-app"
-                data-tooltip="App Actions"
-                data-tooltip-options="bottom only-help oneline">
-                    <button ng-click="addProject()" data-tooltip-options="oneline bottom" data-tooltip="Add project"><i class="fa fa-plus-circle"></i></button>
-                    <button ng-click="toggleHelp()"><i class="fa fa-question-circle"></i></button>
+                        data-tooltip="App Actions"
+                        data-tooltip-options="bottom only-help oneline">
+                    <button ng-click="addProject()" data-tooltip-options="oneline bottom" data-tooltip="Add project">
+                        <i class="fa fa-plus-circle"></i>
+                    </button>
+                    <button ng-click="toggleHelp()">
+                        <i class="fa fa-question-circle"></i>
+                    </button>
                 </div>
             </div>
         </header>
