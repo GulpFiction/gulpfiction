@@ -1,5 +1,6 @@
 <section class="task" ng-repeat="task in project.tasks">
     <div class="settings">
+        <span data-tooltip="Delete this task"><i class="fa fa-times-circle" ng-click="removeTask(task.name)"></i></span>
         <h3 inline-edit model="task.name" on-save="changeTaskName(task, changedValue)"></h3>
         <h4>options</h4>
         <ul class="reload-options">

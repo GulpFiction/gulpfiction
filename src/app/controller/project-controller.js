@@ -34,6 +34,18 @@
             task.name = changedValue;
         };
 
+        $scope.removeTask = function (name) {
+            var result;
+
+            project.tasks.forEach(function (task, index) {
+                if (task.name === name) {
+                    result = index;
+                }
+            });
+
+            if (result !== undefined) { project.tasks.splice(result, 1); }
+        };
+
         // debounce?
         var unregisterProjectWatch = $scope.$watch('project', function (newProject, oldProject) {
             if (newProject && oldProject && newProject.name !== oldProject.name) {
