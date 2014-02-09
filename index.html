@@ -44,7 +44,6 @@
                     <button ng-click="addProject()" data-tooltip="Add project" data-tooltip-options="oneline"><i class="fa fa-plus-circle"></i></button>
                     <button ng-click="showHelp()" data-tooltip="Show help" data-tooltip-options="oneline"><i class="fa fa-question-circle"></i></button>
                 </div>
-<!-- <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button> -->
             </div>
         </header>
 
@@ -66,6 +65,8 @@
         </lightbox>
 
         <lightbox is-active="showsExport" show-close="true">
+            <button ng-click="connectDb()"><i class="fa fa-dropbox"></i>{{dbAccountInfo.display_name}}</button>
+            <button ng-show="isDropboxAuthenticated" ng-click="exportProjectToDropbox(project)"><i class="fa fa-dropbox"></i>Save</button>
             <pre>{{currentExportContent}}</pre>
         </lightbox>
 
