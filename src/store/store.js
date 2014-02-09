@@ -33,6 +33,12 @@
                 saveProject: function (project) {
                     if (!project) { return; }
                     var saveCopy = exports.angular.copy(project);
+                    // dont save empty steps
+                    saveCopy.tasks.forEach(function (task) {
+                        task.steps = task.steps.filter(function (step) {
+                            return !step.justAdded;
+                        });
+                    });
                     localStorage.set(PROJECT_PREFIX + project.id, saveCopy);
                 },
                 removeProject: function (project) {

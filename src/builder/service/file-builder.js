@@ -12,6 +12,7 @@
     FileBuilder.prototype.build = function (project) {
         var content = [];
 
+        content.push(buildHeader(project));
         content.push(buildDependencies(project));
         content.push(buildTasks(project));
         content.push(buildReload(project));
@@ -19,6 +20,10 @@
 
         return content.join(LINEBREAK);
     };
+
+    function buildHeader(project) {
+        return '// ' + project.name + ' - created with Gulp Fiction';
+    }
 
     function buildDependencies(project) {
         var stepNames = getStepNames(project), content = [];
@@ -31,7 +36,9 @@
         }
 
         stepNames.forEach(function (stepName) {
-            content.push('var ' + normalizeStepName(stepName) + ' = require("gulp-' + stepName + '");');
+            if (stepName) {
+                content.push('var ' + normalizeStepName(stepName) + ' = require("gulp-' + stepName + '");');
+            }
         });
 
         // prepend project module
@@ -88,6 +95,23 @@
     }
 
     function buildTask(task) {
+
+        // ensure correct input glob to export
+        // and correct dst
+        if (task.inputGlob && task.inputGlob.length === 1 && task.inputGlob[0].path === '') {
+            return LINEBREAK;
+        }
+
+        if (task.outputDir === '') {
+            return LINEBREAK;
+        }
+
+
+
+        if (task.steps.filter(filterEmptySteps).length === 0) {
+            return LINEBREAK;
+        }
+
         var taskContent = [], preTasks = buildPreTasks(task);
         taskContent.push('gulp.task("' + task.name + '", [' + preTasks + '], {');
         taskContent.push(buildTaskContent(task));
@@ -96,22 +120,30 @@
         return taskContent.join(LINEBREAK);
     }
 
+    function filterEmptySteps(step) {
+        return (!step.justAdded);
+    }
+
     function buildPreTasks(task) {
         return task.preTasks.map(function (content) {
-            return '"' + content + '"';
+            return JSON.stringify(content);
         }).join(', ');
     }
 
     function buildTaskContent(task) {
         var content = [];
 
-        content.push('gulp.src(' + JSON.stringify(task.inputGlob) + ')');
+        function filterEmptySrc(src) {
+            return src.path !== '';
+        }
 
-        task.steps.forEach(function (step) {
+        content.push('gulp.src(' + JSON.stringify(task.inputGlob.filter(filterEmptySrc)) + ')');
+
+        task.steps.filter(filterEmptySteps).forEach(function (step) {
             content.push(INDENT + buildStep(step));
         });
 
-        content.push(INDENT + '.pipe(gulp.dest("' + task.outputDir + '"));');
+        content.push(INDENT + '.pipe(gulp.dest(' + JSON.stringify(task.outputDir) + '));');
 
         return content.map(function (line) {
             return INDENT + line;
@@ -123,6 +155,7 @@
     }
 
     function buildStepOptions(step) {
+        if (typeof step.options === 'string') { return step.options; }
         return JSON.stringify(step.options);
     }
 
