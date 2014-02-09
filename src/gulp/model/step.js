@@ -12,9 +12,12 @@
 
     Step.prototype.setPackage = function (npmPackage) {
         this.name = npmPackage.name;
+        this.author = npmPackage.author;
         this.description = npmPackage.description;
+        this.homepage = npmPackage.homepage;
         this.readme = npmPackage.readme;
         this.author = npmPackage.author;
+        this.version = npmPackage.version;
     };
 
 }(this));

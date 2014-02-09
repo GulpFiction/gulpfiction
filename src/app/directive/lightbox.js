@@ -9,7 +9,8 @@
                 templateUrl: 'app/view/lightbox.tpl.html',
                 scope: {
                     isActive: '=',
-                    showClose: '='
+                    showClose: '=',
+                    doClose: '&onClose'
                 },
                 link: function (scope, el, attrs) {
 
@@ -35,6 +36,7 @@
 
                     scope.close = function () {
                         scope.isActive = false;
+                        scope.doClose();
                     };
 
                     scope.$on('$destroy', function () {

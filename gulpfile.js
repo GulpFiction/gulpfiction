@@ -11,6 +11,9 @@ var components = [
     'bower_components/angular-resource/angular-resource.js',
     'bower_components/angular-route/angular-route.js',
     'bower_components/angular-animate/angular-animate.js',
+    'bower_components/angular-animate/angular-animate.js',
+    'bower_components/showdown/compressed/showdown.js',
+    'bower_components/angular-markdown-directive/markdown.js',
     'bower_components/ngDropbox/dropbox.js'
 ];
 

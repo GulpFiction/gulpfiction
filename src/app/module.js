@@ -15,7 +15,8 @@
         'app.lightbox',
         'app.confirmLightbox',
         'app.keyupEvents',
-        'app.inlineEdit'
+        'app.inlineEdit',
+        'btford.markdown'
     ])
     .config(function (DropboxProvider) {
         DropboxProvider.config('dz3ndmuzjdf7ca4', 'http://localhost:8000/callback.html');

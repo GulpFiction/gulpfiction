@@ -46,9 +46,19 @@
             <npm-search ng-if="step.justAdded" on-select-package="assignPackageToStep(step, npmPackage)"></npm-search>
 
             <div ng-if="!step.justAdded">
-                <h4>{{step.name}}</h4>
+                <h4>{{step.name}} <a ng-click="step.showPackageDetails = true"><i class="fa fa-info-circle"></i></a></h4>
                 <p>{{step.description}}</p>
             </div>
+
+            <lightbox is-active="step.showPackageDetails" show-close="true" on-close="step.showPackageDetails = false;">
+                <div>
+                    <h1><a ng-href="{{step.homepage}}" target="_blank">{{step.name}}</a> by {{step.author}}, version: {{step.version}}</h1>
+                    <p>{{step.description}}</p>
+                    <h4>README</h4>
+                    <div class="task-readme-container" btf-markdown="step.readme">
+                    </div>
+                </div>
+            </lightbox>
 
         </div>
 
@@ -62,6 +72,9 @@
         	<input type="text" ng-model="task.outputDir"/>
         </div>
     </div>
+
+
+
 </section>
 <section class="task">
     <div class="settings">
