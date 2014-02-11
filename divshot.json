@@ -1,6 +1,6 @@
 {
-  "name": "ss14-team-275",
-  "root": "build/",
+  "name": "gulpfiction",
+  "root": "build",
   "cache_control": {},
   "routes": {}
 }
