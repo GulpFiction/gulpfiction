@@ -22,7 +22,7 @@
         $scope.addStep = function (task, position) {
             var selectLast = false;
             // remove empty step from (other) task
-            if (task.newStepAtPosition) {
+            if (task.newStepAtPosition && task.justAdded) {
                 if (position > task.newStepAtPosition.position) {
                     position = position - 1;
                     selectLast = true;
