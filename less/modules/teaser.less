@@ -18,4 +18,101 @@
 		width: 100%;
 		margin: 0;
 	}
+
+	.credits {
+		text-align: center;
+		width: 50%;
+		display: inline-block;
+		margin: 0 0 1rem;
+
+		&.authors {
+			padding: 0 .5rem 0 0;
+		}
+
+		&.contribute {
+			padding: 0 0 0 .5rem;
+		}
+
+		h2 {
+			border-bottom: dashed 1px fade(@color-text, 50%);
+			height: .6em;
+			margin: 0 0 1em;
+			font-style: italic;
+			font-weight: normal;
+			line-height: 1;
+			font-size: 1em;
+
+			span {
+				background: @color-background;
+				padding: 0 .2em;
+			}
+		}
+
+		> a, > div {
+			background: @color-text;
+			color: @color-background;
+			display: inline-block;
+			display: inline-block;
+			opacity: .8;
+			transition: opacity .2s ease;
+
+			&, img {
+				height: 2.5rem;
+				width: 2.5rem;
+				border-radius: 1.25rem;
+			}
+
+			&:hover {
+				opacity: 1;
+			}
+
+			&.twitter {
+				transition: .2s ease width;
+				position: relative;
+
+				.fa {
+					top: 0.4rem;
+					left: 0.5rem;
+				}
+
+				.twitter-share-button {
+					opacity: 0;
+					top: 0.5rem;
+					left: 0.8rem;
+				}
+
+				.fa, .twitter-share-button {
+					position: absolute;
+					transition: .5s ease opacity;
+				}
+
+				&:hover {
+					width: 8rem;
+
+					.twitter-share-button {
+						opacity: 1;
+					}
+
+					.fa {
+						opacity: 0;
+					}
+				}
+			}
+
+			.fa {
+				font-size: 1.5em;
+
+				&.fa-github {
+					font-size: 2.5em;
+					margin-top: -0.2rem;
+					color: #443800;
+					background: #F3F5F5;
+				}
+			}
+
+			&:not(:last-child) {
+				margin-right: .5rem;
+			}
+		}
+	}
 }
