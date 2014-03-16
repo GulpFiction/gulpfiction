@@ -15,7 +15,7 @@
                     var bodyEl = exports.angular.element(exports.document.body);
 
                     scope.$watch('isActive', function (newValue) {
-                        if (newValue) {    
+                        if (newValue) {
                             bodyEl.addClass('has-sidebar');
                         } else {
                             bodyEl.removeClass('has-sidebar');

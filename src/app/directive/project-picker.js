@@ -17,7 +17,8 @@
         function linkFn(scope, element, attrs) {
             var inputEl = exports.document.querySelector('menu input');
             inputEl.addEventListener('blur', function () {
-                scope.currentProject.name = scope.currentProject.name || getBlankProjectNameWithProjects(scope.projects);
+                scope.currentProject.name = scope.currentProject.name ||
+                                            getBlankProjectNameWithProjects(scope.projects);
                 if (!$rootScope.$$phase) { scope.$apply(); }
             });
 

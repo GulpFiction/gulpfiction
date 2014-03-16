@@ -17,12 +17,10 @@ module.exports = function (source, opts) {
 	}
 
 	if (!Array.isArray(source) || source.length !== 2) {
-		console.log(source);
-		throw new Error('Pass the results from process.hrtime() here');
+		return '';
 	}
 	if (typeof source[0] !== 'number' || typeof source[1] !== 'number') {
-		console.log(source);
-		throw new Error('Pass the results from process.hrtime() here');
+		return '';
 	}
 
 	results = '';

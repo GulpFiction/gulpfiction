@@ -27,6 +27,10 @@ words = prettyHrtime(end, {precise:true});
 console.log(words); // '1.20958 ms'
 ```
 
+Note: process.hrtime() has been available since 0.7.6.
+See [http://nodejs.org/changelog.html](http://nodejs.org/changelog.html)
+and [https://github.com/joyent/node/commit/f06abd](https://github.com/joyent/node/commit/f06abd).
+
 LICENSE
 -------
 

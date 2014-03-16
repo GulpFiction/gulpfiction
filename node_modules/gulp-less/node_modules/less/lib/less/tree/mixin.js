@@ -103,7 +103,7 @@ tree.mixin.Call.prototype = {
                                 mixin.originalRuleset = mixins[m].originalRuleset || mixins[m];
                             }
                             Array.prototype.push.apply(
-                                  rules, mixin.eval(env, args, this.important).rules);
+                                  rules, mixin.evalCall(env, args, this.important).rules);
                         } catch (e) {
                             throw { message: e.message, index: this.index, filename: this.currentFileInfo.filename, stack: e.stack };
                         }
@@ -150,7 +150,7 @@ tree.mixin.Call.prototype = {
     }
 };
 
-tree.mixin.Definition = function (name, params, rules, condition, variadic) {
+tree.mixin.Definition = function (name, params, rules, condition, variadic, frames) {
     this.name = name;
     this.selectors = [new(tree.Selector)([new(tree.Element)(null, name, this.index, this.currentFileInfo)])];
     this.params = params;
@@ -164,7 +164,7 @@ tree.mixin.Definition = function (name, params, rules, condition, variadic) {
         else                                 { return count; }
     }, 0);
     this.parent = tree.Ruleset.prototype;
-    this.frames = [];
+    this.frames = frames;
 };
 tree.mixin.Definition.prototype = {
     type: "MixinDefinition",
@@ -187,14 +187,15 @@ tree.mixin.Definition.prototype = {
         var frame = new(tree.Ruleset)(null, null),
             varargs, arg,
             params = this.params.slice(0),
-            i, j, val, name, isNamedFound, argIndex;
+            i, j, val, name, isNamedFound, argIndex, argsLength = 0;
 
         mixinEnv = new tree.evalEnv(mixinEnv, [frame].concat(mixinEnv.frames));
 
         if (args) {
             args = args.slice(0);
+            argsLength = args.length;
 
-            for(i = 0; i < args.length; i++) {
+            for(i = 0; i < argsLength; i++) {
                 arg = args[i];
                 if (name = (arg && arg.name)) {
                     isNamedFound = false;
@@ -224,9 +225,9 @@ tree.mixin.Definition.prototype = {
             arg = args && args[argIndex];
 
             if (name = params[i].name) {
-                if (params[i].variadic && args) {
+                if (params[i].variadic) {
                     varargs = [];
-                    for (j = argIndex; j < args.length; j++) {
+                    for (j = argIndex; j < argsLength; j++) {
                         varargs.push(args[j].value.eval(env));
                     }
                     frame.prependRule(new(tree.Rule)(name, new(tree.Expression)(varargs).eval(env)));
@@ -239,7 +240,7 @@ tree.mixin.Definition.prototype = {
                         frame.resetCache();
                     } else {
                         throw { type: 'Runtime', message: "wrong number of arguments for " + this.name +
-                            ' (' + args.length + ' for ' + this.arity + ')' };
+                            ' (' + argsLength + ' for ' + this.arity + ')' };
                     }
                     
                     frame.prependRule(new(tree.Rule)(name, val));
@@ -248,7 +249,7 @@ tree.mixin.Definition.prototype = {
             }
 
             if (params[i].variadic && args) {
-                for (j = argIndex; j < args.length; j++) {
+                for (j = argIndex; j < argsLength; j++) {
                     evaldArguments[j] = args[j].value.eval(env);
                 }
             }
@@ -257,9 +258,12 @@ tree.mixin.Definition.prototype = {
 
         return frame;
     },
-    eval: function (env, args, important) {
+    eval: function (env) {
+        return new tree.mixin.Definition(this.name, this.params, this.rules, this.condition, this.variadic, this.frames || env.frames.slice(0));
+    },
+    evalCall: function (env, args, important) {
         var _arguments = [],
-            mixinFrames = this.frames.concat(env.frames),
+            mixinFrames = this.frames ? this.frames.concat(env.frames) : env.frames,
             frame = this.evalParams(env, new(tree.evalEnv)(env, mixinFrames), args, _arguments),
             rules, ruleset;
 

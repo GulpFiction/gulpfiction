@@ -67,6 +67,23 @@ describe("gulp-ng-html2js", function(){
 			testBufferedFile(params, expectedFile, done);
 		});
 
+		it("should allow a custom function to rename the generate file", function(done){
+			var expectedFile = new gutil.File({
+				path: "test/expected/exampleWithRename.js",
+				cwd: "test/",
+				base: "test/expected",
+				contents: fs.readFileSync("test/expected/exampleWithRename.js")
+			});
+
+			var params = {
+				rename: function () {
+					return "rename.html";
+				}
+			};
+
+			testBufferedFile(params, expectedFile, done);
+		});
+
 		function testBufferedFile(params, expectedFile, done){
 			var srcFile = new gutil.File({
 				path: "test/fixtures/example.html",

@@ -1,4 +1,4 @@
- (function (exports) {
+(function (exports) {
     'use strict';
 
     var DROPBOX_KEY = 'dropbox_credentials';
@@ -21,8 +21,7 @@
 
         // ensure correct task names on blur!!!
         exports.$('body').on('change', '.task h3 input', function (ev) {
-            console.log()
-            var el = angular.element(this);
+            var el = exports.angular.element(this);
             var task = el.scope().task;
             task.name = ensureCorrectTaskName(task.name || '') || createTaskName();
             if (!$rootScope.$$phase) { $rootScope.$apply(); }

@@ -95,6 +95,14 @@ tree.functions = {
     luma: function (color) {
         return new(tree.Dimension)(Math.round(color.luma() * color.alpha * 100), '%');
     },
+    luminance: function (color) {
+        var luminance =
+            (0.2126 * color.rgb[0] / 255)
+          + (0.7152 * color.rgb[1] / 255)
+          + (0.0722 * color.rgb[2] / 255);
+
+        return new(tree.Dimension)(Math.round(luminance * color.alpha * 100), '%');
+    },
     saturate: function (color, amount) {
         // filter: saturate(3.2);
         // should be kept as is, so check for color
@@ -218,25 +226,40 @@ tree.functions = {
     escape: function (str) {
         return new(tree.Anonymous)(encodeURI(str.value).replace(/=/g, "%3D").replace(/:/g, "%3A").replace(/#/g, "%23").replace(/;/g, "%3B").replace(/\(/g, "%28").replace(/\)/g, "%29"));
     },
-    '%': function (quoted /* arg, arg, ...*/) {
+    replace: function (string, pattern, replacement, flags) {
+        var result = string.value;
+
+        result = result.replace(new RegExp(pattern.value, flags ? flags.value : ''), replacement.value);
+        return new(tree.Quoted)(string.quote || '', result, string.escaped);
+    },
+    '%': function (string /* arg, arg, ...*/) {
         var args = Array.prototype.slice.call(arguments, 1),
-            str = quoted.value;
+            result = string.value;
 
         for (var i = 0; i < args.length; i++) {
             /*jshint loopfunc:true */
-            str = str.replace(/%[sda]/i, function(token) {
+            result = result.replace(/%[sda]/i, function(token) {
                 var value = token.match(/s/i) ? args[i].value : args[i].toCSS();
                 return token.match(/[A-Z]$/) ? encodeURIComponent(value) : value;
             });
         }
-        str = str.replace(/%%/g, '%');
-        return new(tree.Quoted)('"' + str + '"', str);
+        result = result.replace(/%%/g, '%');
+        return new(tree.Quoted)(string.quote || '', result, string.escaped);
     },
     unit: function (val, unit) {
         if(!(val instanceof tree.Dimension)) {
             throw { type: "Argument", message: "the first argument to unit must be a number" + (val instanceof tree.Operation ? ". Have you forgotten parenthesis?" : "") };
         }
-        return new(tree.Dimension)(val.value, unit ? unit.toCSS() : "");
+        if (unit) {
+            if (unit instanceof tree.Keyword) {
+                unit = unit.value;
+            } else {
+                unit = unit.toCSS();
+            }
+        } else {
+            unit = "";
+        }
+        return new(tree.Dimension)(val.value, unit);
     },
     convert: function (val, unit) {
         return val.convertTo(unit.value);
@@ -264,28 +287,34 @@ tree.functions = {
     _minmax: function (isMin, args) {
         args = Array.prototype.slice.call(args);
         switch(args.length) {
-        case 0: throw { type: "Argument", message: "one or more arguments required" };
-        case 1: return args[0];
+            case 0: throw { type: "Argument", message: "one or more arguments required" };
         }
-        var i, j, current, currentUnified, referenceUnified, unit,
+        var i, j, current, currentUnified, referenceUnified, unit, unitStatic, unitClone,
             order  = [], // elems only contains original argument values.
             values = {}; // key is the unit.toString() for unified tree.Dimension values,
                          // value is the index into the order array.
         for (i = 0; i < args.length; i++) {
             current = args[i];
             if (!(current instanceof tree.Dimension)) {
-                order.push(current);
+                if(Array.isArray(args[i].value)) {
+                    Array.prototype.push.apply(args, Array.prototype.slice.call(args[i].value));
+                }
                 continue;
             }
-            currentUnified = current.unify();
-            unit = currentUnified.unit.toString();
-            j = values[unit];
+            currentUnified = current.unit.toString() === "" && unitClone !== undefined ? new(tree.Dimension)(current.value, unitClone).unify() : current.unify();
+            unit = currentUnified.unit.toString() === "" && unitStatic !== undefined ? unitStatic : currentUnified.unit.toString();			
+            unitStatic = unit !== "" && unitStatic === undefined || unit !== "" && order[0].unify().unit.toString() === "" ? unit : unitStatic;
+            unitClone = unit !== "" && unitClone === undefined ? current.unit.toString() : unitClone;
+            j = values[""] !== undefined && unit !== "" && unit === unitStatic ? values[""] : values[unit];
             if (j === undefined) {
+                if(unitStatic !== undefined && unit !== unitStatic) {
+                    throw{ type: "Argument", message: "incompatible types" };
+                }
                 values[unit] = order.length;
                 order.push(current);
                 continue;
             }
-            referenceUnified = order[j].unify();
+            referenceUnified = order[j].unit.toString() === "" && unitClone !== undefined ? new(tree.Dimension)(order[j].value, unitClone).unify() : order[j].unify();
             if ( isMin && currentUnified.value < referenceUnified.value ||
                 !isMin && currentUnified.value > referenceUnified.value) {
                 order[j] = current;
@@ -294,8 +323,7 @@ tree.functions = {
         if (order.length == 1) {
             return order[0];
         }
-        args = order.map(function (a) { return a.toCSS(this.env); })
-                    .join(this.env.compress ? "," : ", ");
+        args = order.map(function (a) { return a.toCSS(this.env); }).join(this.env.compress ? "," : ", ");
         return new(tree.Anonymous)((isMin ? "min" : "max") + "(" + args + ")");
     },
     min: function () {
@@ -303,6 +331,9 @@ tree.functions = {
     },
     max: function () {
         return this._minmax(false, arguments);
+    },
+    "get-unit": function (n) {
+        return new(tree.Anonymous)(n.unit);
     },
     argb: function (color) {
         return new(tree.Anonymous)(color.toARGB());

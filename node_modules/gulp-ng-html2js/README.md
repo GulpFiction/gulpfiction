@@ -71,6 +71,16 @@ Type: `String`
 
 The prefix which should be subtracted from the file path to generate the file url.
 
+#### options.rename
+Type: `Function`
+
+A function that allows the generate file url to be manipulated. For example:
+
+```
+function (url) {
+  return url.replace('.tpl.html', '.html');
+}
+```
 
 ## License
 

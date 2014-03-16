@@ -68,6 +68,7 @@ module.exports = function(options){
 	 * @param [options] - The plugin options
 	 * @param [options.stripPrefix] - The prefix which should be stripped from the file path
 	 * @param [options.prefix] - The prefix which should be added to the start of the url
+	 * @param [options.rename] - A function that takes in the generated url and returns the desired manipulation.
 	 * @returns {string}
 	 */
 	function getFileUrl(file, options){
@@ -84,6 +85,11 @@ module.exports = function(options){
 		// Add the prefix
 		if(options && options.prefix){
 			url = options.prefix + url;
+		}
+
+		// Rename the url
+		if(options && options.rename){
+			url = options.rename(url);
 		}
 
 		return url;
