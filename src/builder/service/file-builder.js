@@ -202,9 +202,12 @@
         content.push('gulp.task("watch", ' + JSON.stringify(watchDependencies) + ', function () {');
 
         project.tasks.forEach(function (task) {
+            console.log(task.inputGlob);
             var taskInputs = getUniqueNames(
-                exports.angular.isArray(task.inputGlob) ? task.inputGlob : [task.inputGlob]
+                (exports.angular.isArray(task.inputGlob) ? task.inputGlob : [task.inputGlob])
+                    .map(function (i) { return i.path; }).filter(function (i) { return i; })
             );
+            console.log(taskInputs);
 
             taskInputs.forEach(function (taskInput) {
                 var tasks = [task.name];
