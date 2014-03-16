@@ -17,6 +17,4 @@ If not running locally, we can deploy to:
  # Todo
 
   - For some reason, task dependencies are not saved
-  - Again add task watching and task livereload support
   - npm search doesn't work right now
-  - Remove text like this "gulp-gulp-concat" from task builder
