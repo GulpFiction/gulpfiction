@@ -122,7 +122,15 @@
     }
 
     function buildPreTasks(task) {
-        return task.preTasks.map(function (content) {
+        var preTaskNames = [], taskId;
+        // convert object to array
+        for (taskId in task.preTasks) {
+            if (task.preTasks.hasOwnProperty(taskId)) {
+                preTaskNames.push(task.preTasks[taskId]);
+            }
+        }
+
+        return preTaskNames.map(function (content) {
             return JSON.stringify(content);
         }).join(', ');
     }

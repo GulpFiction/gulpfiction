@@ -7,7 +7,7 @@
             function Task(data) {
                 this.id = uuid4.generate();
                 this.steps = [];
-                this.preTasks = [];
+                this.preTasks = {};
                 this.name = '';
                 this.inputGlob = [{path: ''}];
                 this.outputDir = '';
