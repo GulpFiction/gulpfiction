@@ -28,9 +28,6 @@
     function buildDependencies(project) {
         var stepNames = getStepNames(project), content = [];
 
-        // prepend default modules
-        stepNames.unshift('util');
-
         if (hasReload(project)) {
             stepNames.unshift('livereload');
         }
