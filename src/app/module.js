@@ -21,7 +21,8 @@
         'ngClipboard',
         'app.documentationSidebar',
         'uuid4',
-        'ui.utils'
+        'ui.utils',
+        'npm.search.npmPackage'
     ])
     .config(function (DropboxProvider) {
         DropboxProvider.config('dz3ndmuzjdf7ca4', 'https://ss14-team-275.divshot.io/callback.html');
@@ -55,9 +56,8 @@
                 redirectTo: '/'
             });
     })
-    .run(function (testBuilder) {
-        // testBuilder();
-        // testDropbox();
+    .run(function (NpmPackageCache) {
+        NpmPackageCache.getCachedPackages();
     });
 
 }(this));

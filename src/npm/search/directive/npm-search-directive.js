@@ -22,12 +22,9 @@
                     scope.filteredSupset = $filter('filter')(scope.results, {name: 'gulp-' + newQeury});
                 });
 
-
-
                 scope.selectResult = function (result) {
                     scope.doSelectPackage({npmPackage: result});
                 };
-
             }
         };
     }
