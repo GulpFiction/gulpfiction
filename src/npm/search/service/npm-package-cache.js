@@ -17,9 +17,8 @@
                 deferred.resolve(this.packages);
                 return deferred.promise;
             } else {
-                var query = NpmPackage.getGulpQueryPayload();
                 var params = NpmPackage.getSearchParams();
-                return NpmPackage.search(params, {query: query}).$promise.then(function (response) {
+                return NpmPackage.search(params).$promise.then(function (response) {
                     // This removes strange "undefined" package https://github.com/Gozala/undefined.js
                     response.hits.hits.splice(0, 1);
                     self.packages = response.hits.hits.map(function (res) {

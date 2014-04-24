@@ -7,14 +7,14 @@
             var pageSize = 350;
             var page = 0;
 
-            var NPM_URL = 'http://npmjs.org:9200/npm/package/_search';
+            var NPM_URL = 'http://registry.gulpjs.com/_search';
             var GITHUB_URL = 'https://api.github.com/repos/:owner/:repoName/readme';
 
             var NpmPackage = $resource(NPM_URL, {
             }, {
                 search: {
                     url: NPM_URL,
-                    method: 'POST',
+                    method: 'GET',
                     isArray: false
                 },
                 fetchReadmeFromGithub: {
@@ -28,22 +28,8 @@
                 return {
                     from: page * pageSize,
                     size : pageSize,
-                    pretty: true
-                };
-            };
-
-            NpmPackage.getGulpQueryPayload = function () {
-                return this.getGulpMatchQueryPayloadFor();
-            };
-
-            NpmPackage.getGulpMatchQueryPayloadFor = function (query) {
-                return {
-                    match: {
-                        name: {
-                            query: 'gulp-' + query
-                        },
-                        sort : ['_score']
-                    }
+                    pretty: true,
+                    q: 'keywords:gulpplugin,gulpfriendly'
                 };
             };
 
