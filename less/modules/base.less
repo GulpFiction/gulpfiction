@@ -36,47 +36,6 @@ menu {
 	}
 }
 
-.lightbox {
-	z-index: 9998;
-	display: block;
-	position: fixed;
-	top: -250px;
-	left: 0;
-	right: 0;
-	bottom: -250px;
-	background: rgba(0,0,0,.4);
-	.flex();
-	.alignItems(center);
-	.justifyContent(space-around);
-	transition: all .3s;
-
-	.close-button {
-		margin-top: 2rem;
-	}
-
-	&.ng-animate {
-		transition: all .3s;
-		display: -webkit-flex !important;
-		display: flex !important;
-	}
-
-	&.ng-hide-remove {
-		opacity: 0;
-		.transform(translateY(-250px));
-	}
-
-	&.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add {
-		opacity: 1;
-		.transform(translateY(0));
-	}
-
-	&.ng-hide-add.ng-hide-add-active {
-		opacity: 0;
-		.transform(translateY(250px));
-	}
-
-}
-
 button {
 	outline: none;
 	font-size: 1rem;
@@ -132,41 +91,6 @@ button {
 
 	.button, button {
 		margin-left: 1rem;
-	}
-}
-
-.lightbox-content {
-	background-color: white;
-	.imageset("img/bg/paper_fibers");
-	transition: all .3s;
-	padding: 2rem;
-	width: 750px;
-	box-shadow: inset 0 0 60px fade(@color-shadow, 20%), 2px 2px 20px fade(#443800, 30%);
-	border-radius: 2px;
-	position: relative;
-
-	h1:first-of-type {
-		margin-top: 0;
-	}
-
-	.close {
-		opacity: 1;
-	}
-}
-
-.full-height .lightbox-content {
-	height: 80vh;
-	.flex();
-	.flexDirection(column);
-
-	> div {
-		.flex();
-		.flexDirection(column);
-		.flex(1);
-	}
-
-	.ace_editor {
-		.flex(1);
 	}
 }
 

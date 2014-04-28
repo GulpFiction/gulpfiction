@@ -41,6 +41,16 @@
                         scope.doClose();
                     };
 
+                    el.on('click', function (event) {
+                        /*jshint debug:true */
+                        // debugger;
+
+                        // if ($(event.target).is($(this).find('.lightbox-center')) {
+                        //     console.log('yeah!');
+                        // }
+
+                    });
+
                     // unregister
                     scope.$on('$destroy', scope.$on('keyup:esc'));
                     scope.$on('$destroy', scope.$watch('isActive'));
