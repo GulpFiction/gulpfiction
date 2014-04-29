@@ -45,6 +45,14 @@ button {
 	padding: 0;
 	margin: 0;
 
+	&.button.button-tab {
+		font-size: 1em;
+		background: lightgrey;
+		&.active {
+			background: fade(@color-second, 70);
+		}
+	}
+
 	&.remove:before, &.close:before {
 		.fontAwesome("\f057");
 	}

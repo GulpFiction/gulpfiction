@@ -205,13 +205,14 @@
         </lightbox>
 
 
-        <lightbox is-active="showsExport" show-close="true" class="full-height">
+        <lightbox is-active="showsExport" show-close="true" class="full-height" ng-init="tab = 'gulpfile'">
             <h1>Any time of the day is a good time for pie!</h1>
-            <p>Copy the following code and paste it into a file named gulpfile.js in your project root.</p>
-            <div class="export-left">
-                <button clip-copy="currentExportContent">» Copy all content by clicking here «</button>
-            </div>
-            <div ui-ace readonly="true" ng-model="currentExportContent"></div>
+            <p>
+                <button ng-click="tab = 'gulpfile'" class="button button-tab" ng-class="{'active':tab == 'gulpfile'}">gulpfile.js</button>
+                <button ng-click="tab = 'package'" class="button button-tab" ng-class="{'active':tab == 'package'}">package.json</button>
+            </p>
+            <div ng-if="tab == 'gulpfile'" ui-ace readonly="true" ng-model="currentExportContent"></div>
+            <div ng-if="tab == 'package'" ui-ace readonly="true" ng-model="currentExportContentPackage"></div>
 
         </lightbox>
 

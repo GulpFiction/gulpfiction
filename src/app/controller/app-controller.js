@@ -7,12 +7,15 @@
     exports.angular.module('app.appController', [
         'gulp.gulp',
         'builder.fileBuilder',
+        'builder.packageBuilder',
         'ngAnimate',
         'localStorage',
         'app.stepOptions'
     ]).controller('appController', AppController);
 
-    function AppController($scope, gulp, fileBuilder, $location, $rootScope, Dropbox, localStorage, $timeout) {
+    function AppController(
+        $scope, gulp, fileBuilder, packageBuilder, $location, $rootScope, Dropbox, localStorage, $timeout
+    ) {
 
         var isNotVirgin = localStorage.get(NOT_VIRGIN_KEY);
         if (!isNotVirgin) {
@@ -102,6 +105,7 @@
 
         $scope.openExportProject = function (project) {
             $scope.currentExportContent = fileBuilder.build(project);
+            $scope.currentExportContentPackage = packageBuilder.build(project);
             $scope.showsExport = true;
         };
 
