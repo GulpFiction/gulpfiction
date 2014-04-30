@@ -34,8 +34,7 @@
 
         stepNames.forEach(function (stepName) {
             if (stepName) {
-                stepName = stepName.replace(/gulp-/g, '');
-                content.push('var ' + normalizeStepName(stepName) + ' = require("gulp-' + stepName + '");');
+                content.push('var ' + normalizeStepName(stepName) + ' = require("' + stepName + '");');
             }
         });
 
@@ -46,6 +45,7 @@
     }
 
     function normalizeStepName(stepName) {
+        stepName = stepName.replace(/gulp-/g, '');
         var parts = stepName.split('-'), normalizedParts;
 
         normalizedParts = parts.map(function (part, index) {
