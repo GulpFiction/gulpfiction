@@ -111,7 +111,7 @@
         }
 
         var taskContent = [], preTasks = buildPreTasks(task);
-        taskContent.push('gulp.task("' + task.name + '", [' + preTasks + '], {');
+        taskContent.push('gulp.task("' + task.name + '", [' + preTasks + '], function () {');
         taskContent.push(buildTaskContent(task));
         taskContent.push('});');
 
