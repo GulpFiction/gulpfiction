@@ -1,7 +1,6 @@
 (function (exports) {
     'use strict';
 
-
     exports.angular.module('npm.search.npmPackageCache', [
         'npm.search.npmPackage'
     ]).service('NpmPackageCache', NpmPackageCache);
@@ -18,13 +17,20 @@
                 return deferred.promise;
             } else {
                 var params = NpmPackage.getSearchParams();
-                return NpmPackage.search(params).$promise.then(function (response) {
-                    // This removes strange "undefined" package https://github.com/Gozala/undefined.js
-                    response.hits.hits.splice(0, 1);
-                    self.packages = response.hits.hits.map(function (res) {
-                        return res._source;
+                var countParams = NpmPackage.getMaxPageSizeParams();
+
+                return NpmPackage.count(countParams).$promise.then(function (responce) {
+
+                    params.size = responce.count;
+
+                    return NpmPackage.search(params).$promise.then(function (response) {
+                        // This removes strange "undefined" package https://github.com/Gozala/undefined.js
+                        response.hits.hits.splice(0, 1);
+                        self.packages = response.hits.hits.map(function (res) {
+                            return res._source;
+                        });
+                        return self.packages;
                     });
-                    return self.packages;
                 });
             }
         };
