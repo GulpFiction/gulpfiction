@@ -5,7 +5,7 @@
     exports.angular.module('npm.search.npmPackage', ['ngResource'])
         .factory('NpmPackage', function ($resource) {
             var query = 'keywords:gulpplugin,gulpfriendly';
-            var fields = 'name,keywords,version,author,homepage,description,readme';
+            var fields = 'name,version,author,homepage,description,readme';
 
             var NPM_URL = 'http://registry.gulpjs.com/_search';
             var GITHUB_URL = 'https://api.github.com/repos/:owner/:repoName/readme';
