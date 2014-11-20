@@ -27,7 +27,15 @@
                         // This removes strange "undefined" package https://github.com/Gozala/undefined.js
                         response.hits.hits.splice(0, 1);
                         self.packages = response.hits.hits.map(function (res) {
-                            return res._source;
+                            res = res.fields;
+                            return {
+                                name: res.name[0],
+                                version: res.version[0],
+                                author: res.author[0],
+                                homepage: res.homepage[0],
+                                description: res.description[0],
+                                readme: res.readme[0]
+                            };
                         });
                         return self.packages;
                     });

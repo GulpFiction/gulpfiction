@@ -17,7 +17,6 @@
                 this.description = npmPackage.description;
                 this.homepage = npmPackage.homepage;
                 this.readme = npmPackage.readme;
-                this.author = npmPackage.author;
                 this.version = npmPackage.version;
             };
 

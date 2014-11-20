@@ -4,9 +4,8 @@
 
     exports.angular.module('npm.search.npmPackage', ['ngResource'])
         .factory('NpmPackage', function ($resource) {
-            var pageSize = 20;
-            var page = 0;
             var query = 'keywords:gulpplugin,gulpfriendly';
+            var fields = 'name,version,author,homepage,description,readme';
 
             var NPM_URL = 'http://registry.gulpjs.com/_search';
             var GITHUB_URL = 'https://api.github.com/repos/:owner/:repoName/readme';
@@ -33,10 +32,8 @@
 
             NpmPackage.getSearchParams = function () {
                 return {
-                    from: page * pageSize,
-                    size: pageSize,
-                    pretty: true,
-                    q: query
+                    q: query,
+                    fields: fields
                 };
             };
 
