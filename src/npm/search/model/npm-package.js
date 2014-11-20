@@ -4,8 +4,6 @@
 
     exports.angular.module('npm.search.npmPackage', ['ngResource'])
         .factory('NpmPackage', function ($resource) {
-            var pageSize = 20;
-            var page = 0;
             var query = 'keywords:gulpplugin,gulpfriendly';
             var fields = 'name,keywords,version,author,homepage,description,readme';
 
