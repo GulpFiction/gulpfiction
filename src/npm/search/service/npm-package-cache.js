@@ -20,14 +20,14 @@
                 var countParams = NpmPackage.getMaxPageSizeParams();
 
                 return NpmPackage.count(countParams).$promise.then(function (response) {
-
-                    params.size = response.count;
+                    params.size = response.total;
 
                     return NpmPackage.search(params).$promise.then(function (response) {
-                        // This removes strange "undefined" package https://github.com/Gozala/undefined.js
-                        response.hits.hits.splice(0, 1);
-                        self.packages = response.hits.hits.map(function (res) {
-                            return res._source;
+                        self.packages = response.results.map(function (r) {
+                            return {
+                                name: r.name[0],
+                                description: r.description[0]
+                            };
                         });
                         return self.packages;
                     });

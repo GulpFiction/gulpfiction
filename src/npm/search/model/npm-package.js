@@ -8,9 +8,9 @@
             var page = 0;
             var query = 'keywords:gulpplugin,gulpfriendly';
 
-            var NPM_URL = 'http://registry.gulpjs.com/_search';
+            var NPM_URL = 'http://npmsearch.com/query';
             var GITHUB_URL = 'https://api.github.com/repos/:owner/:repoName/readme';
-            var NPM_URL_COUNT = 'http://registry.gulpjs.com/_count';
+            var NPM_URL_COUNT = 'http://npmsearch.com/query';
 
             var NpmPackage = $resource(NPM_URL, {
             }, {
@@ -33,16 +33,19 @@
 
             NpmPackage.getSearchParams = function () {
                 return {
-                    from: page * pageSize,
-                    size: pageSize,
-                    pretty: true,
-                    q: query
+                    size: page * pageSize,
+                    q: ['keywords:gulpplugin', 'keywords:gulpfriendly'],
+                    sort: 'rating:desc',
+                    fields: 'name,keywords,rating,description,author,modified,homepage,version',
                 };
             };
 
             NpmPackage.getMaxPageSizeParams = function () {
                 return {
-                    q: query
+                    size: 1,
+                    q: ['keywords:gulpplugin', 'keywords:gulpfriendly'],
+                    sort: 'rating:desc',
+                    fields: 'name,keywords,rating,description,author,modified,homepage,version',
                 };
             };
 
