@@ -6,7 +6,6 @@
         .factory('NpmPackage', function ($resource) {
             var pageSize = 20;
             var page = 0;
-            var query = 'keywords:gulpplugin,gulpfriendly';
 
             var NPM_URL = 'http://npmsearch.com/query';
             var GITHUB_URL = 'https://api.github.com/repos/:owner/:repoName/readme';
